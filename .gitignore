@@ -18,6 +18,9 @@ Servers
 *.classpath
 *.project
 *.classpath
+.classpath
+.project
+.classpath
 
 # External tool builders
 .externalToolBuilders/
