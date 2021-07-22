@@ -1589,7 +1589,9 @@ textarea.form-control {
   background-size: cover;
   background-color: #ccc;
   padding: 0;
-  position: relative; }
+  position: relative; 
+ 
+  }
   @media (max-width: 991.98px) {
     .block-30 {
       background-position: center center !important; } }
@@ -1996,6 +1998,12 @@ textarea.form-control {
   -webkit-animation: loader-dash 1.5s ease-in-out infinite;
   animation: loader-dash 1.5s ease-in-out infinite;
   stroke-linecap: round; }
+
+.mypage_id {
+  font-size: 30px;
+  margin-bottom: 50px;
+	
+}
 
 @-webkit-keyframes loader-rotate {
   100% {
