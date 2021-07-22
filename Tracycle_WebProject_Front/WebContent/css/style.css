@@ -1650,6 +1650,41 @@ textarea.form-control {
     @media (min-width: 992px) {
       .block-30 .heading {
         font-size: 80px; } }
+        
+/* Header용 Main Title */
+
+ .block-30 .heading1 {
+    color: #fff;
+    font-size: 35px;
+    line-height: 1.1;
+    margin-bottom: 50px;
+    font-family: 'Nunito', sans-serif; }
+    @media (min-width: 768px) {
+      .block-30 .heading {
+        font-size: 80px; } }
+    @media (min-width: 992px) {
+      .block-30 .heading {
+        font-size: 80px; } }
+/* END--Header용 Title */        
+
+/* Header용 Tab Title */
+
+ .block-30 .title {
+ 	padding-top:400px;
+    color: #fff;
+    font-size: 40px;
+    line-height: 1.1;
+    font-family: 'Nunito', sans-serif;
+    font-weight:bold; }
+    @media (min-width: 768px) {
+      .block-30 .heading {
+        font-size: 80px; } }
+    @media (min-width: 992px) {
+      .block-30 .heading {
+        font-size: 80px; } }
+/* END--Header용 Title */  
+        
+        
   .block-30 .btn {
     background: #fff;
     border-radius: 0;
@@ -2001,6 +2036,17 @@ textarea.form-control {
   -webkit-animation: loader-dash 1.5s ease-in-out infinite;
   animation: loader-dash 1.5s ease-in-out infinite;
   stroke-linecap: round; }
+  
+  
+  /*Report.jsp용*/
+  .site-header-section {
+  padding: 4em 0; }
+  
+  .container h1{
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 35px;
+  }
+  
 
 @-webkit-keyframes loader-rotate {
   100% {
