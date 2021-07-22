@@ -98,7 +98,7 @@
                         <label for="message" class="label-font-bold">댓글 내용</label> <input type="checkbox"> 비밀글
                         <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group text-center">
                         <input type="submit" value="Write Comment" class="btn py-3 px-4 btn-primary">
                       </div>
 
