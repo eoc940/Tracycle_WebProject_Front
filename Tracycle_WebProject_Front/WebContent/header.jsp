@@ -22,7 +22,7 @@
           <li class="nav-item"><a href="blog.html" class="nav-link">Board</a></li>
           <li class="nav-item"><a href="how-it-works.html" class="nav-link">Service</a></li> 
           <li class="nav-item"><a href="donate.html" class="nav-link">Report</a></li>
-          <li class="nav-item"><a href="gallery.html" class="nav-link">Login</a></li>
+          <li class="nav-item"><a href="login.jsp" class="nav-link">Login</a></li>
         </ul>
       </div>
     </div>

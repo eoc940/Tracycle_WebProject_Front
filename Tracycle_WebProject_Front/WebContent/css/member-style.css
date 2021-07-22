@@ -1,0 +1,259 @@
+body {
+  font-family: 'Nunito', sans-serif;
+  font-size: 25px;
+  line-height: 1.8;
+  font-weight: normal;
+  color: gray;
+  position: relative;
+  z-index: 0;
+  padding: 0;
+  background-image: url("../images/login.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;	}
+
+body:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  background: rgba(0, 0, 0, 0.6);
+  background-size:cover;
+  background-repeat: no-repeat;
+  
+  z-index: -1;
+}
+
+.ftco-section {
+  text-align: center;
+  padding: 325px 350px;
+}
+
+h3 {
+font-family: 'Nunito', sans-serif;
+font-size:xx-large;	
+color: #fff;
+}
+
+
+
+.form-control {
+center: center !important;	
+  background: transparent;
+  border: none;
+  height: 50px;
+  width: 330px;
+  padding-left: 35px;
+  padding-right: 35px;
+  color: rgba(128, 156, 168, 1) !important;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-weight:500;
+  font-size: 20px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.2);
+  margin-top: 20px;
+  
+  
+
+}
+
+input::placeholder {
+ font-family: 'Nunito', sans-serif;
+  color: rgba(128, 156, 168, 1);
+  font-style: bold;
+  font-size: 20px;
+  text-align: left;
+}
+
+button {
+  font-family: 'Nunito', sans-serif;
+  background: rgba(128, 156, 168, 1) !important;
+  border: 1px solid rgba(128, 156, 168, 1) !important;
+  border: none;
+  height: 50px;
+  width: 400px;
+  padding-left: 35px;
+  padding-right: 35px;
+  font-size: 20px;
+  font-weight: 100;
+  color: white;
+  margin-top: 20px;
+  center: center;
+}
+
+button:hover{
+	
+  font-family: 'Nunito', sans-serif;
+  background: rgba(128, 156, 168, 1) !important;
+  border: 1px solid rgba(128, 156, 168, 1) !important;
+  border: none;
+  height: 50px;
+  width: 400px;
+  padding-left: 35px;
+  padding-right: 35px;
+  font-size: 20px;
+  font-weight: 100;
+  color: white;
+  margin-top: 20px;
+  center: center;
+	
+}
+a {	
+  font-family: 'Nunito', sans-serif;
+  margin-top: 15px;
+  padding-top: 20px;
+  color:rgba(128, 156, 168, 1);
+  font-size: 20px;
+  center: center;
+  font-weight: 400;
+}
+
+
+a:hover {
+  color: white;
+}
+
+.index {
+  padding-right: 65px;
+
+}
+
+.registerForm {
+
+  padding-left: 65px;
+
+}
+
+
+@media (max-width: 375px) {
+body {
+  font-family: 'Nunito', sans-serif;
+  font-size: 10px;
+  line-height: 1.8;
+  font-weight: normal;
+  color: gray;
+  position: relative;
+  z-index: 0;
+  padding: 0;
+  background-image: url("../images/login5.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;	}
+
+body:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  background: rgba(0, 0, 0, 0.6);
+  background-size:cover;
+  background-repeat: no-repeat;
+  
+  z-index: -1;
+}
+
+.ftco-section {
+  text-align: center;
+  padding: 125px 150px;
+}
+
+h3 {
+font-family: 'Nunito', sans-serif;
+font-size:xx-large;	
+color: #fff;
+}
+
+
+
+.form-control {
+center: center !important;	
+  background: transparent;
+  border: none;
+  height: 25px;
+  width: 150px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: rgba(128, 156, 168, 1) !important;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 10px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.2);
+  margin-top: 10px;
+  
+  
+
+}
+
+input::placeholder {
+ font-family: 'Nunito', sans-serif;
+  color: rgba(128, 156, 168, 1);
+  font-style: bold;
+  font-size: 10px;
+  text-align: left;
+}
+
+button {
+  font-family: 'Nunito', sans-serif;
+  background: rgba(128, 156, 168, 1) !important;
+  border: 1px solid rgba(128, 156, 168, 1) !important;
+  border: none;
+  height: 25px;
+  width: 400px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 10px;
+  font-weight: 100;
+  color: white;
+  margin-top: 20px;
+  center: center;
+}
+
+button:hover{
+	
+  font-family: 'Nunito', sans-serif;
+  background: rgba(128, 156, 168, 1) !important;
+  border: 1px solid rgba(128, 156, 168, 1) !important;
+  border: none;
+  height: 25px;
+  width: 200px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 10px;
+  font-weight: 50;
+  color: white;
+  margin-top: 20px;
+  center: center;
+	
+}
+a {	
+  font-family: 'Nunito', sans-serif;
+  margin-top: 8px;
+  padding-top: 20px;
+  color:rgba(128, 156, 168, 1);
+  font-size: 15px;
+  center: center;
+  font-weight: 400;
+}
+
+
+a:hover {
+  color: white;
+}
+
+.index {
+  padding-right:35px;
+
+}
+
+.registerForm {
+
+  padding-left: 35px;
+
+}
+
+}
+
