@@ -379,7 +379,7 @@ h1, h2, h3, h4, h5,
     border-color: #000 !important; }
     
     
-/* GENERAL BUTTON STYLING (main button)*/
+/* main화면에 Ourservice-btn*/
 .main-btn1,
 .main-btn1::after {
   -webkit-transition: all 0.3s;
@@ -413,6 +413,9 @@ h1, h2, h3, h4, h5,
 .main-btn1:hover {
   color: #2ecc71;
 }
+/* main화면에 Ourservice-btn End*/
+
+
 
 /* BUTTON 1 */
 .main-btn1::after {
