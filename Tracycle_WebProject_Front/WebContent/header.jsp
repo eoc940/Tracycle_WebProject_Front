@@ -4,7 +4,30 @@
 
   <head>
   <meta charset="UTF-8">
-
+   <script src="../js/jquery.min.js"></script>
+    <script type="text/javascript">
+    var url = window.location.pathname;
+    	if(url.includes("about")){
+    		$('[name="about"]').addClass('active');
+    	}
+    	else if(url.includes("board")){
+    		console.log(url);
+    		console.log($('[name="board"]').attr('name'));
+    		$('[name="board"]').addClass('active');
+    	}
+    	else if(url.includes("service")){
+    		$('[name="service"]').addClass('active');
+    	}
+    	else if(url.includes("report")){
+    		$('[name="report"]').addClass('active');
+    	}
+    	else if(url.includes("login")){
+    		$('[name="login"]').addClass('active');
+    	}
+    	else{
+    		$('[name="index"]').addClass('active');
+    	}
+    </script>
   </head>
   <body>
     
@@ -17,12 +40,12 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="../main/index.jsp" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="about.html" class="nav-link">About us</a></li>
-          <li class="nav-item"><a href="../board/board_list.jsp" class="nav-link">Board</a></li>
-          <li class="nav-item"><a href="../service/service.jsp" class="nav-link">Service</a></li> 
-          <li class="nav-item"><a href="../report/report.jsp" class="nav-link">Report</a></li>
-          <li class="nav-item"><a href="login.jsp" class="nav-link">Login</a></li>
+          <li class="nav-item"><a href="../main/index.jsp" name="index" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="about.html" name="about" class="nav-link">About us</a></li>
+          <li class="nav-item"><a href="../board/board_list.jsp" name="board" class="nav-link">Board</a></li>
+          <li class="nav-item"><a href="../service/service.jsp" name="service" class="nav-link">Service</a></li> 
+          <li class="nav-item"><a href="../report/report.jsp" name="report" class="nav-link">Report</a></li>
+          <li class="nav-item"><a href="login.jsp" name="login" class="nav-link">Login</a></li>
         </ul>
       </div>
     </div>
@@ -50,6 +73,7 @@
   </div>
 
 
-    
+
   </body>
+
 </html>

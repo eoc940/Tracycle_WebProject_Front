@@ -35,7 +35,7 @@
     <div class="container">
       
 
-      <div class="row mb-5">
+      <div class="row mt-5 mb-5">
         <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
           <div class="post-entry">
             <a href="blog-single.html" class="mb-3 img-wrap">
@@ -104,7 +104,9 @@
           </div>
         </div>
 
-        
+        <div class="form-group pt-5 pb-5 margin-center">
+			<a href="board_form.jsp" class="btn py-3 px-4 btn-primary">Write Post</a>
+        </div>
         
       </div>
       

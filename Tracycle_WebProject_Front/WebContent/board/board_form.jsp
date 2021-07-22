@@ -55,12 +55,12 @@
 					</div>
 					 <!-- 작성시 게시글 작성 버튼 -->
 					  <div class="form-group text-center pt-5 pb-5">
-					  	<input type="submit" value="Cancle" class="btn py-3 px-4 btn-primary">	
+					  	<input type="submit" value="Cancel" class="btn py-3 px-4 btn-cancel">	
                         <input type="submit" value="Write Post" class="btn py-3 px-4 btn-primary">
                       </div>
                       <!-- 수정시 게시글 수정 버튼 -->
 					  <!-- <div class="form-group text-center pt-5 pb-5">
-                        <input type="submit" value="Cancle" class="btn py-3 px-4 btn-primary">
+                        <input type="submit" value="Cancel" class="btn py-3 px-4 btn-cancel">
                         <input type="submit" value="Update Post" class="btn py-3 px-4 btn-primary">
                       </div> -->
                     </form>

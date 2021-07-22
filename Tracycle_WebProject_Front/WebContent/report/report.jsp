@@ -20,7 +20,7 @@
 	<!-- 차트 링크 --> 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
+
 
 
     <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
@@ -51,101 +51,18 @@
           <h1 class="pt-5 pb-5 text-center">10년 후, 빙하의 높이는 오늘보다 158M 줄어들었습니다.</h1>
         </div>
         <div class="col-md-12 chart">
-        	<canvas class="mt-5 mb-5 "  id="myChart"></canvas>
+        	<canvas id="myChart"></canvas>
 		</div>
       </div>
     </div>
   </div>
 
-  <div class="site-section2">
-  
-  <div class="col-md-12"> 
-     
-      <div class="flex h-screen antialiased">
-        <!-- Loading screen -->
-        <div
-          x-ref="loading"
-          class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-primary-darker"
-        >
-          Loading.....
-        </div>
-        <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
-		 <!-- Content -->
-            <div class="mt-2">
-             
-              <!-- Charts -->
-              <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-3">
-                <!-- Bar chart card -->
-                <div class="col-span-2 bg-white rounded-md ">
-                  <!-- Card header -->
-                  <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Bar Chart</h4>
-                  </div>
-                  <!-- Chart -->
-                  <div class="relative p-4 h-72">
-                    <canvas id="barChart"></canvas>
-                  </div>
-                </div>
+  <div class="site-section border-top">
+    <div class="container">
+      <div class="row">
 
-                <!-- Doughnut chart card -->
-                <div class="bg-white rounded-md">
-                  <!-- Card header -->
-                  <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Doughnut Chart</h4>
-                    <div class="flex items-center">
-                        <div
-                          class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-darker"
-                        ></div>
-                        
-                    </div>
-                  </div>
-                  <!-- Chart -->
-                  <div class="relative p-4 h-72">
-                    <canvas id="doughnutChart"></canvas>
-                  </div>
-                </div>
-              </div>
+	<!-- 그래프를 넣어주세요! -->
 
-              <!-- Two grid columns -->
-              <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-3">
-                <!-- Active users chart -->
-                <div class="col-span-1 bg-white rounded-md dark:bg-darker">
-                  <!-- Card header -->
-                  <div class="p-4 border-b dark:border-primary">
-                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Active users right now</h4>
-                  </div>
-                  <p class="p-4">
-                    <span class="text-2xl font-medium text-gray-500 dark:text-light" id="usersCount">0</span>
-                    <span class="text-sm font-medium text-gray-500 dark:text-primary">Users</span>
-                  </p>
-                  <!-- Chart -->
-                  <div class="relative p-4">
-                    <canvas id="activeUsersChart"></canvas>
-                  </div>
-                </div>
-
-                <!-- Line chart card -->
-                <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
-                  <!-- Card header -->
-                  <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Line Chart</h4>
-                    <div class="flex items-center">
-                        <div
-                          class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-darker"
-                        ></div>
-                  
-                    </div>
-                  </div>
-                  <!-- Chart -->
-                  <div class="relative p-4 h-85">
-                    <canvas id="lineChart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-      
-       </main>
-        </div>
       </div>
     </div>
   </div> <!-- .site-section -->
@@ -170,8 +87,9 @@
   <script src="../js/jquery.fancybox.min.js"></script>
   <script src="../js/aos.js"></script>
   <script src="../js/jquery.animateNumber.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
-  <script src="../js/chart.js"></script>
   
 <script type="text/javascript">
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -180,10 +98,9 @@
      	data: { labels: ['2014', '2015', '2016', '2017', '2018', '2019'],
 		    	datasets: [{ label: '전국 연도별 생활폐기물 배출량', 
 		    				 backgroundColor: 'transparent',
-		    				 borderColor: 'rgba(128, 156, 168, 1)',
+		    				 borderColor: 'red',
 		    				 data: [401658, 418214, 429128, 429531, 446102, 497238] }] },
     	options: {} }); 
-    
  </script>
 
   </body>
