@@ -72,7 +72,7 @@
         <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
 		 <!-- Content -->
             <div class="mt-2">
-             
+             <!--  -->
               <!-- Charts -->
               <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-3">
                 <!-- Bar chart card -->
