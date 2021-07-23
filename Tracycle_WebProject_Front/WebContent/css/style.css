@@ -398,7 +398,7 @@ h1, h2, h3, h4, h5,
     border-color: #000 !important; }
     
     
-/* mainȭ�鿡 Ourservice-btn*/
+/* main화占썽에 Ourservice-btn*/
 .main-btn1,
 .main-btn1::after {
   -webkit-transition: all 0.3s;
@@ -432,7 +432,7 @@ h1, h2, h3, h4, h5,
 .main-btn1:hover {
   color: #2ecc71;
 }
-/* mainȭ�鿡 Ourservice-btn End*/
+/* main화占썽에 Ourservice-btn End*/
 
 
 
@@ -1239,7 +1239,11 @@ textarea.form-control {
     margin-top: -250px; } }
 
 .block-7 {
+  font-family: 'Nanum Gothic', serif;
+  color:black !important;
   margin-bottom: 30px;
+  width:500px;
+  height:350px;
   padding: 30px;
   -webkit-box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.11);
   box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.11);
@@ -1248,39 +1252,22 @@ textarea.form-control {
     .block-7 {
       padding: 40px; } }
   .block-7 .heading {
-    font-size: 50px;
+    font-size: 20px;
     line-height: 1;
     margin: 0;
     padding: 0; }
   .block-7 .heading-2 {
     font-size: 16px;
+    margin-top:25px;
     font-weight: normal;
     text-transform: uppercase; }
-  .block-7 .price {
-    margin: 0;
-    padding: 0;
-    display: block; }
-    .block-7 .price sup {
-      font-size: 20px;
-      top: -2em; }
-    .block-7 .price .number {
-      font-size: 80px; }
-  .block-7 .excerpt {
-    margin-bottom: 20px;
-    color: #b3b3b3; }
-  .block-7 .label2 {
-    text-transform: uppercase; }
-  .block-7 .pricing-text {
-    margin-bottom: 0; }
-    .block-7 .pricing-text, .block-7 .pricing-text li {
-      padding: 0;
-      margin: 0; }
-    .block-7 .pricing-text li {
-      list-style: none;
-      margin-bottom: 10px;
-      color: #b3b3b3; }
-      .block-7 .pricing-text li strong {
-        color: #000; }
+.block-7:hover{
+  	-webkit-box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.11);
+	box-shadow: 0 30px 50px -5px rgba(0, 0, 0, 0.3);
+	border: 6px solid var(--main-color);
+}
+
+
 
 .block-8 .accordion-item .heading {
   font-size: 16px;
@@ -1697,7 +1684,7 @@ textarea.form-control {
       .block-30 .heading {
         font-size: 80px; } }
         
-/* Header�� Main Title */
+/* Header占쏙옙 Main Title */
 
  .block-30 .heading1 {
     color: #fff;
@@ -1711,9 +1698,9 @@ textarea.form-control {
     @media (min-width: 992px) {
       .block-30 .heading {
         font-size: 80px; } }
-/* END--Header�� Title */        
+/* END--Header占쏙옙 Title */        
 
-/* Header�� Tab Title */
+/* Header占쏙옙 Tab Title */
 
  .block-30 .title {
  	padding-top:400px;
@@ -1728,7 +1715,7 @@ textarea.form-control {
     @media (min-width: 992px) {
       .block-30 .heading {
         font-size: 80px; } }
-/* END--Header�� Title */  
+/* END--Header占쏙옙 Title */  
         
         
   .block-30 .btn {
@@ -2092,7 +2079,7 @@ textarea.form-control {
   stroke-linecap: round; }
   
   
-  /*Report.jsp��*/
+  /*Report.jsp占쏙옙*/
   .site-header-section {
   padding: 4em 0; }
   
@@ -2100,9 +2087,81 @@ textarea.form-control {
   font-family: 'Nunito', sans-serif;
   font-size: 35px;
   }
+  
+    .container h2{
+  font-family: 'Nanum Gothic', serif;
+  font-size: 40px;
+  }
  .site-header-section2 {
   padding: 4em 0; }
   
+  
+  /* chart css  */
+  
+  #barContent, #doughnutContent, #lineContent1, #lineContent2{
+  
+  margin:30px;
+  padding: 15px;
+  
+  
+  }
+  
+  #myChart{
+  max-width:100% !important
+  }
+  
+
+  
+  /*Service table*/
+#area{
+	text-align:-webkit-right;
+	font-size: large;
+	font-weight: 900;
+	color:rgba(89, 118, 130, 1);
+	
+}
+
+.tableContainer{
+	font-family: 'Nanum Gothic', serif !important ;
+	padding:25px;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 150px;
+    
+    @media (min-width: 992px)
+	.container {
+    width: 970px;
+}
+	@media (min-width: 1200px)
+	.container {
+	 width: 1170px;
+	}
+	
+}
+
+
+.bannerContainer{
+	font-family: 'Nanum Gothic', serif !important ;
+	padding:25px;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 150px;
+    text-align: center;
+    
+    @media (min-width: 992px)
+	.container {
+    width: 970px;
+}
+	@media (min-width: 1200px)
+	.container {
+	 width: 1170px;
+	}
+	
+}
+table>thead>tr>th{
+	text-align:center !important;
+	
+}
 
 .mypage_id {
   font-size: 30px;
@@ -2155,3 +2214,33 @@ textarea.form-control {
 .margin-center{
 	margin: 0 auto;	
 }
+
+/* header.jsp bg�씠誘몄� */
+.bg1{
+	background-image: url('../images/bg1.jpg')
+}
+.bg2{
+	background-image: url('../images/bg2.jpg')
+}
+.bg3{
+	background-image: url('../images/bg3.jpg')
+}
+.bg4{
+	background-image: url('../images/bg4.jpg')
+}
+
+/* yt-player */
+
+#yt-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+#ytplayer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+
+ 

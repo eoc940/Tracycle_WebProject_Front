@@ -40,14 +40,19 @@
 	      <div class="row mb-5">
 	        <div class="col-md-12 mb-5"><h1>Tracycle</h1></div>
 	        <div class="col-md-6">
-	            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, necessitatibus officiis facere nisi et, ut adipisci a quis quisquam vitae doloremque tempora repellat quae accusantium atque eum voluptatibus aperiam cumque.</p>
-	            <p>Quia ratione, eum harum ab similique mollitia, nisi itaque vel voluptas ipsam dolore perferendis. Deleniti voluptatum error possimus ipsum, sed, obcaecati. Sit unde quia eum repudiandae molestiae reprehenderit harum nesciunt.</p>
-	            
+	            <p class="lead">  
+	     		&nbsp;&nbsp;&nbsp;Tracycle은 Trash(쓰레기)와 Recycle(재활용)의 합성어로 우리가 일상생활에서 쓰레기로 여기는 물건도 다시 한 번 재활용 함으로써 환경을 보호하자는 의미입니다.</p>
+	        	
+	        	<p>&nbsp;&nbsp;&nbsp;우리나라의 4계절이 점점 사라지고 지구의 온도가 계속해서 올라가는 것을 느끼는 것은 사람뿐이 아니며 우리보다 생태계가 더 많은 변화를 겪고 있습니다. 
+				자연은 우리에게 항상 이로움을 주었습니다. 하지만 인간의 욕심으로 생겨난 기후 변화가 생태계를 파괴하고 있고 인간의 이기심으로 고통받는 최대 피해자는 인간이 아니라 자연환경입니다. 
+				그렇기 때문에 우리는 환경을 보호해야 하는 것입니다.</p>
+	          
 	          </div>
 	          <div class="col-md-6">
-	            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, necessitatibus officiis facere nisi et, ut adipisci a quis quisquam vitae doloremque tempora repellat quae accusantium atque eum voluptatibus aperiam cumque.</p>
-	            <p>Quia ratione, eum harum ab similique mollitia, nisi itaque vel voluptas ipsam dolore perferendis. Deleniti voluptatum error possimus ipsum, sed, obcaecati. Sit unde quia eum repudiandae molestiae reprehenderit harum nesciunt.</p>
-	          </div>
+	             <p>&nbsp;&nbsp;&nbsp;모든 생물이 공평하게 지구에서 안전하게 살아가기 위해서는 환경문제를 하나씩 해결하기 위한 노력을 끊임없이 해야 합니다. 인간이 발생시킨 환경문제를 이젠 우리 스스로가 해결해 나가야 하는 것이 가장 중요합니다. 
+				  그것이 바로 우리 인간의 역할입니다. 적은 노력과 실천만으로도 우리의 주변은 조금씩 변화할 것입니다.</br></br> &nbsp;&nbsp;기후 변화를 막고 환경을 지키기 위해선 다짐에서 끝나는 것이 아니라 노력과 실천을 해야합니다. 
+				  인간은 인간을 위해서가 아니라 우리 때문에 피해를 본 생태계를 위해서라도 기후 변화 문제와 환경오염을 해결하기 위해 노력해야 합니다. &nbsp;Tracycle은 이 발걸음을 돕는 매개체가 되고자 합니다.</p>
+	            </div>
 	      </div>
 	      
 	      <div class="row mt-5">
@@ -59,11 +64,11 @@
 	            <div class="block-38-img">
 	              <div class="block-38-header">
 	                <img src="../images/person_1.jpg" alt="Image placeholder">
-	                <h3 class="block-38-heading">Greeg Graham</h3>
-	                <p class="block-38-subheading">CEO</p>
+	                <h3 class="block-38-heading">김형근</h3>
+	                <p class="block-38-subheading">Backend - 팀장</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+	                <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -73,11 +78,11 @@
 	            <div class="block-38-img">
 	              <div class="block-38-header">
 	                <img src="../images/person_2.jpg" alt="Image placeholder">
-	                <h3 class="block-38-heading">Jennifer Greive</h3>
-	                <p class="block-38-subheading">President</p>
+	                <h3 class="block-38-heading">정은총</h3>
+	                <p class="block-38-subheading">Backend</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+	                <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -86,12 +91,12 @@
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/person_3.jpg" alt="Image placeholder">
-	                <h3 class="block-38-heading">Patrick Marx</h3>
-	                <p class="block-38-subheading">Marketer</p>
+	                <img src="../images/강수진.png" alt="Image placeholder">
+	                <h3 class="block-38-heading">강수진</h3>
+	                <p class="block-38-subheading">Frontend</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+	                <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -100,12 +105,12 @@
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/person_4.jpg" alt="Image placeholder">
-	                <h3 class="block-38-heading">Mike Coolbert</h3>
-	                <p class="block-38-subheading">Partner</p>
+	                <img src="../images/김수진.jpg" alt="Image placeholder">
+	                <h3 class="block-38-heading">김수진</h3>
+	                <p class="block-38-subheading">Frontend</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+	                <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -120,12 +125,12 @@
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/person_1.jpg" alt="Image placeholder">
-	                <h3 class="block-38-heading">Greeg Graham</h3>
-	                <p class="block-38-subheading">CEO</p>
+	                <img src="../images/정다솜.png" alt="Image placeholder">
+	                <h3 class="block-38-heading">정다솜</h3>
+	                <p class="block-38-subheading">Frontend</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+	                <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -135,11 +140,11 @@
 	            <div class="block-38-img">
 	              <div class="block-38-header">
 	                <img src="../images/person_2.jpg" alt="Image placeholder">
-	                <h3 class="block-38-heading">Jennifer Greive</h3>
-	                <p class="block-38-subheading">President</p>
+	                <h3 class="block-38-heading">김진철</h3>
+	                <p class="block-38-subheading">A.I.</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+	               <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -149,11 +154,11 @@
 	            <div class="block-38-img">
 	              <div class="block-38-header">
 	                <img src="../images/person_3.jpg" alt="Image placeholder">
-	                <h3 class="block-38-heading">Patrick Marx</h3>
-	                <p class="block-38-subheading">Marketer</p>
+	                <h3 class="block-38-heading">김도희</h3>
+	                <p class="block-38-subheading">A.I.</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+	               <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -162,12 +167,12 @@
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/person_4.jpg" alt="Image placeholder">
-	                <h3 class="block-38-heading">Mike Coolbert</h3>
-	                <p class="block-38-subheading">Partner</p>
+	                <img src="../images/정우철.PNG" alt="Image placeholder">
+	                <h3 class="block-38-heading">정우철</h3>
+	                <p class="block-38-subheading">A.I.</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+	                <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>

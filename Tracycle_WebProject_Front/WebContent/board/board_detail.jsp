@@ -73,7 +73,7 @@
                   <ul class="comment-list">
                     <li class="comment">
                       <div class="vcard bio">
-                        <img src="../images/person_1.jpg" alt="Image placeholder">
+                        <img src="../images/user.png" alt="Image placeholder">
                       </div>
                       <div class="comment-body">
                         <h3>Jean Doe</h3> <p><a href="#" class="reply">비밀댓글</a></p>
@@ -86,7 +86,7 @@
                    
                     <li class="comment">
                       <div class="vcard bio">
-                        <img src="../images/person_1.jpg" alt="Image placeholder">
+                        <img src="../images/user.png" alt="Image placeholder">
                       </div>
                       <div class="comment-body">
                         <h3>Jean Doe</h3>
