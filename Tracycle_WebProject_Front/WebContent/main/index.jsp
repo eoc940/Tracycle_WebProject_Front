@@ -89,6 +89,7 @@
           <h2 class="display-4 mb-3">Who Are We?</h2>
           <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
           <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
+
           <p class="mb-0"><a href="#" class="btn btn-primary px-3 py-2">Learn More</a></p>
         </div> -->
         <div class="col-md-6 welcome-text">
@@ -105,6 +106,7 @@
   <div class="site-section border-top mb-5">
     <div class="container">
       <div class="row">
+
  		<div class="col-md-12">
 				<div id="yt-container">
 					<div id="ytplayer"></div>
