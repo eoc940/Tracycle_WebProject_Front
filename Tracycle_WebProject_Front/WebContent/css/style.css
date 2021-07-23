@@ -30,7 +30,7 @@ h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   color: #000;
   font-weight: 300;
-  font-family: 'Nunito', sans-serif; }
+  font-family: 'Nanum Myeongjo', serif; }
 
 .text-primary {
   color: var(--main-color) !important; }
@@ -398,7 +398,7 @@ h1, h2, h3, h4, h5,
     border-color: #000 !important; }
     
     
-/* GENERAL BUTTON STYLING (main button)*/
+/* main화면에 Ourservice-btn*/
 .main-btn1,
 .main-btn1::after {
   -webkit-transition: all 0.3s;
@@ -432,6 +432,9 @@ h1, h2, h3, h4, h5,
 .main-btn1:hover {
   color: #2ecc71;
 }
+/* main화면에 Ourservice-btn End*/
+
+
 
 /* BUTTON 1 */
 .main-btn1::after {
@@ -1635,7 +1638,9 @@ textarea.form-control {
   background-size: cover;
   background-color: #ccc;
   padding: 0;
-  position: relative; }
+  position: relative; 
+ 
+  }
   @media (max-width: 991.98px) {
     .block-30 {
       background-position: center center !important; } }
@@ -2092,12 +2097,18 @@ textarea.form-control {
   padding: 4em 0; }
   
   .container h1{
-  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 35px;
   }
  .site-header-section2 {
   padding: 4em 0; }
   
+
+.mypage_id {
+  font-size: 30px;
+  margin-bottom: 50px;
+	
+}
 
 @-webkit-keyframes loader-rotate {
   100% {

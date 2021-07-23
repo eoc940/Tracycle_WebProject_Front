@@ -5,13 +5,12 @@
 <!-- test2 -->
   <head>
   <meta charset="UTF-8">
-    <title>Tracycle &mdash; Website Template by Colorlib</title>
+    <title>지구를 위한 Tracycle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    
     
     <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../css/animate.css">
@@ -38,7 +37,7 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active"><a href="../main/index.jsp" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="about.html" class="nav-link">About us</a></li>
+          <li class="nav-item"><a href="../about_us/about_us.jsp" class="nav-link">About us</a></li>
           <li class="nav-item"><a href="../board/board_list.jsp" class="nav-link">Board</a></li>
           <li class="nav-item"><a href="../service/service.jsp" class="nav-link">Service</a></li> 
           <li class="nav-item"><a href="../report/report.jsp" class="nav-link">Report</a></li>

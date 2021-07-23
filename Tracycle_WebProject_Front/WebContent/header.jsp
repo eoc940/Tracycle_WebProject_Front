@@ -40,12 +40,14 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
+
           <li class="nav-item"><a href="../main/index.jsp" name="index" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="about.html" name="about" class="nav-link">About us</a></li>
           <li class="nav-item"><a href="../board/board_list.jsp" name="board" class="nav-link">Board</a></li>
           <li class="nav-item"><a href="../service/service.jsp" name="service" class="nav-link">Service</a></li> 
           <li class="nav-item"><a href="../report/report.jsp" name="report" class="nav-link">Report</a></li>
           <li class="nav-item"><a href="login.jsp" name="login" class="nav-link">Login</a></li>
+
         </ul>
       </div>
     </div>

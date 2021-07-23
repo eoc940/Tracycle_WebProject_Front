@@ -27,7 +27,7 @@ body:after {
 
 .ftco-section {
   text-align: center;
-  padding: 325px 350px;
+  padding: 150px 350px;
 }
 
 h3 {
@@ -36,7 +36,24 @@ font-size:xx-large;
 color: #fff;
 }
 
-
+.form-control-id{
+  center: center !important;	
+  background: transparent;
+  border: none;
+  height: 50px;
+  width: 200px;
+  padding-left: 35px;
+  padding-right: 35px;
+  color: rgba(128, 156, 168, 1) !important;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-weight:500;
+  font-size: 20px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.2);
+  margin-top: 20px;	
+	
+}
 
 .form-control {
 center: center !important;	
@@ -54,8 +71,6 @@ center: center !important;
   text-align: left;
   background: rgba(255, 255, 255, 0.2);
   margin-top: 20px;
-  
-  
 
 }
 
@@ -83,23 +98,75 @@ button {
   center: center;
 }
 
-button:hover{
-	
+/*button:hover{
+center: center !important;	
+  background: transparent;
+  border: none;
+  height: 50px;
+  width: 330px;
+  padding-left: 35px;
+  padding-right: 35px;
+  color: rgba(128, 156, 168, 1) !important;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+  font-weight:500;
+  font-size: 20px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.2);
+  margin-top: 20px;
+}*/
+
+.idcheck-btn{
   font-family: 'Nunito', sans-serif;
   background: rgba(128, 156, 168, 1) !important;
   border: 1px solid rgba(128, 156, 168, 1) !important;
   border: none;
   height: 50px;
-  width: 400px;
+  width: 125px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 20px;
+  font-weight: 100;
+  color: white;
+  margin-top: 20px;
+
+}
+
+.cancel-btn{
+  font-family: 'Nunito', sans-serif;
+  background: rgba(128, 156, 168, 1) !important;
+  border: 1px solid rgba(128, 156, 168, 1) !important;
+  border: none;
+  height: 50px;
+  width: 150px;
   padding-left: 35px;
   padding-right: 35px;
   font-size: 20px;
   font-weight: 100;
   color: white;
   margin-top: 20px;
-  center: center;
+  margin-right: 45px;
 	
 }
+
+
+.submit-btn{
+  font-family: 'Nunito', sans-serif;
+  background: rgba(128, 156, 168, 1) !important;
+  border: 1px solid rgba(128, 156, 168, 1) !important;
+  border: none;
+  height: 50px;
+  width: 150px;
+  padding-left: 35px;
+  padding-right: 35px;
+  font-size: 20px;
+  font-weight: 100;
+  color: white;
+  margin-top: 20px;
+  margin-left: 45px;
+	
+}
+
 a {	
   font-family: 'Nunito', sans-serif;
   margin-top: 15px;
@@ -183,9 +250,7 @@ center: center !important;
   text-align: left;
   background: rgba(255, 255, 255, 0.2);
   margin-top: 10px;
-  
-  
-
+ 
 }
 
 input::placeholder {
@@ -219,7 +284,7 @@ button:hover{
   border: 1px solid rgba(128, 156, 168, 1) !important;
   border: none;
   height: 25px;
-  width: 200px;
+
   padding-left: 15px;
   padding-right: 15px;
   font-size: 10px;
@@ -229,20 +294,7 @@ button:hover{
   center: center;
 	
 }
-a {	
-  font-family: 'Nunito', sans-serif;
-  margin-top: 8px;
-  padding-top: 20px;
-  color:rgba(128, 156, 168, 1);
-  font-size: 15px;
-  center: center;
-  font-weight: 400;
-}
 
-
-a:hover {
-  color: white;
-}
 
 .index {
   padding-right:35px;
@@ -255,5 +307,35 @@ a:hover {
 
 }
 
-}
+@-webkit-keyframes loader-rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes loader-rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@-webkit-keyframes loader-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0; }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px; }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -136px; } }
+
+@keyframes loader-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0; }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px; }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -136px; } }
 
