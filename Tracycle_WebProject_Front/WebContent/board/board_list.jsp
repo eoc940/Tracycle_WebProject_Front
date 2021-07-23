@@ -50,7 +50,7 @@
         <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
           <div class="post-entry">
             <a href="blog-single.html" class="mb-3 img-wrap">
-              <img src="../images/img_5.jpg" alt="Image placeholder" class="img-fluid">
+              <img src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
             </a>
             <h3><a href="#">You May Save The Life of A Child</a></h3>
             <span class="date mb-4 d-block text-muted">July 26, 2018</span>
@@ -61,7 +61,7 @@
         <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
           <div class="post-entry">
             <a href="blog-single.html" class="mb-3 img-wrap">
-              <img src="../images/img_6.jpg" alt="Image placeholder" class="img-fluid">
+              <img src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
             </a>
             <h3><a href="#">Children That Needs Care</a></h3>
             <span class="date mb-4 d-block text-muted">July 26, 2018</span>
