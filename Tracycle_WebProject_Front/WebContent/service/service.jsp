@@ -1,17 +1,28 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!-- test -->
-<!-- test2 -->
+
   <head>
   <meta charset="UTF-8">
-    <title>GiveHope &mdash; Website Template by Colorlib</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+     <title>Tracycle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    
+	<!--한글폰트 링크 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet">
+	<!-- 차트 링크 --> 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
+
+
     <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../css/animate.css">
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
@@ -24,42 +35,61 @@
     <link rel="stylesheet" href="../css/fancybox.min.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
+    
 
-  </head>
-  <body>
+
+</head>
+ <body>
+
     
   <jsp:include page="../header.jsp"></jsp:include>
   
-  <div class="site-section section-counter">
+  <div class="site-header-section">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 pr-5">
-          <div class="block-48">
-              <span class="block-48-text-1">Served Over</span>
-              <div class="block-48-counter ftco-number" data-number="1321901">0</div>
-              <span class="block-48-text-1 mb-4 d-block">Children in 150 Countries</span>
-              <p class="mb-0"><a href="#" class="btn btn-white px-3 py-2">View Our Program</a></p>
-            </div>
-        </div>
-        <div class="col-md-6 welcome-text">
-          <h2 class="display-4 mb-3">Who Are We?</h2>
-          <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-          <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-          <p class="mb-0"><a href="#" class="btn btn-primary px-3 py-2">Learn More</a></p>
+        <div class="col-md-12">
+          <h2 class="pt-5 pb-5 text-center"> <p>TV는 무상(유상)으로 수거가 가능한 제품입니다.</p></h2>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="site-section border-top">
-    <div class="container">
-      <div class="row">
-
-	<!-- 그래프를 넣어주세요! -->
-
+  <div class="site-section-img">
+	  <div class="container">
+	      <div class="row">
+	        <div class="col-md-12 text-center pt-5 pb-5 mt-5 mb-5">
+	          <h1 class="pt-5 pb-5 text-center"> 이미지 들어갈 곳<h1>
+      		 </div>
+      	  </div>
       </div>
-    </div>
-  </div> <!-- .site-section -->
+   </div>
+
+ <div class="tableContainer">   
+    <div class="areaContainer">
+		 <p id="area">관악구</p> 
+	</div>
+  <table class="table text-center pt-5 pb-5 mt-5 mb-5">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Category</th>
+        <th>Standard</th>
+        <th>Price</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody class="tbody  pt-5 pb-5 mt-5 mb-5">
+      <tr>
+        <td>1</td>
+        <td>TV</td>
+        <td>50~60 inch</td>
+        <td>4,500원</td>
+        <td>지역 기관에서 스티커를 구매하여 붙여주세요.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
 
 <jsp:include page="../footer.jsp"></jsp:include>
 
@@ -84,6 +114,9 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
 
   </body>
 </html>

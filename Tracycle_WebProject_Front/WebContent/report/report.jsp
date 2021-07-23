@@ -1,13 +1,13 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!-- test -->
-<!-- test2 -->
+
   <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>GiveHope &mdash; Website Template by Colorlib</title>
+     <title>Tracycle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,7 +51,7 @@
           <h1 class="pt-5 pb-5 text-center">10년 후, 빙하의 높이는 오늘보다 158M 줄어들었습니다.</h1>
         </div>
         <div class="col-md-12 chart">
-        	<canvas class="mt-5 mb-5 "  id="myChart"></canvas>
+        	<canvas class="mt-5 mb-5 w-5"  id="myChart"></canvas>
 		</div>
       </div>
     </div>
@@ -71,10 +71,10 @@
         </div>
         <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
 		 <!-- Content -->
-            <div class="mt-2">
+            <div class="mt-2 mb-5 px-5 mx-5">
              <!--  -->
               <!-- Charts -->
-              <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-3">
+              <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-3 lg:grid-cols-3">
                 <!-- Bar chart card -->
                 <div class="col-span-2 bg-white rounded-md ">
                   <!-- Card header -->
@@ -82,10 +82,18 @@
                     <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Bar Chart</h4>
                   </div>
                   <!-- Chart -->
-                  <div class="relative p-4 h-72">
+                  <div class="relative p-4 h-72 mt-5 mb-5">
                     <canvas id="barChart"></canvas>
                   </div>
+	                  
+	              <div id="barContent">
+	                <p> </p>
+                	<p> </p>
+                	<p> </p>
+	              </div>
                 </div>
+                
+              
 
                 <!-- Doughnut chart card -->
                 <div class="bg-white rounded-md">
@@ -104,7 +112,16 @@
                     <canvas id="doughnutChart"></canvas>
                   </div>
                 </div>
+                <div id="doughnutContent">
+                	<p></p>
+                </div>
               </div>
+              
+                <div id="doughnutContent">
+                	<p> </p>
+                	<p> </p>
+                	<p> </p>
+                </div>
 
               <!-- Two grid columns -->
               <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-3">
@@ -122,6 +139,11 @@
                   <div class="relative p-4">
                     <canvas id="activeUsersChart"></canvas>
                   </div>
+                  <div id="lineContent1">
+                	<p> </p>
+                	<p> </p>
+                	<p> </p>
+               	  </div>
                 </div>
 
                 <!-- Line chart card -->
@@ -140,6 +162,12 @@
                   <div class="relative p-4 h-85">
                     <canvas id="lineChart"></canvas>
                   </div>
+                  
+                  <div id="lineContent2">
+                	<p> </p>
+                	<p> </p>
+                	<p> </p>
+               	 </div>
                 </div>
               </div>
             </div>
