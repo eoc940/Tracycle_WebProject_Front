@@ -49,7 +49,18 @@
      
 				<h2 class="mb-3 mt-5">게시판 글 제목 입니다.</h2>
 				<br>
-                <p class="mb-4"><img src="../images/bg_1.jpg" alt="" class="img-fluid"></p>
+                <div class="site-section">
+				    <div class="container">
+				      <div class="block-31 mb-5" style="position: relative;">
+				          <div class="owl-carousel loop-block-31">
+				            <div class="block-30 no-overlay item" style="background-image: url('../images/about1.jpg');"></div>
+				            <div class="block-30 no-overlay item" style="background-image: url('../images/main2.jpg');"></div>
+				            <div class="block-30 no-overlay item" style="background-image: url('../images/about2.jpg');"></div>
+				            <div class="block-30 no-overlay item" style="background-image: url('../images/nature.jpg');"></div>
+				          </div>
+				        </div>
+				    </div>
+			  </div>
             
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
                 <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
