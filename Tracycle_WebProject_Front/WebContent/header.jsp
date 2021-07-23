@@ -4,7 +4,30 @@
 
   <head>
   <meta charset="UTF-8">
-
+   <script src="../js/jquery.min.js"></script>
+    <script type="text/javascript">
+    var url = window.location.pathname;
+    	if(url.includes("about")){
+    		$('[name="about"]').addClass('active');
+    	}
+    	else if(url.includes("board")){
+    		console.log(url);
+    		console.log($('[name="board"]').attr('name'));
+    		$('[name="board"]').addClass('active');
+    	}
+    	else if(url.includes("service")){
+    		$('[name="service"]').addClass('active');
+    	}
+    	else if(url.includes("report")){
+    		$('[name="report"]').addClass('active');
+    	}
+    	else if(url.includes("login")){
+    		$('[name="login"]').addClass('active');
+    	}
+    	else{
+    		$('[name="index"]').addClass('active');
+    	}
+    </script>
   </head>
   <body>
     
@@ -17,12 +40,14 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="../index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="../about_us.html" class="nav-link">About us</a></li>
-          <li class="nav-item"><a href="../blog.html" class="nav-link">Board</a></li>
-          <li class="nav-item"><a href="../how-it-works.html" class="nav-link">Service</a></li> 
-          <li class="nav-item"><a href="../donate.html" class="nav-link">Report</a></li>
-          <li class="nav-item"><a href="../login.jsp" class="nav-link">Login</a></li>
+
+          <li class="nav-item"><a href="../main/index.jsp" name="index" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="about.html" name="about" class="nav-link">About us</a></li>
+          <li class="nav-item"><a href="../board/board_list.jsp" name="board" class="nav-link">Board</a></li>
+          <li class="nav-item"><a href="../service/service.jsp" name="service" class="nav-link">Service</a></li> 
+          <li class="nav-item"><a href="../report/report.jsp" name="report" class="nav-link">Report</a></li>
+          <li class="nav-item"><a href="login.jsp" name="login" class="nav-link">Login</a></li>
+
         </ul>
       </div>
     </div>
@@ -31,20 +56,26 @@
   
   <div class="block-31" style="position: relative;">
     <div class="owl-carousel loop-block-31 ">
-      <div class="block-30 block-30-sm item" style="background-image: url('../images/main3.jpg');" data-stellar-background-ratio="0.5">
+      <div class="block-30 block-30-sm item" style="background-image: url('../images/header1.jpg');" data-stellar-background-ratio="0.5">
         <div class="container">
-          <div class="row align-items-center justify-content-center text-center">
-            <div class="col-md-7">
-              <h1 class="heading mb-5">Tracycle</h1>
-              	<button class="align-self-center main-btn1">Our Service</button>
-            </div>
-          </div>
+           <div class="col-md-2">
+              <h1 class="heading1 pt-5">Tracycle</h1>
+           </div>
+         </div>
+         
+           <div class="container">
+	           <div class="col-md-2">
+	           		<h1 class="title">Report</h1>
+	           </div>
+	       </div>
+	       
         </div>
       </div>   
     </div>
   </div>
 
 
-    
+
   </body>
+
 </html>
