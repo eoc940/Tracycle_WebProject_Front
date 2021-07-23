@@ -55,7 +55,7 @@
           <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-7">
               <h1 class="heading mb-5">Tracycle</h1>
-              	<button class="align-self-center main-btn1">Our Service</button>
+              	<button class="align-self-center main-btn1" onClick="location.href='../service/service.jsp'" >Our Service</button>
             </div>
           </div>
         </div>
@@ -70,31 +70,83 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 pr-5">
-          <div class="block-48">
+        
+<!--           <div class="block-48">
               <span class="block-48-text-1">Served Over</span>
               <div class="block-48-counter ftco-number" data-number="1321901">0</div>
               <span class="block-48-text-1 mb-4 d-block">Children in 150 Countries</span>
-              <p class="mb-0"><a href="#" class="btn btn-white px-3 py-2">View Our Program</a></p>
-            </div>
+              <p class="mb-0"><a href="#" class="btn btn-white px-3 py-2">View Our Program</a></p>  
+           </div> -->
+           
+          <div class="block-48">
+              <span class="block-48-text-1">19년도 총 폐기물 발생량</span>
+              <div class="block-48-counter ftco-number" data-number="497238">0</div>
+              <span class="block-48-text-1 mb-4 d-block"> 전년(446,102톤/일) 대비 약 11.5% 증가</span>
+              <p class="mb-0"><a href="../report/report.jsp" class="btn btn-white px-3 py-2">View Our Report</a></p>  
+           </div>
         </div>
-        <div class="col-md-6 welcome-text">
+<!--         <div class="col-md-6 welcome-text">
           <h2 class="display-4 mb-3">Who Are We?</h2>
           <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
           <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-          <p class="mb-0"><a href="#" class="btn btn-primary px-2 py-2">Learn More</a></p>
+
+          <p class="mb-0"><a href="#" class="btn btn-primary px-3 py-2">Learn More</a></p>
+        </div> -->
+        <div class="col-md-6 welcome-text">
+          <h2 class="display-4 mb-3">매년 세계는</h2>
+          <p class="lead">20억 톤 이상의 쓰레기를 생성 합니다. 세계적 대유행을 배경으로 해도 사고팔고 물건이 쓰이고 버려지는 일이 많습니다. 사람들은 자신이 버린 물건에 대해 사용을 마치면 존재하지 않는 것처럼 잊어버리는 경향이 있습니다. 그러나 물질적 재화는 그냥 사라지는 것이 아니라 환경적 영향이 남아 있습니다.</p>
+		  <p class="mb-4">Every year, the world generates more than two billion tonnes of trash. Even against the backdrop of a global pandemic, there is much being bought and sold, things are used and discarded. </p>
+          <p class="mb-0"><a href="#" class="btn btn-primary px-3 py-2" style="margin: auto;">About us</a></p>
+          
         </div>
       </div>
     </div>
   </div>
 
-  <div class="site-section border-top">
+  <div class="site-section border-top mb-5">
     <div class="container">
       <div class="row">
 
-
+ 		<div class="col-md-12">
+				<div id="yt-container">
+					<div id="ytplayer"></div>
+				</div>
+		</div>
       </div>
     </div>
   </div> <!-- .site-section -->
+		
+		
+<script>
+  // Load the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // Replace the 'ytplayer' element with an <iframe> and
+  // YouTube player after the API code downloads.
+  var player;
+  function onYouTubePlayerAPIReady() { 
+	  new YT.Player('ytplayer', {
+		 width : "100%", 
+		  height : "100%",  
+	    videoId: 'ZnT8UHfifcA', // 최초 재생할 유튜브 영상 ID
+	    playerVars: {
+	      autoplay: true, // 자동 재생 유무
+	      loop: true, // 반복 재생 유무
+	      list: 'PLoFiRoBwe7Y8V845_MBGQ30JbXDF8169m' // 반복 재생할 유튜브 영상 ID 목록
+	    },
+	    events: {
+	      // 영상이 준비되었을 때,
+	      onReady: function (event) {
+	        event.target.mute(false) // 음소거!
+	      }
+	    }
+	  })
+  }
+</script>
+
 
 <jsp:include page="../footer.jsp"></jsp:include>
 
@@ -119,6 +171,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
+  <script src="../js/youtube.js"></script>
 
   </body>
 </html>
