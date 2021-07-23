@@ -21,6 +21,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
+	<!-- 아이콘 링크 -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
@@ -48,7 +50,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2 class="pt-5 pb-5 text-center"> <p>TV는 무상(유상)으로 수거가 가능한 제품입니다.</p></h2>
+          <h2 class="pt-5 pb-5 text-center"> </br></br><p>TV는 무상(유상)으로 수거가 가능한 제품입니다.</p></h2>
         </div>
       </div>
     </div>
@@ -89,10 +91,43 @@
   </table>
 </div>
 
+<div class="bannerContainer">
+        <div class="row d-flex">
+          <div class="col-md-4 d-flex align-self-stretch">
+            <div class="media block-7">
+              <div class="media-body p-3 mt-3">
+             	<span style="color:rgba(128, 156, 168, 1)"><i class="fa fa-globe fa-5x" aria-hidden="true" style="width:100px; height:150px;"></i></span>
+                <h6 class="heading mb-4">폐기물 인터넷 접수 바로가기</h6>
+                <p class="heading-2">URL URL URL URL URL URL</p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-4 d-flex align-self-stretch">
+            <div class="media block-7">
+              <div class="media-body p-3 mt-3">
+              	<a href="../board/board_form.jsp">
+              	<span style="color:rgba(128, 156, 168, 1)"><i class="fa fa-heart-o fa-5x" aria-hidden="true" style="width:100px; height:150px;"></i></span>
+                <h6 class="heading mb-4" style="color:black">작은 실천이 큰 힘이 됩니다</h6>
+                <p class="heading-2" style="color:black">무료 나눔 하기</p></a>
+              </div>
+            </div>    
+          </div>
+          <div class="col-md-4 d-flex align-self-stretch">
+            <div class="media block-7 ">
+              <div class="media-body p-3 mt-3">
+              <span style="color:rgba(128, 156, 168, 1)"><i class="fa fa-volume-control-phone fa-5x" aria-hidden="true" style="width:100px; height:150px;"></i></span>
+               <h6 class="heading mb-4">폐기물 전화 접수하기</h6>
+                <p class="heading-2">010-1111-1111</p>
+              </div>
+            </div>    
+          </div>
+          
+        </div>
+      </div>
+
 
 
 <jsp:include page="../footer.jsp"></jsp:include>
-
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>

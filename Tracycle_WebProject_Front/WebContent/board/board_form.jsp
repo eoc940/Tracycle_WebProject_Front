@@ -50,8 +50,12 @@
                       </div>
                 
 					<div class="form-group">
-					  <label for="formFile" class="form-label label-font-bold">이미지</label>
+					  <label for="formFile" class="form-label label-font-bold">대표 이미지</label>
 					  <input class="form-control" type="file" id="formFile">
+					</div>
+					<div class="form-group">
+					  <label for="formFile" class="form-label label-font-bold">이미지 (최대 4장)</label>
+					  <input class="form-control" multiple="multiple" type="file" id="formFile">
 					</div>
 					 <!-- 작성시 게시글 작성 버튼 -->
 					  <div class="form-group text-center pt-5 pb-5">
