@@ -54,7 +54,7 @@
           <li class="nav-item"><a href="../board/board_list.jsp"  class="nav-link">Board</a></li>
           <li class="nav-item"><a href="../service/service.jsp" class="nav-link">Service</a></li> 
           <li class="nav-item"><a href="../report/report.jsp"  class="nav-link">Report</a></li>
-          <li class="nav-item"><a href="../login.jsp" class="nav-link">Login</a></li>
+          <li class="nav-item"><a href="../user/login.jsp" class="nav-link">Login</a></li>
 
         </ul>
       </div>
