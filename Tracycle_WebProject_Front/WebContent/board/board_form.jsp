@@ -57,6 +57,17 @@
 					 <h6> <label for="formFile" class="form-label label-font-bold">이미지 (최대 4장)</label></h6>
 					  <input class="form-control" multiple="multiple" type="file" id="formFile">
 					</div>
+					
+					<div class="form-group">
+                        <label for="content" class="label-font-bold">나눔 상태</label><br>
+						    <select class="selectpicker">
+ 							   <option data-content="<span class='badge badge-pill badge-warning'>나눔대기</span>">나눔대기</option>
+ 							   <option data-content="<span class='badge badge-pill badge-success'>나눔진행</span>">나눔진행</option>
+ 							   <option data-content="<span class='badge badge-pill badge-danger'>나눔중단</span>">나눔대기</option>
+ 							   <option data-content="<span class='badge badge-pill badge-end'>나눔완료</span>">나눔완료 </option>
+  							</select>
+                      </div>
+                      
 					 <!-- 작성시 게시글 작성 버튼 -->
 					  <div class="form-group text-center pt-5 pb-5">
 					  	<input type="submit" value="Cancel" class="btn py-3 px-4 btn-cancel">	
@@ -80,7 +91,6 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-
   <script src="../js/jquery.min.js"></script>
   <script src="../js/jquery-migrate-3.0.1.min.js"></script>
   <script src="../js/popper.min.js"></script>
@@ -96,7 +106,11 @@
   
   <script src="../js/aos.js"></script>
   <script src="../js/jquery.animateNumber.min.js"></script>
-  <script src="../js/main.js"></script>
-    
-  </body>
+  <script src="../js/main.js"></script>\
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</body>
 </html>
