@@ -10,6 +10,12 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
     
+  <!--한글폰트 링크 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet">
+   
+
     <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../css/animate.css">
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
@@ -22,6 +28,7 @@
     <link rel="stylesheet" href="../css/fancybox.min.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
+    
   </head>
   <body>
     
@@ -31,17 +38,27 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-              <span class="mypage_id">ID</span>
-              <p class="mb-0"><a href="#" class="btn btn-primary px-3 py-2">Modify</a></p>
+              <span class="mypage_id">ID 내 아이디</span>
+              <p class="mb-0 modifyUser"><a href="user_update.jsp" class="btn btn-primary px-3 py-2">정보 수정</a></p>
+              <p class="mb-0 deleteUser"><a href="#" class="btn btn-primary px-3 py-2 ">회원 탈퇴</a></p>
         </div>
         
         <div class="col-sm-8">
-          <div>
+        
+          <div class="post">
           	<h2 class="display-4 mb-3">My Posting</h2>
+          	<div class="mycontent">
+          		<h4>내가 쓴 게시물 제목</h4>
+          		<p> 글 내용 앞 부분</p>
+          	</div>
           </div>
           
-          <div>
+          <div class="comment">
           	<h2 class="display-4 mb-3">My Comment</h2>
+          	<div class="mycontent">
+          		<h4>내가 댓글 단 게시물 제목</h4>
+          		<p> 댓글 내용</p>
+          	</div>
           </div>
           
         </div>

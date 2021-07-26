@@ -105,7 +105,7 @@
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/김수진.jpg" alt="Image placeholder">
+	                <img src="../images/김수진.png" alt="Image placeholder">
 	                <h3 class="block-38-heading">김수진</h3>
 	                <p class="block-38-subheading">Frontend</p>
 	              </div>
@@ -153,7 +153,7 @@
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/person_3.jpg" alt="Image placeholder">
+	                <img src="../images/김도희.png" alt="Image placeholder">
 	                <h3 class="block-38-heading">김도희</h3>
 	                <p class="block-38-subheading">A.I.</p>
 	              </div>

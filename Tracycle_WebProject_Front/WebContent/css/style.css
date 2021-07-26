@@ -398,7 +398,7 @@ h1, h2, h3, h4, h5,
     border-color: #000 !important; }
     
     
-/* main화占썽에 Ourservice-btn*/
+/* main�솕�뜝�띂�뿉 Ourservice-btn*/
 .main-btn1,
 .main-btn1::after {
   -webkit-transition: all 0.3s;
@@ -432,7 +432,7 @@ h1, h2, h3, h4, h5,
 .main-btn1:hover {
   color: #2ecc71;
 }
-/* main화占썽에 Ourservice-btn End*/
+/* main�솕�뜝�띂�뿉 Ourservice-btn End*/
 
 
 
@@ -1684,7 +1684,7 @@ textarea.form-control {
       .block-30 .heading {
         font-size: 80px; } }
         
-/* Header占쏙옙 Main Title */
+/* Header�뜝�룞�삕 Main Title */
 
  .block-30 .heading1 {
     color: #fff;
@@ -1698,9 +1698,9 @@ textarea.form-control {
     @media (min-width: 992px) {
       .block-30 .heading {
         font-size: 80px; } }
-/* END--Header占쏙옙 Title */        
+/* END--Header�뜝�룞�삕 Title */        
 
-/* Header占쏙옙 Tab Title */
+/* Header�뜝�룞�삕 Tab Title */
 
  .block-30 .title {
  	padding-top:400px;
@@ -1715,7 +1715,7 @@ textarea.form-control {
     @media (min-width: 992px) {
       .block-30 .heading {
         font-size: 80px; } }
-/* END--Header占쏙옙 Title */  
+/* END--Header�뜝�룞�삕 Title */  
         
         
   .block-30 .btn {
@@ -2079,7 +2079,7 @@ textarea.form-control {
   stroke-linecap: round; }
   
   
-  /*Report.jsp占쏙옙*/
+  /*Report.jsp�뜝�룞�삕*/
   .site-header-section {
   padding: 4em 0; }
   
@@ -2163,11 +2163,7 @@ table>thead>tr>th{
 	
 }
 
-.mypage_id {
-  font-size: 30px;
-  margin-bottom: 50px;
-	
-}
+
 
 @-webkit-keyframes loader-rotate {
   100% {
@@ -2215,7 +2211,7 @@ table>thead>tr>th{
 	margin: 0 auto;	
 }
 
-/* header.jsp bg�씠誘몄� */
+/* header.jsp bg占쎌뵠沃섎챷占� */
 .bg1{
 	background-image: url('../images/bg1.jpg')
 }
@@ -2227,6 +2223,10 @@ table>thead>tr>th{
 }
 .bg4{
 	background-image: url('../images/bg4.jpg')
+}
+
+.bg5{
+	background-image: url('../images/bg5-2.jpg')
 }
 
 /* yt-player */
@@ -2243,4 +2243,34 @@ table>thead>tr>th{
 }
 
 
+/*mypage*/
+
+.mypage_id {
+  font-size: 30px;
+  margin-bottom: 50px;
+	
+}
+
+.mycontent{
+	
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #bcbcbc;
+  font-family: 'Nanum Gothic', serif;
+
+}
+
+.deleteUser{
+	margin-top: 50px;
+}
+
+.modifyUser{
+	margin-top: 50px;
+	
+}
+
+.post{
+	margin-bottom: 100px;
+	font-family: 'Nanum Gothic', serif;
+}
  
