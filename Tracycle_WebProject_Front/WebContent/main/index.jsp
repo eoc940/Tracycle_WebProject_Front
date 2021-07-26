@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!-- test -->
-<!-- test2 -->
+
   <head>
   <meta charset="UTF-8">
     <title>지구를 위한 Tracycle</title>
