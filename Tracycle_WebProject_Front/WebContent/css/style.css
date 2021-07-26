@@ -2297,6 +2297,11 @@ dropdown .btn:focus,.btn:active,.btn:focus{
 	background: var(--main-color) !important;
 }
 
+.bootstrap-select>.dropdown-toggle{
+	-webkit-box-shadow: 0 5px 10px -5px rgb(0 0 0 / 50%) !important;
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 50%) !important;
+}
+
 /* .btn:focus,.btn:active,.btn:focus{
 	outline: none;
     -webkit-box-shadow: none;
