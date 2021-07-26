@@ -430,7 +430,7 @@ h1, h2, h3, h4, h5, h6
 }
 
 .main-btn1:hover {
-  color: #2ecc71;
+  color: var(--main-color);
 }
 /* main�솕�뜝�띂�뿉 Ourservice-btn End*/
 
