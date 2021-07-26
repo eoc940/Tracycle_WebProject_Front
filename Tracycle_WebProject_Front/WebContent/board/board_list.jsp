@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <html>
   <head>
-    <title>Tracycle</title>
+    <title>지구를 위한 Tracycle</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    
@@ -38,11 +38,11 @@
       <div class="row mt-5 mb-5">
         <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
           <div class="post-entry">
-            <a href="blog-single.html" class="mb-3 img-wrap">
+            <a href="board_detail.jsp" class="mb-3 img-wrap">
               <img src="../images/img_4.jpg" alt="Image placeholder" class="img-fluid">
             </a>
-            <h3><a href="#">Be A Volunteer Today</a></h3>
-            <span class="date mb-4 d-block text-muted">July 26, 2018</span>
+            <h3><a href="board_detail.jsp">Be A Volunteer Today</a></h3>
+            <span class="date mb-4 d-block text-muted">July 26, 2018<span class="ml-2 badge badge-pill badge-warning">나눔대기</span></span>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
             <p><a href="board_detail.jsp" class="link-underline main-color">Read More</a></p>
           </div>
@@ -53,7 +53,8 @@
               <img src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
             </a>
             <h3><a href="#">You May Save The Life of A Child</a></h3>
-            <span class="date mb-4 d-block text-muted">July 26, 2018</span>
+			
+            <span class="date mb-4 d-block text-muted">July 26, 2018<span class="ml-2 badge badge-pill badge-success">나눔진행</span></span>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
             <p><a href="#" class="link-underline main-color">Read More</a></p>
           </div>
@@ -64,7 +65,8 @@
               <img src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
             </a>
             <h3><a href="#">Children That Needs Care</a></h3>
-            <span class="date mb-4 d-block text-muted">July 26, 2018</span>
+			
+            <span class="date mb-4 d-block text-muted">July 26, 2018<span class="ml-2 badge badge-pill badge-danger">나눔중단</span></span>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
             <p><a href="#" class="link-underline main-color">Read More</a></p>
           </div>
@@ -76,7 +78,8 @@
               <img src="../images/img_4.jpg" alt="Image placeholder" class="img-fluid">
             </a>
             <h3><a href="#">Be A Volunteer Today</a></h3>
-            <span class="date mb-4 d-block text-muted">July 26, 2018</span>
+       
+            <span class="date mb-4 d-block text-muted">July 26, 2018<span class="ml-2 badge badge-pill badge-success">나눔진행</span></span>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
             <p><a href="#" class="link-underline main-color">Read More</a></p>
           </div>
@@ -87,7 +90,8 @@
               <img src="../images/img_5.jpg" alt="Image placeholder" class="img-fluid">
             </a>
             <h3><a href="#">You May Save The Life of A Child</a></h3>
-            <span class="date mb-4 d-block text-muted">July 26, 2018</span>
+            
+            <span class="date mb-4 d-block text-muted">July 26, 2018 <span class="ml-2 badge badge-pill badge-end">나눔완료</span></span>
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
             <p><a href="#" class="link-underline main-color">Read More</a></p>
           </div>
@@ -98,7 +102,7 @@
               <img src="../images/img_6.jpg" alt="Image placeholder" class="img-fluid">
             </a>
             <h3><a href="#">Children That Needs Care</a></h3>
-            <span class="date mb-4 d-block text-muted">July 26, 2018</span>
+            <span class="date mb-4 d-block text-muted">July 26, 2018<span class="ml-2 badge badge-pill badge-end">나눔완료</span></span>   
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
             <p><a href="#" class="link-underline main-color">Read More</a></p>
           </div>

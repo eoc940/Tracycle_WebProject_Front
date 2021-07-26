@@ -3,7 +3,7 @@
 <!DOCTYPE html>
   <head>
   <meta charset="UTF-8">
-    <title>Tracycle :: My page</title>
+     <title>지구를 위한 Tracycle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
 	<link rel="preconnect" href="https://fonts.googleapis.com">

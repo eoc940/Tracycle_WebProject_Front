@@ -4,7 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>About us</title>
+<style type="text/css">
+img{width:150px;
+height:150px;}
+</style>
+ <title>지구를 위한 Tracycle</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -63,7 +67,7 @@
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/person_1.jpg" alt="Image placeholder">
+	                <img src="../images/김형근.png" alt="Image placeholder">
 	                <h3 class="block-38-heading">김형근</h3>
 	                <p class="block-38-subheading">Backend - 팀장</p>
 	              </div>
@@ -77,7 +81,7 @@
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/person_2.jpg" alt="Image placeholder">
+	                <img src="../images/정은총.png" alt="Image placeholder">
 	                <h3 class="block-38-heading">정은총</h3>
 	                <p class="block-38-subheading">Backend</p>
 	              </div>
@@ -139,7 +143,7 @@
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/person_2.jpg" alt="Image placeholder">
+	                <img src="../images/김진철.JPG" alt="Image placeholder">
 	                <h3 class="block-38-heading">김진철</h3>
 	                <p class="block-38-subheading">A.I.</p>
 	              </div>

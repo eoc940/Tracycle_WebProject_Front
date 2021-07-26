@@ -26,11 +26,11 @@ a {
     a.link-underline:hover {
       text-decoration: none; }
 
-h1, h2, h3, h4, h5,
-.h1, .h2, .h3, .h4, .h5 {
+h1, h2, h3, h4, h5, h6
+.h1, .h2, .h3, .h4, .h5, .h6 {
   color: #000;
   font-weight: 300;
-  font-family: 'Nanum Myeongjo', serif; }
+  font-family: 'Nanum Gothic', serif; }
 
 .text-primary {
   color: var(--main-color) !important; }
@@ -2211,7 +2211,9 @@ table>thead>tr>th{
 	margin: 0 auto;	
 }
 
-/* header.jsp bg占쎌뵠沃섎챷占� */
+
+/* header.jsp bg image */
+
 .bg1{
 	background-image: url('../images/bg1.jpg')
 }
@@ -2241,6 +2243,8 @@ table>thead>tr>th{
   width: 100%;
   height: 100%;
 }
+
+/* board_list badge */
 
 
 /*mypage*/
@@ -2274,3 +2278,32 @@ table>thead>tr>th{
 	font-family: 'Nanum Gothic', serif;
 }
  
+
+.badge-end{
+	color: #fff;
+    background-color: #6c757d;
+}
+
+ .dropdown-item.active, .dropdown-item:active {
+    background-color: var(--main-color);
+}
+  
+dropdown .btn:focus,.btn:active,.btn:focus{
+	outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff !important;
+    border-color: var(--main-color) !important;
+	background: var(--main-color) !important;
+}
+
+/* .btn:focus,.btn:active,.btn:focus{
+	outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff !important;
+    border-color: var(--main-color) !important;
+	background: var(--main-color) !important;
+}
+   */
+
