@@ -30,7 +30,7 @@
               <tbody>
                 <tr>
                   <th><span>아이디</span></th>
-                  <td><input type="text" placeholder="ID 를 입력하세요." class="inputId"required><div class="idCheck"><a href="">ID Check</a></div></td>
+                  <td><input type="text" placeholder="ID 를 입력하세요." class="inputId" required><div class="idCheck"><a href="">ID Check</a></div></td>
                 </tr>
                
                 <tr>
@@ -47,7 +47,7 @@
                 </tr>
                  <tr>
                   <th><span>주  소</span></th>
-                  <td><input type="text" placeholder="주소를 입력하세요." ></td>
+                  <td><input type="text" placeholder="주소를 입력하세요." required></td>
                 </tr>
                
               </tbody>
