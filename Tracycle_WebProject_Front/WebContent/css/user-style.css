@@ -116,6 +116,8 @@ ul{list-style:none; }
 	margin-left: 25%;
 }
 
+
+
 @media ( max-width: 1023px ) {
   .wrap{margin: 30px auto;}
   .wrap,.wrap.wd668.line{max-width:80vw;}

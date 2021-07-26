@@ -27,6 +27,10 @@
       		$("#background_image").addClass("bg4")
       		$("#header_title").text("Report");
       	}
+      	else if(menu.includes("user")){
+      		$("#background_image").addClass("bg5")
+      		$("#header_title").text("My page");
+      	}
       	else if(menu.includes("login")){
       		$("#header_title").text("Login");
       	}
