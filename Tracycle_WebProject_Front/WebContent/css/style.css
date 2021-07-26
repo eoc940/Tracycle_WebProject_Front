@@ -26,11 +26,11 @@ a {
     a.link-underline:hover {
       text-decoration: none; }
 
-h1, h2, h3, h4, h5,
-.h1, .h2, .h3, .h4, .h5 {
+h1, h2, h3, h4, h5, h6
+.h1, .h2, .h3, .h4, .h5, .h6 {
   color: #000;
   font-weight: 300;
-  font-family: 'Nanum Myeongjo', serif; }
+  font-family: 'Nanum Gothic', serif; }
 
 .text-primary {
   color: var(--main-color) !important; }
