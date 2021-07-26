@@ -44,7 +44,7 @@
           
           <div class="btn_wrap">
 	          <div class="homeNregister">
-	          <span><a href="../index.jsp" class="home-btn">HOME</a></span>
+	          <span><a href="../main/index.jsp" class="home-btn">HOME</a></span>
 	          <span><a href="register.jsp" class="register-btn">회원가입</a></span>
 	          </div>
 	          

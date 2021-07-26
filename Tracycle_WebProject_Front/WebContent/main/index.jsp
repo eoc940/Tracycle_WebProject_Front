@@ -41,7 +41,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active"><a href="../main/index.jsp" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="../about_us/about_us.jsp" class="nav-link">About us</a></li>
-          <li class="nav-item"><a href="../board/board_list.jsp" class="nav-link">Board</a></li>
+          <li class="nav-item"><a href="../board/board_list.jsp" class="nav-link">Share</a></li>
           <li class="nav-item"><a href="../service/service.jsp" class="nav-link">Service</a></li> 
           <li class="nav-item"><a href="../report/report.jsp" class="nav-link">Report</a></li>
           <li class="nav-item"><a href="../user/login.jsp" class="nav-link">Login</a></li>
