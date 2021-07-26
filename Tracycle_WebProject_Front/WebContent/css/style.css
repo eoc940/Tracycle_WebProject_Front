@@ -2215,7 +2215,7 @@ table>thead>tr>th{
 	margin: 0 auto;	
 }
 
-/* header.jsp bg�씠誘몄� */
+/* header.jsp bg image */
 .bg1{
 	background-image: url('../images/bg1.jpg')
 }
@@ -2242,5 +2242,32 @@ table>thead>tr>th{
   height: 100%;
 }
 
+/* board_list badge */
 
- 
+.badge-end{
+	color: #fff;
+    background-color: #6c757d;
+}
+
+ .dropdown-item.active, .dropdown-item:active {
+    background-color: var(--main-color);
+}
+  
+dropdown .btn:focus,.btn:active,.btn:focus{
+	outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff !important;
+    border-color: var(--main-color) !important;
+	background: var(--main-color) !important;
+}
+
+/* .btn:focus,.btn:active,.btn:focus{
+	outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff !important;
+    border-color: var(--main-color) !important;
+	background: var(--main-color) !important;
+}
+   */

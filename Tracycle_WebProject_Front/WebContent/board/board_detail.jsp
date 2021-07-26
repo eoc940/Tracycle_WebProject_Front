@@ -48,7 +48,7 @@
 	                  </div>
      
 				<h2 class="mb-3 mt-5">게시판 글 제목 입니다.</h2>
-				<br>
+				 <h4 class="date d-block text-muted">July 26, 2018<span class="ml-2 badge badge-pill badge-success">나눔진행</span></h4>
                 <div class="site-section">
 				    <div class="container">
 				      <div class="block-31 mb-5" style="position: relative;">
