@@ -3,7 +3,7 @@
 <!DOCTYPE html>
   <head>
   <meta charset="UTF-8">
-    <title>GiveHope &mdash; Website Template by Colorlib</title>
+    <title>지구를 위한 Tracycle</title>
     <meta charset="utf-8">
 
   </head>

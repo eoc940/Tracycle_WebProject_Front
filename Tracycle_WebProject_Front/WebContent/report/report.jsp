@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,7 +7,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-     <title>Tracycle</title>
+    <title>지구를 위한 Tracycle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
 	<link rel="preconnect" href="https://fonts.googleapis.com">

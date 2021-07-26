@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <title>Tracycle</title>
+   <title>지구를 위한 Tracycle</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    
@@ -41,20 +41,20 @@
 		           <div class="comment-form-wrap pt-5">
                     <h3 class="mb-3">  <label for="name" class="label-font-bold">제목</label> <input type="text" class="form-control" ></h3>
                     <form action="#" class="">
-                      <div class="form-group right">
-                        <label for="name" class="label-font-bold">작성자 아이디</label> <a>abcd1234</a>
+                      <div class="form-group right">	
+                        <h6><label for="name" class="label-font-bold">작성자 아이디</label> <a>abcd1234</a></h6>
                       </div>
                       <div class="form-group">
-                        <label for="content" class="label-font-bold">내용</label>
+                        <h6><label for="content" class="label-font-bold">내용</label></h6>
                         <textarea name="" id="content" cols="30" rows="20" class="form-control"></textarea>
                       </div>
                 
 					<div class="form-group">
-					  <label for="formFile" class="form-label label-font-bold">대표 이미지</label>
+					 <h6> <label for="formFile" class="form-label label-font-bold">대표 이미지</label></h6>
 					  <input class="form-control" type="file" id="formFile">
 					</div>
 					<div class="form-group">
-					  <label for="formFile" class="form-label label-font-bold">이미지 (최대 4장)</label>
+					 <h6> <label for="formFile" class="form-label label-font-bold">이미지 (최대 4장)</label></h6>
 					  <input class="form-control" multiple="multiple" type="file" id="formFile">
 					</div>
 					 <!-- 작성시 게시글 작성 버튼 -->
