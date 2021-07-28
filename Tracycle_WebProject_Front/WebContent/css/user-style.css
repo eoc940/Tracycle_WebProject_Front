@@ -16,12 +16,12 @@ body:after {
   bottom: 0;
   content: '';
   background: rgba(0, 0, 0, 0.3);
-  background-size:cover;
+  background-size:100%;
   background-repeat: no-repeat;
   
   z-index: -1;
 }
-table, tr, td, th, div, p, em, ol, ul, li, dl, dt, dd, a, address, img, h1, h2, h3, h4, h5, h6 {font-size:11pt; color:white;text-decoration: none;}
+table, tr, td, th, div, p, em, ol, ul, li, dl, dt, dd, a, address, img, h1, h2, h3, h4, h5, h6{font-size:11pt; color:white;text-decoration: none;}
 img {border:0; }
 h1 { float:left; padding:0 0 0 0px;}
 h2 {padding:0 0 0 0px;}
@@ -41,14 +41,16 @@ ul{list-style:none; }
 .left_margin{margin:0 0 0 20px;}
 .con_term .term_txt div.txt_bold{font-weight: bold; margin:0 0 25px;}
 .btn_wrap{text-align:center; margin:40px 0 30px;}
-.btn_wrap .submit-btn{color: white; background-color: #4A7B4C; font-weight: bold; padding: 10px;  height: 30px; line-height: 30px; width: 168px; display: block; text-align: center; margin: 0 auto;}
+.btn_wrap .submit-btn{color: white; background-color: #4A7B4C; font-weight: bold; padding: 10px;  height: 50px; line-height: 30px; width: 168px; display: block; text-align: center; margin: 0 auto;}
 .btn_wrap .submit-btn .wide.homeNregister{width:587px;margin: 0 0 0 20px;}
+.not-btn_wrap .submit-btn{color: white; background-color: #9B9B9B; font-weight: bold; padding: 10px;  height: 50px; line-height: 30px; width: 168px; display: block; text-align: center; margin: 0 auto;}
+.not-btn_wrap .submit-btn .wide.homeNregister{width:587px;margin: 0 0 0 20px;}
 .find_txt ul li{color:white;font-size:13px;text-align:center; line-height:17px; margin:0 0 20px;}
 
 .exTxt{font-size:14px;color:white;display: block;margin:0 0 45px 20px;}
 .join_form{width:100%;max-width:668px;}
 .join_form table {border-spacing: 0;margin:0;padding:0; border:0;width:100%;}
-.join_form table input{ border:0px solid #ececec; background: transparent; background: rgba(255, 255, 255, 0.2); font-size:14px;color:#4c4c4c; height:35px; padding:10px; width:100%; float:left;}
+.join_form table input{ border:0px solid #ececec; background: transparent; background: rgba(255, 255, 255, 0.2); font-size:14px;color:white; height:35px; padding:10px; width:100%; float:left;}
 
 
 .join_form table th span{color:white;font-size:14px; display:inline-block; position:relative;padding:0 10px 0 0; text-indent:20px;}
@@ -96,9 +98,39 @@ ul{list-style:none; }
 .overlayer.is-open{  display: block;}
 
 .idCheck{
-	text-align:right;
-	font-size: 20px;
+	float:right;
+	border:0;
+	outline: 0;
+	background-color: transparent;
+	margin-top:5px;
+	color:white;
 	
+}
+
+.submit-btn{
+	display: inline-block;
+    width: 115px;
+    height: 48px;
+    margin: 0 auto;
+    border: 1px solid #cfcfcf;
+    background: #dedede;
+    color: #626262;
+    text-align: center;
+    vertical-align: top;
+    line-height: 50px;
+}
+
+.not-submit-btn{
+	display: inline-block;
+    width: 115px;
+    height: 48px;
+    margin: 0 auto;
+    border: 1px solid #cfcfcf;
+    background: #dedede;
+    color: #626262;
+    text-align: center;
+    vertical-align: top;
+    line-height: 50px;
 }
 
 .homeNregister{
@@ -117,7 +149,6 @@ ul{list-style:none; }
 }
 
 
-
 @media ( max-width: 1023px ) {
   .wrap{margin: 30px auto;}
   .wrap,.wrap.wd668.line{max-width:80vw;}
@@ -126,15 +157,13 @@ ul{list-style:none; }
   .join_form table th span{text-indent: 0;font-size:13px;}
   .join_form table{width:100%;}
   .join_form table input{ border:1px solid #ececec;font-size:14px;color:#4c4c4c; height:37px; padding:10px; width:100%;}
-  .join_form table input.email{width:30%; display: inline-block;}
-  .join_form table input.email2{width:60%;}
  
   .mar10{margin:5px 2% 0 2%; float:left;}
  
   .join_form table input.send_number{width: 53%; }
   .exTxt{margin:0 0 25px 0px}
   .wrap.wd668.line .sub_tit_txt,.wrap .sub_tit_txt{margin:0 0 10px 0;}
-  .btn_wrap .submit-btn,.btn_wrap .submit-btn.wide{width:auto;margin:0;}
+ 
   .btn_wrap{overflow: hidden;}
   
   .popWrap{right: auto; max-width: 80vw; margin: 30px auto 0; left: 50%; transform: translateX(-50%);}
@@ -145,12 +174,35 @@ ul{list-style:none; }
   .join_form_modify table th span{text-indent: 0;font-size:13px;}
   .join_form_modify table{width:100%;}
   .join_form_modify table input{ border:1px solid #ececec;font-size:14px;color:#4c4c4c; height:37px; padding:10px; width:100%;}
-  .join_form_modify table input.email{width:30%; display: inline-block;}
-  .join_form_modify table input.email2{width:60%;}
+
   
   .join_form_modify table input.send_number{width: 53%; }
  
  
   .join_form_modify table td a.btn_confirm{width: 100px; height: 35px;line-height: 35px; font-size: 12px;margin:5px 0 0 ;}
   .join_form_modify table input.send_number + a{margin:0 0 0 5px;}
+  
+  .submit-btn{
+	display: inline-block;
+    height: 48px;
+    margin: 0 auto;
+    border: 1px solid #cfcfcf;
+    background: #dedede;
+    color: #626262;
+    text-align: center;
+    vertical-align: top;
+    line-height: 50px;
+}
+
+.not-submit-btn{
+	display: inline-block;
+    height: 48px;
+    margin: 0 auto;
+    border: 1px solid #cfcfcf;
+    background: #dedede;
+    color: #626262;
+    text-align: center;
+    vertical-align: top;
+    line-height: 50px;
+}
 }

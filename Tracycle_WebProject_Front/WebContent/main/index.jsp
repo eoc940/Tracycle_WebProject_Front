@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
   <head>
   <meta charset="UTF-8">
     <title>지구를 위한 Tracycle</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  	
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    	<!--한글폰트 링크 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,8 +48,14 @@
           <li class="nav-item"><a href="../about_us/about_us.jsp" class="nav-link">About us</a></li>
           <li class="nav-item"><a href="../board/board_list.jsp" class="nav-link">Share</a></li>
           <li class="nav-item"><a href="../service/service.jsp" class="nav-link">Service</a></li> 
-          <li class="nav-item"><a href="../report/report.jsp" class="nav-link">Report</a></li>
-          <li class="nav-item"><a href="../user/login.jsp" class="nav-link">Login</a></li>
+          <li class="nav-item"><a href="../report/report.jsp" class="nav-link">Report</a></li>  
+          {{^loginUser}}	  
+         		<li class="nav-item"><a href="../user/login.jsp" class="nav-link">Login</a></li>    	 
+    	  {{/loginUser}}
+    	  {{#loginUser}}
+		        <li class="nav-item"><a href="../user/login.jsp" class="nav-link">Logout</a></li>
+		        <li class="nav-item"><a href="../user/mypage.jsp" class="nav-link">My page</a></li>  
+		  {{/loginUser}}
         </ul>
       </div>
     </div>

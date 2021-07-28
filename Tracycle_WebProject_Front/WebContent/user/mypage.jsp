@@ -4,6 +4,8 @@
   <head>
   <meta charset="UTF-8">
      <title>지구를 위한 Tracycle</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,11 +36,11 @@
     
   <jsp:include page="../header.jsp"></jsp:include>
   
-  <div class="site-section section-counter">
+  <div class="site-section section-counter" id="app">
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-              <span class="mypage_id">ID 내 아이디</span>
+              <span class="mypage_id">ID <p></p></span>
               <p class="mb-0 modifyUser"><a href="user_update.jsp" class="btn btn-primary px-3 py-2">정보 수정</a></p>
               <p class="mb-0 deleteUser"><a href="#" class="btn btn-primary px-3 py-2 ">회원 탈퇴</a></p>
         </div>
