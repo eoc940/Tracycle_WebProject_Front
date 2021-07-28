@@ -150,7 +150,7 @@
 				categoryList:[],
 				mainFile:[],
 				subFile:[],
-				user:{"userId":"dkdk456"},
+				user:{"userId":"kang"},
 				area:{},
 				category:{},
 				result:'',
@@ -229,6 +229,7 @@
 			
 		}
 	})
+
 </script>
 </body>
 </html>

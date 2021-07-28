@@ -29,7 +29,8 @@
 
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
-
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
 
@@ -39,85 +40,35 @@
     <div class="container">
       
 
-      <div class="row mt-5 mb-5">
-        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-          <div class="post-entry">
-            <a href="board_detail.jsp" class="mb-3 img-wrap">
-              <img src="../images/img_4.jpg" alt="Image placeholder" class="img-fluid">
-            </a>
-            <h3><a href="board_detail.jsp">Be A Volunteer Today</a></h3>
-            <span class="date mb-4 d-block text-muted">July 26, 2018<span class="ml-2 badge badge-pill badge-warning">나눔대기</span></span>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-            <p><a href="board_detail.jsp" class="link-underline main-color">Read More</a></p>
+      <div id="app" class="row mt-5 mb-5">
+ 			<div class="col-md-12 mt-5 mb-5">
+			<div class="categories">
+	            <h3>Categories</h3>
+	            <a href="#" @click.prevent="findByCategory(1)" >가전제품</a> |
+	            <a href="#" class="main-color" @click.prevent="findByCategory(2)">주방용품</a> |
+	            <a href="#" class="main-color" @click.prevent="findByCategory(3)">가구류</a> |
+	            <a href="#" class="main-color" @click.prevent="findByCategory(4)">침구류</a> |
+	            <a href="#" class="main-color" @click.prevent="findByCategory(5)">기타</a> 
+	       </div></div>
+     	 <div v-for="board in info" class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
+               <div class="post-entry">
+		       		<a :href=("board_detail.jsp?boardId="+board.boardId) class="mb-3 img-wrap">
+		       		<img v-if="board.picture==null" src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
+		       		<img v-else src="../images/img_4.jpg" alt="Image placeholder" class="img-fluid">
+		       		</a>
+		       		<h3><a href="board_detail.jsp">{{board.title}}</a></h3>
+		       		<span class="date mb-4 d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></span>
+		       
+		       <p>{{board.content | splitContent}}</p>
+		       <p><a href="borad_detail.jsp" class="link-underline main-color">Read More</a></p>
           </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-          <div class="post-entry">
-            <a href="blog-single.html" class="mb-3 img-wrap">
-              <img src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
-            </a>
-            <h3><a href="#">You May Save The Life of A Child</a></h3>
-			
-            <span class="date mb-4 d-block text-muted">July 26, 2018<span class="ml-2 badge badge-pill badge-success">나눔진행</span></span>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-            <p><a href="#" class="link-underline main-color">Read More</a></p>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-          <div class="post-entry">
-            <a href="blog-single.html" class="mb-3 img-wrap">
-              <img src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
-            </a>
-            <h3><a href="#">Children That Needs Care</a></h3>
-			
-            <span class="date mb-4 d-block text-muted">July 26, 2018<span class="ml-2 badge badge-pill badge-danger">나눔중단</span></span>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-            <p><a href="#" class="link-underline main-color">Read More</a></p>
-          </div>
-        </div>
+	
+		</div>
 
-        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-          <div class="post-entry">
-            <a href="blog-single.html" class="mb-3 img-wrap">
-              <img src="../images/img_4.jpg" alt="Image placeholder" class="img-fluid">
-            </a>
-            <h3><a href="#">Be A Volunteer Today</a></h3>
-       
-            <span class="date mb-4 d-block text-muted">July 26, 2018<span class="ml-2 badge badge-pill badge-success">나눔진행</span></span>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-            <p><a href="#" class="link-underline main-color">Read More</a></p>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-          <div class="post-entry">
-            <a href="blog-single.html" class="mb-3 img-wrap">
-              <img src="../images/img_5.jpg" alt="Image placeholder" class="img-fluid">
-            </a>
-            <h3><a href="#">You May Save The Life of A Child</a></h3>
-            
-            <span class="date mb-4 d-block text-muted">July 26, 2018 <span class="ml-2 badge badge-pill badge-end">나눔완료</span></span>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-            <p><a href="#" class="link-underline main-color">Read More</a></p>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-          <div class="post-entry">
-            <a href="blog-single.html" class="mb-3 img-wrap">
-              <img src="../images/img_6.jpg" alt="Image placeholder" class="img-fluid">
-            </a>
-            <h3><a href="#">Children That Needs Care</a></h3>
-            <span class="date mb-4 d-block text-muted">July 26, 2018<span class="ml-2 badge badge-pill badge-end">나눔완료</span></span>   
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-            <p><a href="#" class="link-underline main-color">Read More</a></p>
-          </div>
-        </div>
-
-        <div class="form-group pt-5 pb-5 margin-center">
+      </div>
+       <div class=" pt-5 pb-5 text-center">
 			<a href="board_form.jsp" class="btn py-3 px-4 btn-primary">Write Post</a>
         </div>
-        
-      </div>
-      
       <nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-center">
 		    <li class="page-item disabled">
@@ -159,6 +110,64 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
-    
+  <script src="../js/moment.js"></script>
+   
+    <script>
+        new Vue({
+            el: "#app",           
+            data(){
+                return {
+                    info:[ ],
+                    status_class:[
+                    	"ml-2 badge badge-pill badge-warning",
+                    	"ml-2 badge badge-pill badge-success",   	
+                    	"ml-2 badge badge-pill badge-danger",
+                    	"ml-2 badge badge-pill badge-end"
+                    	],
+                    status_list:[
+                    	"나눔대기","나눔진행","나눔중단","나눔완료"
+                    ],
+                    category:"",
+                    loading:true,
+                    errored:false
+                }
+            }, 
+            filters:{
+            	formatDate(value){
+            		if (value) {
+            		    return moment(String(value)).format('MMMM DD, YYYY')
+            		  }
+            	},
+            	splitContent(value){
+            		if (value) {
+            		    return String(value).substr(0,70) + "……"; 
+            		  }
+            	}
+            },
+            mounted(){
+                axios
+             	 .get('http://127.0.0.1:7788/board/getAllBoard')
+                .then(response=>(this.info = response.data))
+                .catch(error=>{
+                    console.log(error);
+                    this.errored = true
+                })
+                .finally(()=>this.loading = false)
+            },
+            methods:{
+            	findByCategory(cateNum){
+            		axios
+            			.get('http://127.0.0.1:7788/board/findByCategory/'+cateNum)
+            			.then(response=>(this.info= response.data))
+		                .catch(error=>{
+		                    console.log(error);
+		                    this.errored = true
+		                })
+            		.finally(()=>this.loading = false)
+            	}
+            }
+            
+        })
+    </script>
   </body>
 </html>
