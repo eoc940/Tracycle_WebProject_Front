@@ -30,6 +30,8 @@
 
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
   </head>
   <body>
@@ -41,18 +43,9 @@
     <div class="container">
             
             <div class="row">
-			         <div class="col-md-12">
-					<div class="categories">
-	                    <h3>Categories</h3>
-	                   <a href="#" >가전제품 <span>(12)</span></a> |
-	                   <a href="#" class="main-color">주방용품 <span>(22)</span></a> |
-	                   <a href="#" class="main-color">가구류,침구류 <span>(37)</span></a> |
-	                   <a href="#" class="main-color">주방용품 <span>(42)</span></a> |
-	                   <a href="#" class="main-color">기타 <span>(42)</span></a> 
-	                  </div>
-     
-				<h2 class="mb-3 mt-5">게시판 글 제목 입니다.</h2>
-				 <h4 class="date d-block text-muted">July 26, 2018<span class="ml-2 badge badge-pill badge-success">나눔진행</span></h4>
+			    <div class="col-md-12">
+				<h2 class="mb-3 mt-5">{{board.title}}</h2>
+				 <h4 class="date d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></h4>
                 <div class="site-section">
 				    <div class="container">
 				      <div class="block-31 mb-5" style="position: relative;">
@@ -65,9 +58,8 @@
 				        </div>
 				    </div>
 			  </div>
-            
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
-                <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
+       
+                <p>{{board.content}}</p>
                 
                   <img src="images/image_10.jpg" alt="" class="img-fluid">
           
@@ -164,6 +156,53 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
+  <script src="../js/moment.js"></script>
+  
+    <script>
+
+        new Vue({
+            el: "#blog",
+            data(){
+                return {
+                	board:[ ],
+                    status_class:[
+                    	"ml-2 badge badge-pill badge-warning",
+                    	"ml-2 badge badge-pill badge-success",   	
+                    	"ml-2 badge badge-pill badge-danger",
+                    	"ml-2 badge badge-pill badge-end"
+                    	],
+                    status_list:[
+                    	"나눔대기","나눔진행","나눔중단","나눔완료"
+                    ],
+                    category:"",
+                    loading:true,
+                    errored:false
+                }
+            }, 
+            filters:{
+            	formatDate(value){
+            		if (value) {
+            		    return moment(String(value)).format('MMMM DD, YYYY')
+            		  }
+            	}
+            },
+            mounted(){
+                axios
+             	 .get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId})
+                .then(response=>(this.board = response.data))
+                .catch(error=>{
+                    console.log(error);
+                    this.errored = true
+                })
+                .finally(()=>this.loading = false)
+            },
+            methods:{
+           
+            },
+            
+            
+        })
+    </script>
     
   </body>
 </html>
