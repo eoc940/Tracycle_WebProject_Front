@@ -113,6 +113,9 @@
   <script src="../js/moment.js"></script>
    
     <script>
+    
+    const storage = window.sessionStorage;
+    
         new Vue({
             el: "#app",           
             data(){
@@ -146,13 +149,19 @@
             },
             mounted(){
                 axios
-             	 .get('http://127.0.0.1:7788/board/getAllBoard')
+             	 .get('http://127.0.0.1:7788/board/getAllBoard',
+             		{
+     	  			headers : {
+     	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+     	  			}
+     	  		})
                 .then(response=>(this.info = response.data))
                 .catch(error=>{
                     console.log(error);
                     this.errored = true
                 })
                 .finally(()=>this.loading = false)
+                
             },
             methods:{
             	findByCategory(cateNum){

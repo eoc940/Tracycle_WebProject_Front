@@ -46,7 +46,8 @@
           </div>
           <!-- join_form E  -->
           <button id="getInfo" @click="getInfo">정보확인</button>
-          <button id="getInfo" @click="logout">로그아웃</button>
+          <button id="getInfo" @click="logout">로그아웃</button><br>
+          메시지 : {{message}}<br>
           상태 : {{status}}<br>
           토큰 : {{token}}<br>
           정보 : {{info}}
@@ -110,7 +111,7 @@
     	  	.then(response=>{
     	  		this.setInfo(
     	  			"정보 조회 성공",
-    	  			response.headers.auth_token,
+    	  			this.token,
     	  			JSON.stringify(response.data)
     	  		);
     	  	})
