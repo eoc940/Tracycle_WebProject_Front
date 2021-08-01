@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-
+<!--  -->
   <head>
   <meta charset="UTF-8">
     <title>지구를 위한 Tracycle</title>
