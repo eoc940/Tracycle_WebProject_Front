@@ -184,7 +184,7 @@
                     result:'',
                     userId:storage.getItem("login_user")
                 }
-            }, 
+            },            
             filters:{
             	formatDate(value){
             		if (value) {

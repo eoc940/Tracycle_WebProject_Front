@@ -48,7 +48,7 @@
                     <h3 class="mb-3">  <label for="name" class="label-font-bold">제목</label> <input type="text" class="form-control" v-model="board.title"></h3>
                     <form action="#" class="">
                       <div class="form-group right">	
-                        <h6><label for="name" class="label-font-bold">작성자 아이디</label> <a>abcd1234</a></h6>
+                        <h6><label for="name" class="label-font-bold">작성자 아이디</label> <a>{{userId}}</a></h6>
                       </div>
                       <div class="form-group">
                         <h6><label for="content" class="label-font-bold">내용</label></h6>
@@ -70,6 +70,15 @@
 					    		</option>
 					    	</select>
                       </div>
+                      </div>
+                     <!--  <div class="form-group">
+                        <label for="content" class="label-font-bold">카테고리</label><br>
+						    <select class="" name="selectedCategory" v-model="category.categoryId">
+					    		<option v-for="scategory in categoryList" :value="scategory.categoryId">
+					    			{{scategory.categoryName}}
+					    		</option>
+					    	</select>
+                      </div> -->
                       
                       <div class="form-group">
                         <label for="content" class="label-font-bold">나눔 상태</label><br>
@@ -149,12 +158,13 @@
 				categoryList:[],
 				mainFile:[],
 				subFile:[],
-				user:{"userId":"dkdk456"},
+				user:{"userId":storage.getItem("login_user")},
 				area:{},
 				category:{},
 				result:'',
 				loading:true,
-				errored:false
+				errored:false,
+				userId:storage.getItem("login_user")
 			}
 		},
 		mounted(){
@@ -177,7 +187,7 @@
  	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
  	  			}
  	  		})
-			.then(response=>(this.categoryList = response.data))
+			.then(response=>{this.categoryList = response.data;})
 			.catch(error=>{
 				alert(error);
 				console.log(error);
@@ -212,7 +222,7 @@
 				formData.append("areaId",this.area.areaId);
 				formData.append("categoryId",this.category.categoryId);
 				formData.append("viewCount",0);
-				formData.append("userId",this.user.userId);
+				formData.append("userId",this.userId);
 				formData.append("date",dateString);
 				formData.append("status",this.board.status);
 				formData.append("mainFile",this.mainFile)
@@ -231,7 +241,7 @@
 					console.log(error);
                     this.errored = true
 				})
-				//.finally(()=>location.href="board_list.jsp")
+				.finally(()=>location.href="board_list.jsp")
 			}
 			
 		}
