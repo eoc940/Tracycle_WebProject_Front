@@ -70,6 +70,7 @@
 		  <li class="nav-item" v-if="jwtauthtoken==''"><a href="../user/login.jsp" class="nav-link">Login</a></li>        
 		  <li class="nav-item" v-if="jwtauthtoken!=''"><a href="index.jsp" v-on:click="logout" class="nav-link" >Logout</a></li>
 		  <li class="nav-item" v-if="jwtauthtoken!=''"><a href="../user/mypage.jsp" class="nav-link">My page</a></li>  
+
         </ul>
       </div>
     </div>

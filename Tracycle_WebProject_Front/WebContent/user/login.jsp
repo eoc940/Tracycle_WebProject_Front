@@ -84,6 +84,7 @@
               info:"",
               errored:false,
               nextpage:''
+     
           }
       },
       methods:{
@@ -139,6 +140,7 @@
           				);
           				storage.setItem("jwt-auth-token", response.headers["jwt-auth-token"]);
           				storage.setItem("login_user", response.data.data.userId);
+
           				this.nextpage = "../main/index.jsp";
           			}else {
           				this.setInfo("","","");
@@ -164,8 +166,8 @@
           
           goHome(){
         	  location.href="login.jsp";
-          }
-          
+
+          }          
       },
       mounted() {
     	  this.init();

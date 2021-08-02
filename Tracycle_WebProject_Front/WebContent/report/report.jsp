@@ -38,7 +38,27 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
     
+    
+ <script>
+      window.Promise ||
+        document.write(
+          '<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"><\/script>'
+        )
+      window.Promise ||
+        document.write(
+          '<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>'
+        )
+      window.Promise ||
+        document.write(
+          '<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>'
+        )
+    </script>
 
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
+    
 
 </head>
  <body>
@@ -52,9 +72,6 @@
         <div class="col-md-12">
           <h1 class="pt-5 pb-5 text-center">10년 후, 빙하의 높이는 오늘보다 158M 줄어들었습니다.</h1>
         </div>
-        <div class="col-md-12 chart">
-        	<canvas class="mt-5 mb-5 w-5"  id="myChart"></canvas>
-		</div>
       </div>
     </div>
   </div>
@@ -77,6 +94,34 @@
              <!--  -->
               <!-- Charts -->
               <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-3 lg:grid-cols-3">
+              
+              
+               <!-- Line chart card -->
+                <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
+                  <!-- Card header -->
+                  <div class="flex items-center justify-between p-4 border-b dark:border-primary">
+                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light pb-5 mb-5">전국 생활폐기물 배출량</h4>
+                    <div class="flex items-center">
+                        <div
+                          class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-darker"
+                        ></div>
+                  
+                    </div>
+                  </div>
+                  <!-- Chart -->
+                  <div class="relative">
+                    <canvas class="h-150" id="lineChart"></canvas>
+                  </div>
+                  
+                  <div class="m-4"id="lineContent2">
+                	<p> </p>
+                	<p> </p>
+                	<p> </p>
+               	 </div>
+                </div>
+                
+                
+                
                 <!-- Bar chart card -->
                 <div class="col-span-2 bg-white rounded-md ">
                   <!-- Card header -->
@@ -137,6 +182,7 @@
                     <span class="text-2xl font-medium text-gray-500 dark:text-light" id="usersCount">0</span>
                     <span class="text-sm font-medium text-gray-500 dark:text-primary">Users</span>
                   </p>
+     
                   <!-- Chart -->
                   <div class="relative p-4">
                     <canvas id="activeUsersChart"></canvas>
@@ -148,32 +194,17 @@
                	  </div>
                 </div>
 
-                <!-- Line chart card -->
-                <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
-                  <!-- Card header -->
-                  <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Line Chart</h4>
-                    <div class="flex items-center">
-                        <div
-                          class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-darker"
-                        ></div>
-                  
-                    </div>
-                  </div>
-                  <!-- Chart -->
-                  <div class="relative p-4 h-85">
-                    <canvas id="lineChart"></canvas>
-                  </div>
-                  
-                  <div id="lineContent2">
-                	<p> </p>
-                	<p> </p>
-                	<p> </p>
-               	 </div>
-                </div>
-              </div>
-            </div>
-      
+               
+                <!-- mixed chart -->
+              
+			<div id="app">
+		      <div id="chart">
+		      <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
+		    </div>
+		    </div>
+		            
+       		</div>
+         </div>
        </main>
         </div>
       </div>
@@ -186,7 +217,12 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+<!--ㅡmixed chart  -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>	
 
+  
   <script src="../js/jquery.min.js"></script>
   <script src="../js/jquery-migrate-3.0.1.min.js"></script>
   <script src="../js/popper.min.js"></script>
@@ -203,18 +239,7 @@
   <script src="../js/main.js"></script>
   <script src="../js/chart.js"></script>
   
-<script type="text/javascript">
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, { 
-       	type: 'line', 
-     	data: { labels: ['2014', '2015', '2016', '2017', '2018', '2019'],
-		    	datasets: [{ label: '전국 연도별 생활폐기물 배출량', 
-		    				 backgroundColor: 'transparent',
-		    				 borderColor: 'rgba(128, 156, 168, 1)',
-		    				 data: [401658, 418214, 429128, 429531, 446102, 497238] }] },
-    	options: {} }); 
-    
- </script>
+
 
 
 
