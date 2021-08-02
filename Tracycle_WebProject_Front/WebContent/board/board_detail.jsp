@@ -44,10 +44,10 @@
             
             <div class="row">
 			    <div class="col-md-12">
-				<h2 class="mb-3 mt-5">{{board.title}}</h2>
+				<h2 class="mb-3 mt-5">{{board.title}} <div v-if="writer==userId"> <a href="#" class="board_edit" @click.prevent="deleteBoard(board.boardId)" >삭제</a><a href="#" class="board_edit">수정</a></div></h2>
 				<h4 class="date d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></h4>
                 <h3 class="right d-block">{{writer}}</h3>
-                
+               
                 <div class="site-section">
 				    <div class="container">
 				      <div class="block-31 mb-5" style="position: relative;">
@@ -72,10 +72,21 @@
                         <img src="../images/user.png" alt="Image placeholder">
                       </div>
                       <div class="comment-body">
-                        <h3>{{cmt.user.userId}}  <a href="#" @click.prevent="deleteComment(cmt.commentId)" class="edit">삭제</a><a href="#" @click.prevent="updateComment(cmt.commentId)" class="edit">수정</a> </h3>
-                         <a v-if="cmt.secret==1" class="reply">비밀댓글</a>
-                        <div class="meta">{{cmt.date | formatDateComment}}</div>
-                        <p>{{cmt.content}}</p>
+                        <h3>{{cmt.user.userId}} <div v-if="userId==cmt.user.userId"> <a href="#" @click.prevent="deleteComment(cmt.commentId)" class="edit">삭제</a><a href="#" @click.prevent="updateComment(cmt.commentId)" class="edit">수정</a></div> </h3>
+                         <div v-if="cmt.secret==1">
+                         	<div v-if="userId==cmt.user.userId">
+	                         	 <a class="reply">비밀댓글</a>
+	                        	<div class="meta">{{cmt.date | formatDateComment}}</div>
+	                        	<p>{{cmt.content}}</p>
+                         	</div>
+                         	<div v-else>
+                         		<a class="reply">비밀댓글</a>
+                         	</div>
+                         </div>
+                         <div v-else>
+	                        <div class="meta">{{cmt.date | formatDateComment}}</div>
+	                        <p>{{cmt.content}}</p>
+                        </div>
                       </div>
                     </li>
 
@@ -267,6 +278,22 @@
 	                     this.errored = true
 	                 })
 	           		.finally(()=>location.href="board_detail.jsp?boardId="+${param.boardId})
+          	 	}},
+           		deleteBoard(boardId){
+          	 		if(confirm("게시글을 삭제 하시겠습니까?")){
+	           		axios
+	             	 .delete('http://127.0.0.1:7788/board/deleteBoard/'+boardId,
+	                  		{
+	      	  			headers : {
+	      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+	      	  			}
+	      	  		})
+	             	 .then(response=>(this.result= response.data))
+	                 .catch(error=>{
+	                     console.log(error);
+	                     this.errored = true
+	                 })
+	           		.finally(()=>location.href="board_list.jsp")
           	 	}}
 
             }
