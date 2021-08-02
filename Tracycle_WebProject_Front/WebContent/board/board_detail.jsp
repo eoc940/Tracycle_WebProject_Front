@@ -46,6 +46,7 @@
 			    <div class="col-md-12">
 				<h2 class="mb-3 mt-5">{{board.title}}</h2>
 				 <h4 class="date d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></h4>
+                <h4>abcd1234</h4>
                 <div class="site-section">
 				    <div class="container">
 				      <div class="block-31 mb-5" style="position: relative;">
@@ -59,63 +60,27 @@
 				    </div>
 			  </div>
        
-                <p>{{board.content}}</p>
-                
-                  <img src="images/image_10.jpg" alt="" class="img-fluid">
-          
-
+                <p class="board-content">{{board.content}}</p>
+               
                 <div class="pt-5 mt-5">
-                  <h3 class="mb-5">2 Comments</h3>
+                  <h3 class="mb-5">Comments</h3>
                   <ul class="comment-list">
-                    <li class="comment">
+                  	<p v-if="comments.length==0">등록된 댓글이 없습니다.</p>
+                    <li  v-for="cmt in comments" class="comment">
                       <div class="vcard bio">
                         <img src="../images/user.png" alt="Image placeholder">
                       </div>
                       <div class="comment-body">
-                        <h3>Jean Doe</h3> <p><a href="#" class="reply">비밀댓글</a></p>
-                        <div class="meta">January 9, 2018 at 2:21pm</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                       
+                        <h3>{{cmt.user.userId}}  <a href="#" @click.prevent="deleteComment(cmt.commentId)" class="edit">삭제</a><a href="#" @click.prevent="updateComment(cmt.commentId)" class="edit">수정</a> </h3>
+                         <a v-if="cmt.secret==1" class="reply">비밀댓글</a>
+                        <div class="meta">{{cmt.date | formatDateComment}}</div>
+                        <p>{{cmt.content}}</p>
                       </div>
                     </li>
 
-                   
-                    <li class="comment">
-                      <div class="vcard bio">
-                        <img src="../images/user.png" alt="Image placeholder">
-                      </div>
-                      <div class="comment-body">
-                        <h3>Jean Doe</h3>
-                        <div class="meta">January 9, 2018 at 2:21pm</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                       
-                      </div>
-                    </li>
                   </ul>
                   <!-- END comment-list -->
-                  
-                  <div class="comment-form-wrap pt-5">
-                    <h3 class="mb-5">Leave a Comment</h3>
-                    <form action="#" class="">
-                      <div class="form-group">
-                        <label for="name" class="label-font-bold">아이디</label> <a>abcd1234</a>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="message" class="label-font-bold">댓글 내용</label> <input type="checkbox"> 비밀글
-                        <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-                      </div>
-                      <div class="form-group text-center">
-                        <input type="submit" value="Write Comment" class="btn py-3 px-4 btn-primary">
-                      </div>
-
-                    </form>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-       <nav aria-label="Page navigation example">
+         <div class="comment-form-wrap"><nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-center">
 		    <li class="page-item disabled">
 		      <a class="page-link" href="#" tabindex="-1" aria-disabled="true"> &laquo; </a>
@@ -127,7 +92,30 @@
 		      <a class="page-link main-color" href="#">&raquo;</a>
 		    </li>
 		  </ul>
-		</nav>
+		</nav></div>
+                  <div class="comment-form-wrap pt-5">
+                  
+                    <h3 class="mb-5">Leave a Comment</h3>
+                    <form action="#" class="">
+                      <div class="form-group">
+                        <label for="name" class="label-font-bold" >아이디</label> <a>abcd1234</a>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="message" class="label-font-bold">댓글 내용</label> <input type="checkbox" v-model="info.secret" @change="checkSecret"> 비밀글
+                        <textarea name="" id="message" cols="30" rows="10" class="form-control" v-model="info.content"></textarea>
+                      </div>
+                      <div class="form-group text-center">
+                        <input type="button" value="Write Comment" @click="submitComment()" class="btn py-3 px-4 btn-primary">
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+      
             
           </div>
   </div>
@@ -165,6 +153,7 @@
             data(){
                 return {
                 	board:[ ],
+                	comments:[ ],
                     status_class:[
                     	"ml-2 badge badge-pill badge-warning",
                     	"ml-2 badge badge-pill badge-success",   	
@@ -174,15 +163,21 @@
                     status_list:[
                     	"나눔대기","나눔진행","나눔중단","나눔완료"
                     ],
-                    category:"",
                     loading:true,
-                    errored:false
+                    errored:false,
+                    info:{"secret":0,user:{"userId":"kang"},board:{boardId:${param.boardId}}},
+                    result:''
                 }
             }, 
             filters:{
             	formatDate(value){
             		if (value) {
             		    return moment(String(value)).format('MMMM DD, YYYY')
+            		  }
+            	},
+            	formatDateComment(value){
+            		if (value) {
+            		    return moment(String(value)).format('MMMM DD, YYYY h:mm a')
             		  }
             	}
             },
@@ -194,13 +189,61 @@
                     console.log(error);
                     this.errored = true
                 })
+                .finally(()=>this.loading = false),
+                
+                axios
+             	 .get('http://127.0.0.1:7788/comment/getAllComment/'+${param.boardId})
+                .then(response=>(this.comments = response.data))
+                .catch(error=>{
+                    console.log(error);
+                    this.errored = true
+                })
                 .finally(()=>this.loading = false)
             },
             methods:{
+           		checkSecret(){
+           			if(this.info.secret==true) this.info.secret=1;
+           			else this.info.secret=0;
+           		},
+           		submitComment(){
+           			var today = new Date();
+    				var year = today.getFullYear();
+    				var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    				var day = ('0' + today.getDate()).slice(-2);
+    				var hours = today.getHours(); 
+    				var minutes = today.getMinutes(); 
+    				var seconds = today.getSeconds();
+    				var dateString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+	           		axios
+	             	 .post('http://127.0.0.1:7788/comment/writeComment',
+	             	 {date:dateString,
+	             	  content:this.info.content,
+	             	  secret:this.info.secret,
+	             	  user:this.info.user,
+	             	  board:this.info.board
+	             	 }
+	             	 ).then(response=>(this.result= response.data))
+	                .catch(error=>{
+	                    console.log(error);
+	                    this.errored = true
+	                })
+	                .finally(()=>location.href="board_detail.jsp?boardId="+${param.boardId}) 
            
-            },
-            
-            
+          	 	},
+           		deleteComment(commentId){
+          	 		if(confirm("댓글을 삭제 하시겠습니까?")){
+	           		axios
+	             	 .delete('http://127.0.0.1:7788/comment/deleteComment/'+commentId)
+	             	 .then(response=>(this.result= response.data))
+	                 .catch(error=>{
+	                     console.log(error);
+	                     this.errored = true
+	                 })
+	           		.finally(()=>location.href="board_detail.jsp?boardId="+${param.boardId})
+          	 	}}
+
+            }
+
         })
     </script>
     
