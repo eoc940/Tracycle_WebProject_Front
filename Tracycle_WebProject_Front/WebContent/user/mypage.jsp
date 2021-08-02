@@ -35,7 +35,7 @@
         <div class="col-sm-4">
               <span class="mypage_id">ID : {{userId}} <p></p></span>
               <p class="mb-0 modifyUser"><a href="user_update.jsp" class="btn btn-primary px-3 py-2">정보 수정</a></p>
-              <p class="mb-0 deleteUser"><a href="#" class="btn btn-primary px-3 py-2 ">회원 탈퇴</a></p>
+              <p class="mb-0 deleteUser"><a href="#" class="btn btn-primary px-3 py-2 " @click="">회원 탈퇴</a></p>
         </div>
         <div class="col-sm-8">
           <div class="post" >
@@ -101,7 +101,30 @@
                 this.errored = true
             })
             .finally(()=>this.loading = false)
+        },
+        
+        methods:{
+        	
         }
+         deleteUser(){
+     		axios
+					   .post('http://127.0.0.1:7788/user/deleteUser/'+this.userId,
+					  {
+						userId: this.userid,
+						nickName: this.username,
+				        password: this.userpass,
+				        address: this.useraddr
+				   
+					  })
+					  .then(response=>(this.result= response.data))
+		              .catch(error=>{
+		                   console.log(error);
+		                   this.errored = true
+		                   alert("등록 실패!");
+		                })
+		              .finally(()=>location.href="login.jsp")
+					 
+     	},
         
   	});
   </script>
