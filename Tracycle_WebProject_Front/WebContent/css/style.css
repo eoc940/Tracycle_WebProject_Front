@@ -2118,6 +2118,21 @@ textarea.form-control {
   max-width:100% !important
   }
   
+/*Service Form  */
+
+ .selectpicker option {
+    background: white !important;
+    color: var(--main-color) !important;
+}
+  
+.selectpicker{
+	outline: none;
+	-webkit-box-shadow: 0 5px 10px -5px rgb(0 0 0 / 50%) !important;
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 50%) !important;
+    color: var(--main-color) !important;
+    border-color: var(--main-color) !important;
+	background: white !important;
+}
 
   
   /*Service table*/
@@ -2146,7 +2161,6 @@ textarea.form-control {
 	}
 	
 }
-
 
 .bannerContainer{
 	font-family: 'Nanum Gothic', serif !important ;
