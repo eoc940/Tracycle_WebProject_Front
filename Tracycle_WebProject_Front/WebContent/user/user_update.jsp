@@ -29,7 +29,15 @@
                 <col width="30%"/>
                 <col width="auto"/>
               </colgroup>
-              <tbody>            
+              <tbody>
+                 <tr>
+                  <th><span>아이디</span></th>
+                  <td><input name ="userId" value= "{{user.userId}}" readonly="readonly"></td>
+                </tr>
+             	<tr>
+                  <th><span>비밀번호</span></th>
+                  <td><input type="password" name = "password" placeholder="비밀번호를 입력해주세요." ></td>
+                </tr>          
                 <tr>
                   <th><span>닉네임</span></th>
                   <td><input type="text" name = "nickname" v-model = "mynickname"></td>
@@ -38,10 +46,7 @@
                   <th><span>주  소</span></th>
                   <td><input type="text" placeholder="주소를 입력하세요." name = "address" v-model = "myaddress"></td>
                 </tr>
-                <tr>
-                  <th><span>비밀번호</span></th>
-                  <td><input type="text" placeholder="비밀번호를 입력해주세요." ></td>
-                </tr>
+                
                
               </tbody>
             </table>
@@ -50,7 +55,7 @@
           <!-- join_form E  -->
           
           <div class="btn_wrap">
-          <a href = "mypage.jsp" v-on:click="submitPost()"  class="submit-btn">저장</a>
+          <a href = "mypage.jsp" @click="updateUser" class="submit-btn">저장</a>
           </div>
         </div> <!-- form_txtInput E -->
       </div><!-- content E-->
@@ -64,8 +69,6 @@
         			errored: false,
         			mynickname: '',
         			myaddress: '',
-        			user:{"userId":"gogilbert"},
-        			password:{"password":"1234qwer"}
         			result:''
         		}
         	},

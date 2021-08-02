@@ -92,7 +92,7 @@
            </div> -->
            
           <div class="block-48">
-          <h1>${userSession.userId} ddd</h1>
+          <h1>${userSession.userId}</h1>
               <span class="block-48-text-1">19년도 총 폐기물 발생량</span>
               <div class="block-48-counter ftco-number" data-number="497238">0</div>
               <span class="block-48-text-1 mb-4 d-block"> 전년(446,102톤/일) 대비 약 11.5% 증가</span>
@@ -186,6 +186,6 @@
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/youtube.js"></script>
-
+  
   </body>
 </html>
