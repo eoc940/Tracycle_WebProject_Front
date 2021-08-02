@@ -95,11 +95,9 @@
         </div>
       </div>   
     </div>
-<<<<<<< HEAD
   </div>
 
   </body>
-=======
 
 <script>
 const storage = window.sessionStorage;
@@ -128,7 +126,6 @@ new Vue({
 	  	}
     }
 });
->>>>>>> upstream/main
 
 </script>
 </body>
