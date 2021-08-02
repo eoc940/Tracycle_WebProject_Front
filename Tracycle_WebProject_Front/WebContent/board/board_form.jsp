@@ -150,7 +150,7 @@
 				categoryList:[],
 				mainFile:[],
 				subFile:[],
-				user:{"userId":"kang"},
+				user:{"userId":"dkdk456"},
 				area:{},
 				category:{},
 				result:'',

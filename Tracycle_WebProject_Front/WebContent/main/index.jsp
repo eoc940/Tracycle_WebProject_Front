@@ -49,13 +49,12 @@
           <li class="nav-item"><a href="../board/board_list.jsp" class="nav-link">Share</a></li>
           <li class="nav-item"><a href="../service/service.jsp" class="nav-link">Service</a></li> 
           <li class="nav-item"><a href="../report/report.jsp" class="nav-link">Report</a></li>  
-          {{^loginUser}}	  
+          	  
          		<li class="nav-item"><a href="../user/login.jsp" class="nav-link">Login</a></li>    	 
-    	  {{/loginUser}}
-    	  {{#loginUser}}
+    	  
 		        <li class="nav-item"><a href="../user/login.jsp" class="nav-link">Logout</a></li>
 		        <li class="nav-item"><a href="../user/mypage.jsp" class="nav-link">My page</a></li>  
-		  {{/loginUser}}
+		  
         </ul>
       </div>
     </div>
@@ -68,7 +67,7 @@
         <div class="container">
           <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-7">
-              <h1 class="heading mb-5">Tracycle</h1>
+              <h1 class="heading mb-5">Tracycle </h1>
               	<button class="align-self-center main-btn1" onClick="location.href='../service/service.jsp'" >Our Service</button>
             </div>
           </div>
@@ -93,6 +92,7 @@
            </div> -->
            
           <div class="block-48">
+          <h1>${userSession.userId} ddd</h1>
               <span class="block-48-text-1">19년도 총 폐기물 발생량</span>
               <div class="block-48-counter ftco-number" data-number="497238">0</div>
               <span class="block-48-text-1 mb-4 d-block"> 전년(446,102톤/일) 대비 약 11.5% 증가</span>
