@@ -46,7 +46,7 @@
     
   <jsp:include page="../header.jsp"></jsp:include>
   
-  <div class="site-header-section">
+  <div class="site-header-section" id="app">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -67,7 +67,7 @@
 
  <div class="tableContainer">   
     <div class="areaContainer">
-		 <p id="area">관악구</p> 
+		 <p id="area" v-html></p> 
 	</div>
   <table class="table text-center pt-5 pb-5 mt-5 mb-5">
     <thead>
@@ -80,12 +80,13 @@
       </tr>
     </thead>
     <tbody class="tbody  pt-5 pb-5 mt-5 mb-5">
-      <tr>
-        <td>1</td>
-        <td>TV</td>
-        <td>50~60 inch</td>
-        <td>4,500원</td>
-        <td>지역 기관에서 스티커를 구매하여 붙여주세요.</td>
+      <tr v-for="">
+        <td v-html=""></td>
+        <td v-html=""></td>
+        <td v-html=""></td>
+        <td v-html=""></td>
+        <td v-html=""></td>
+        
       </tr>
     </tbody>
   </table>
@@ -98,7 +99,7 @@
               <div class="media-body p-3 mt-3">
              	<span style="color:rgba(128, 156, 168, 1)"><i class="fa fa-globe fa-5x" aria-hidden="true" style="width:100px; height:150px;"></i></span>
                 <h6 class="heading mb-4">폐기물 인터넷 접수 바로가기</h6>
-                <p class="heading-2">URL URL URL URL URL URL</p>
+                <p class="heading-2" v-for=""></p>
               </div>
             </div>      
           </div>
@@ -131,8 +132,8 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="../js/jquery.min.js"></script>
   <script src="../js/jquery-migrate-3.0.1.min.js"></script>
   <script src="../js/popper.min.js"></script>
@@ -151,7 +152,30 @@
   <script src="../js/main.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
+  <script>
+  	
+    
+        new Vue({
+            el: "#app",           
+            data(){
+                return {
+                    info:[],
+                    loading:true,
+                    errored:false
+                }
+            },
+            mounted(){
+                axios
+             	.get('http://127.0.0.1:7788/result/getResult')
+                .then(response=>(this.info = response.data))
+                .catch(error=>{
+                    console.log(error);
+                    this.errored = true
+                })
+                .finally(()=>this.loading = false),
+            }
+        })
+    </script>
 
   </body>
 </html>

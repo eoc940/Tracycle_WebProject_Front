@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+=======
+    
+>>>>>>> upstream/main
 <!DOCTYPE html>
-
+<!--  -->
   <head>
   <meta charset="UTF-8">
     <title>지구를 위한 Tracycle</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+ 
   	
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    	<!--한글폰트 링크 -->
@@ -36,7 +41,7 @@
   <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container">
+    <div class="container" id="app">
       <a class="navbar-brand" href="index.html"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
@@ -49,12 +54,10 @@
           <li class="nav-item"><a href="../board/board_list.jsp" class="nav-link">Share</a></li>
           <li class="nav-item"><a href="../service/service.jsp" class="nav-link">Service</a></li> 
           <li class="nav-item"><a href="../report/report.jsp" class="nav-link">Report</a></li>  
-          	  
-         		<li class="nav-item"><a href="../user/login.jsp" class="nav-link">Login</a></li>    	 
-    	  
-		        <li class="nav-item"><a href="../user/login.jsp" class="nav-link">Logout</a></li>
-		        <li class="nav-item"><a href="../user/mypage.jsp" class="nav-link">My page</a></li>  
-		  
+          <li class="nav-item" v-if="jwtauthtoken==''"><a href="../user/login.jsp" class="nav-link">Login</a></li>        
+		  <li class="nav-item" v-if="jwtauthtoken!=''"><a href="index.jsp" v-on:click="logout" class="nav-link" >Logout</a></li>
+		  <li class="nav-item" v-if="jwtauthtoken!=''"><a href="../user/mypage.jsp" class="nav-link">My page</a></li>  
+		 
         </ul>
       </div>
     </div>
@@ -131,7 +134,9 @@
   </div> <!-- .site-section -->
 		
 		
-<script>
+ <script>
+ //const storage = window.sessionStorage;
+ //var jwtauthtoken:storage.getItem("jwt-auth-token");
   // Load the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
   tag.src = "https://www.youtube.com/player_api";
@@ -186,6 +191,43 @@
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/youtube.js"></script>
+<<<<<<< HEAD
   
+=======
+
+<script>
+const storage = window.sessionStorage;
+
+new Vue({
+    el: "#app",           
+    data(){
+        return {          
+  				jwtauthtoken:storage.getItem("jwt-auth-token")
+        }
+    }, 
+     
+    methods:{
+    	logout:function(e) {
+    		if(confirm("로그아웃 하시겠습니까?")){
+    			storage.setItem("jwt-auth-token", "");
+    			this.jwtauthtoken=storage.getItem("jwt-auth-token");
+          		storage.setItem("login_user", "");
+    	  		this.message = "로그인해주세요";
+    	  		this.setInfo("로그아웃 성공", "", "");
+    	  		location.href="index.jsp";
+    		}else{
+    			e.preventDefault();
+    		}
+
+	  	}
+
+    }
+
+});
+
+</script>
+
+
+>>>>>>> upstream/main
   </body>
 </html>

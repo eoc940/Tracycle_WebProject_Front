@@ -35,23 +35,33 @@
         <div class="col-sm-4">
               <span class="mypage_id">ID : {{userId}} <p></p></span>
               <p class="mb-0 modifyUser"><a href="user_update.jsp" class="btn btn-primary px-3 py-2">정보 수정</a></p>
-              <p class="mb-0 deleteUser"><a href="#" class="btn btn-primary px-3 py-2 ">회원 탈퇴</a></p>
+              <p class="mb-0 deleteUser"><a href="#" class="btn btn-primary px-3 py-2 " @click="">회원 탈퇴</a></p>
         </div>
         <div class="col-sm-8">
           <div class="post" >
           	<h2 class="display-4 mb-3">My Posting</h2>
+<<<<<<< HEAD
           	<div class="mycontent"  v-for="board in boardinfo">
           		<h6># {{board.boardId}}</h6>
+=======
+          	<div class="mycontent"  v-for="board in info">
+>>>>>>> upstream/main
           		<h4>{{board.title}}</h4>
           		<p>{{board.content}}</p>
           	</div>
           </div>
           <div class="comment">
           	<h2 class="display-4 mb-3">My Comment</h2>
+<<<<<<< HEAD
           	<div class="mycontent"v-for="comment in commentinfo">
           		<h6>글 번호 : {{comment.board.boardId}}</h6>
           		<h4>{{comment.board.title}}</h4>
           		<p>{{comment.content}}</p>
+=======
+          	<div class="mycontent">
+          		<h4></h4>
+          		<p></p>
+>>>>>>> upstream/main
           	</div>
           </div>
         </div>
@@ -78,6 +88,7 @@
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
   <script>
+<<<<<<< HEAD
     const storage = window.sessionStorage;
   	new Vue({
   		el:"#app",
@@ -86,11 +97,23 @@
   				userId: storage.getItem("login_user"),
   				boardinfo:[ ],
   				commentinfo:[ ]
+=======
+ //const storage = window.sessionStorage;
+  
+  	new Vue({
+  		el:"#app",
+  		data() {
+  			return {  
+  				userId: storage.getItem("login_user"),
+  				jwtauthtoken: storage.getItem("jwt-auth-token"),
+  				info:[ ]
+>>>>>>> upstream/main
   			}
   		},
   		mounted(userId){
             axios
             .get('http://127.0.0.1:7788/board/findById/'+this.userId,
+<<<<<<< HEAD
                {
          	   headers : {
          	  		"jwt-auth-token":storage.getItem("jwt-auth-token")
@@ -111,13 +134,50 @@
          	   }
          	})
             .then(response=>(this.commentinfo = response.data))
+=======
+                    {
+              	   headers : {
+              	  		"jwt-auth-token":storage.getItem("jwt-auth-token")
+              	   }
+              	})
+            .then(response=>(this.info = response.data))
+>>>>>>> upstream/main
             .catch(error=>{
                 console.log(error);
                 this.errored = true
             })
             .finally(()=>this.loading = false)
+<<<<<<< HEAD
         }
   	})
+=======
+        },
+        
+        methods:{
+        	
+        }
+         deleteUser(){
+     		axios
+					   .post('http://127.0.0.1:7788/user/deleteUser/'+this.userId,
+					  {
+						userId: this.userid,
+						nickName: this.username,
+				        password: this.userpass,
+				        address: this.useraddr
+				   
+					  })
+					  .then(response=>(this.result= response.data))
+		              .catch(error=>{
+		                   console.log(error);
+		                   this.errored = true
+		                   alert("등록 실패!");
+		                })
+		              .finally(()=>location.href="login.jsp")
+					 
+     	},
+        
+  	});
+>>>>>>> upstream/main
   </script>
   </body>
 </html>

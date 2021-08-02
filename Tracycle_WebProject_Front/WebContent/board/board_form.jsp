@@ -48,24 +48,48 @@
                     <h3 class="mb-3">  <label for="name" class="label-font-bold">제목</label> <input type="text" class="form-control" v-model="board.title"></h3>
                     <form action="#" class="">
                       <div class="form-group right">	
-                        <h6><label for="name" class="label-font-bold">작성자 아이디</label> <a>abcd1234</a></h6>
+                        <h6><label for="name" class="label-font-bold">작성자 아이디</label> <a>{{userId}}</a></h6>
                       </div>
                       <div class="form-group">
                         <h6><label for="content" class="label-font-bold">내용</label></h6>
                         <textarea name="" id="content" cols="30" rows="20" class="form-control" v-model="board.content"></textarea>
                       </div>
-                    <!-- areaList 출력 -->
-                    <select name="selectedArea" v-model="area.areaId">
-			    		<option v-for="sarea in areaList" :value="sarea.areaId">
-			    			{{sarea.areaName}}
-			    		</option>
-			    	</select>
-			    	<!-- categoryList 출력 -->
-			    	<select name="selectedCategory" v-model="category.categoryId">
-			    		<option v-for="scategory in categoryList" :value="scategory.categoryId">
-			    			{{scategory.categoryName}}
-			    		</option>
-			    	</select>
+                      <div class="form-group">
+                        <label for="content" class="label-font-bold">지역 </label><br>
+						    <select class="selectpicker" name="selectedArea" v-model="area.areaId">
+					    		<option v-for="sarea in areaList" :value="sarea.areaId">
+					    			{{sarea.areaName}}
+					    		</option>
+					    	</select>
+                      </div>
+                      <div class="form-group">
+                        <label for="content" class="label-font-bold">카테고리</label><br>
+						    <select class="selectpicker" name="selectedCategory" v-model="category.categoryId">
+					    		<option v-for="scategory in categoryList" :value="scategory.categoryId">
+					    			{{scategory.categoryName}}
+					    		</option>
+					    	</select>
+                      </div>
+                      </div>
+                     <!--  <div class="form-group">
+                        <label for="content" class="label-font-bold">카테고리</label><br>
+						    <select class="" name="selectedCategory" v-model="category.categoryId">
+					    		<option v-for="scategory in categoryList" :value="scategory.categoryId">
+					    			{{scategory.categoryName}}
+					    		</option>
+					    	</select>
+                      </div> -->
+                      
+                      <div class="form-group">
+                        <label for="content" class="label-font-bold">나눔 상태</label><br>
+						    <select class="selectpicker" v-model="board.status">
+ 							   <option data-content="<span class='badge badge-pill badge-warning'>나눔대기</span>" :value=1>나눔대기</option>
+ 							   <option data-content="<span class='badge badge-pill badge-success'>나눔진행</span>" :value=2>나눔진행</option>
+ 							   <option data-content="<span class='badge badge-pill badge-danger'>나눔중단</span>" :value=3>나눔대기</option>
+ 							   <option data-content="<span class='badge badge-pill badge-end'>나눔완료</span>" :value=4>나눔완료 </option>
+  							</select>
+                      </div>
+                    
                 
 					<div class="form-group">
 					 <h6> <label for="formFile" class="form-label label-font-bold">대표 이미지</label></h6>
@@ -76,24 +100,7 @@
 					  <input class="form-control" multiple="multiple" type="file" id="formFile" ref="subFile" v-on:change="subFileUpload()">
 					</div>
 					
-					<div class="form-group">
-                        <label for="content" class="label-font-bold">나눔 상태</label><br>
-						    <select class="selectpicker" v-model="board.status">
- 							   <option data-content="<span class='badge badge-pill badge-warning'>나눔대기</span>" :value=1>나눔대기</option>
- 							   <option data-content="<span class='badge badge-pill badge-success'>나눔진행</span>" :value=2>나눔진행</option>
- 							   <option data-content="<span class='badge badge-pill badge-danger'>나눔중단</span>" :value=3>나눔대기</option>
- 							   <option data-content="<span class='badge badge-pill badge-end'>나눔완료</span>" :value=4>나눔완료 </option>
-  							</select>
-                      </div>
-                      <!-- 
-                      
-                      <select name="areas">
-                      	<option v-for="area in areaList" :value="area.areaId">
-                      		{{area.areaId}}
-                      	</option>
-                      </select>
-             			 -->
-             			 
+					
 					 <!-- 작성시 게시글 작성 버튼 -->
 					  <div class="form-group text-center pt-5 pb-5">
 					  	<input type="submit" value="Cancel" class="btn py-3 px-4 btn-cancel">	
@@ -141,6 +148,7 @@
 
 
 <script>
+	//const storage = window.sessionStorage;
 	new Vue({
 		el: "#blog",
 		data(){
@@ -150,17 +158,22 @@
 				categoryList:[],
 				mainFile:[],
 				subFile:[],
-				user:{"userId":"dkdk456"},
+				user:{"userId":storage.getItem("login_user")},
 				area:{},
 				category:{},
 				result:'',
 				loading:true,
-				errored:false
+				errored:false,
+				userId:storage.getItem("login_user")
 			}
 		},
 		mounted(){
 			axios
-			.get('http://127.0.0.1:7788/board/getAllArea')
+			.get('http://127.0.0.1:7788/board/getAllArea',{
+ 	  			headers : {
+ 	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+ 	  			}
+ 	  		})
 			.then(response=>(this.areaList = response.data))
 			.catch(error=>{
 				alert(error);
@@ -169,8 +182,12 @@
 			})
 			.finally(()=>this.loading = false),
 			axios
-			.get('http://127.0.0.1:7788/board/getAllCategory')
-			.then(response=>(this.categoryList = response.data))
+			.get('http://127.0.0.1:7788/board/getAllCategory',{
+ 	  			headers : {
+ 	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+ 	  			}
+ 	  		})
+			.then(response=>{this.categoryList = response.data;})
 			.catch(error=>{
 				alert(error);
 				console.log(error);
@@ -205,7 +222,7 @@
 				formData.append("areaId",this.area.areaId);
 				formData.append("categoryId",this.category.categoryId);
 				formData.append("viewCount",0);
-				formData.append("userId",this.user.userId);
+				formData.append("userId",this.userId);
 				formData.append("date",dateString);
 				formData.append("status",this.board.status);
 				formData.append("mainFile",this.mainFile)
@@ -224,7 +241,7 @@
 					console.log(error);
                     this.errored = true
 				})
-				//.finally(()=>location.href="board_list.jsp")
+				.finally(()=>location.href="board_list.jsp")
 			}
 			
 		}

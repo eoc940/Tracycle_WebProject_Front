@@ -3,6 +3,9 @@
 <html>
   <head>
     <title>지구를 위한 Tracycle</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    	<!--한글폰트 링크 -->
@@ -36,11 +39,11 @@
 
    <jsp:include page="../header.jsp"></jsp:include>
  
-  <div class="site-section bg-light">
+  <div id="app"  class="site-section bg-light">
     <div class="container">
       
 
-      <div id="app" class="row mt-5 mb-5">
+      <div class="row mt-5 mb-5">
  			<div class="col-md-12 mt-5 mb-5">
 			<div class="categories">
 	            <h3>Categories</h3>
@@ -56,19 +59,20 @@
 		       		<img v-if="board.picture==null" src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
 		       		<img v-else src="../images/img_4.jpg" alt="Image placeholder" class="img-fluid">
 		       		</a>
-		       		<h3><a href="board_detail.jsp">{{board.title}}</a></h3>
+		       		<h3><a :href=("board_detail.jsp?boardId="+board.boardId)>{{board.title}}</a></h3>
 		       		<span class="date mb-4 d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></span>
 		       
 		       <p>{{board.content | splitContent}}</p>
-		       <p><a href="borad_detail.jsp" class="link-underline main-color">Read More</a></p>
+		       <p><a :href=("board_detail.jsp?boardId="+board.boardId) class="link-underline main-color">Read More</a></p>
           </div>
 	
 		</div>
 
       </div>
-       <div class=" pt-5 pb-5 text-center">
+       <div v-if="isLogin" class=" pt-5 pb-5 text-center">
 			<a href="board_form.jsp" class="btn py-3 px-4 btn-primary">Write Post</a>
         </div>
+        
       <nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-center">
 		    <li class="page-item disabled">
@@ -114,7 +118,7 @@
    
     <script>
     
-    const storage = window.sessionStorage;
+    //const storage = window.sessionStorage;
     
         new Vue({
             el: "#app",           
@@ -132,9 +136,18 @@
                     ],
                     category:"",
                     loading:true,
-                    errored:false
+                    errored:false,
+                    userId:storage.getItem("login_user")
                 }
-            }, 
+            },
+            computed: {
+                isLogin: function () {
+                 	if(this.userId==null||this.userId=='')	
+                 		return false;
+                 	else
+                 		return true;
+                }
+              },
             filters:{
             	formatDate(value){
             		if (value) {
