@@ -1479,7 +1479,7 @@ textarea.form-control {
         letter-spacing: .1em;
         color: #ccc; }
       .comment-list li .comment-body .reply {
-        padding: 5px 10px;
+        padding: 3px 6px;
         background: #e6e6e6;
         color: #000;
         text-transform: uppercase;
@@ -1487,9 +1487,23 @@ textarea.form-control {
         letter-spacing: .1em;
         font-weight: 400;
         border-radius: 4px; }
-        .comment-list li .comment-body .reply:hover {
+       /*  .comment-list li .comment-body .reply:hover {
           color: #fff;
-          background: black; }
+          background: black; } */
+      .comment-list li .comment-body .edit {
+        padding: 3px 6px;
+        margin: 5px 5px;
+        background: #e6e6e6;
+        color: #000;
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: .1em;
+        font-weight: 400;
+        border-radius: 4px; 
+        float: right;}
+      .comment-list li .comment-body .edit:hover {
+          color: #fff;
+          background: black; } 
 
 .search-form {
   background: #f7f7f7;
@@ -2118,6 +2132,21 @@ textarea.form-control {
   max-width:100% !important
   }
   
+/*Service Form  */
+
+ .selectpicker option {
+    background: white !important;
+    color: var(--main-color) !important;
+}
+  
+.selectpicker{
+	outline: none;
+	-webkit-box-shadow: 0 5px 10px -5px rgb(0 0 0 / 50%) !important;
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 50%) !important;
+    color: var(--main-color) !important;
+    border-color: var(--main-color) !important;
+	background: white !important;
+}
 
   
   /*Service table*/
@@ -2146,7 +2175,6 @@ textarea.form-control {
 	}
 	
 }
-
 
 .bannerContainer{
 	font-family: 'Nanum Gothic', serif !important ;
@@ -2310,13 +2338,25 @@ dropdown .btn:focus,.btn:active,.btn:focus{
     box-shadow: 0 5px 10px -5px rgb(0 0 0 / 50%) !important;
 }
 
-/* .btn:focus,.btn:active,.btn:focus{
-	outline: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    color: #fff !important;
-    border-color: var(--main-color) !important;
-	background: var(--main-color) !important;
+.comment, .board-content{
+	font-family: 'Nanum Gothic', serif;
 }
-   */
 
+.board_edit {
+        padding: 3px 6px;
+        margin: 5px 5px;
+        background: #e6e6e6;
+        color: #000;
+        text-transform: uppercase;
+        font-size: 16px;
+        letter-spacing: .1em;
+        font-weight: 400;
+        border-radius: 4px; 
+        float: right;}
+        @media (max-width: 991.98px) {
+   		.board_edit {
+      float: left;
+      margin-bottom: 3rem!important; } }
+.board_edit:hover {
+          color: #fff;
+          background: black; } 
