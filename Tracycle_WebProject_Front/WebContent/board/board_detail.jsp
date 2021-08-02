@@ -45,8 +45,9 @@
             <div class="row">
 			    <div class="col-md-12">
 				<h2 class="mb-3 mt-5">{{board.title}}</h2>
-				 <h4 class="date d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></h4>
-                <h4>abcd1234</h4>
+				<h4 class="date d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></h4>
+                <h3 class="right d-block">{{writer}}</h3>
+                
                 <div class="site-section">
 				    <div class="container">
 				      <div class="block-31 mb-5" style="position: relative;">
@@ -98,7 +99,7 @@
                     <h3 class="mb-5">Leave a Comment</h3>
                     <form action="#" class="">
                       <div class="form-group">
-                        <label for="name" class="label-font-bold" >아이디</label> <a>abcd1234</a>
+                        <label for="name" class="label-font-bold" >아이디</label> <a>{{userId}}</a>
                       </div>
 
                       <div class="form-group">
@@ -147,12 +148,15 @@
   <script src="../js/moment.js"></script>
   
     <script>
+    
+    const storage = window.sessionStorage;
 
         new Vue({
             el: "#blog",
             data(){
                 return {
                 	board:[ ],
+                	writer:"",
                 	comments:[ ],
                     status_class:[
                     	"ml-2 badge badge-pill badge-warning",
@@ -165,8 +169,9 @@
                     ],
                     loading:true,
                     errored:false,
-                    info:{"secret":0,user:{"userId":"kang"},board:{boardId:${param.boardId}}},
-                    result:''
+                    info:{"secret":0,user:{"userId":storage.getItem("login_user")},board:{boardId:${param.boardId}}},
+                    result:'',
+                    userId:storage.getItem("login_user")
                 }
             }, 
             filters:{
@@ -183,8 +188,15 @@
             },
             mounted(){
                 axios
-             	 .get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId})
-                .then(response=>(this.board = response.data))
+             	 .get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId},
+                  		{
+      	  			headers : {
+      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+      	  			}
+      	  		})
+                .then(response=>{this.board = response.data;
+                this.writer=this.board.user.userId;
+                })
                 .catch(error=>{
                     console.log(error);
                     this.errored = true
@@ -192,7 +204,12 @@
                 .finally(()=>this.loading = false),
                 
                 axios
-             	 .get('http://127.0.0.1:7788/comment/getAllComment/'+${param.boardId})
+             	 .get('http://127.0.0.1:7788/comment/getAllComment/'+${param.boardId},
+                  		{
+      	  			headers : {
+      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+      	  			}
+      	  		})
                 .then(response=>(this.comments = response.data))
                 .catch(error=>{
                     console.log(error);
@@ -221,7 +238,12 @@
 	             	  secret:this.info.secret,
 	             	  user:this.info.user,
 	             	  board:this.info.board
-	             	 }
+	             	 },
+	             		{
+	      	  			headers : {
+	      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+	      	  			}
+	      	  		}
 	             	 ).then(response=>(this.result= response.data))
 	                .catch(error=>{
 	                    console.log(error);
@@ -233,7 +255,12 @@
            		deleteComment(commentId){
           	 		if(confirm("댓글을 삭제 하시겠습니까?")){
 	           		axios
-	             	 .delete('http://127.0.0.1:7788/comment/deleteComment/'+commentId)
+	             	 .delete('http://127.0.0.1:7788/comment/deleteComment/'+commentId,
+	                  		{
+	      	  			headers : {
+	      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+	      	  			}
+	      	  		})
 	             	 .then(response=>(this.result= response.data))
 	                 .catch(error=>{
 	                     console.log(error);
