@@ -148,7 +148,7 @@
 
 
 <script>
-	const storage = window.sessionStorage;
+	//const storage = window.sessionStorage;
 	new Vue({
 		el: "#blog",
 		data(){

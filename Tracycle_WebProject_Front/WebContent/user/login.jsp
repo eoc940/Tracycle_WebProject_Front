@@ -82,7 +82,9 @@
               status:"",
               token:"",
               info:"",
-              errored:false
+              errored:false,
+              nextpage:''
+     
           }
       },
       methods:{
@@ -138,6 +140,8 @@
           				);
           				storage.setItem("jwt-auth-token", response.headers["jwt-auth-token"]);
           				storage.setItem("login_user", response.data.data.userId);
+
+          				this.nextpage = "../main/index.jsp";
           			}else {
           				this.setInfo("","","");
           				this.message = "로그인해주세요";
@@ -146,26 +150,11 @@
           		})
           		.catch(error=>{
           			this.setInfo("실패", "", JSON.stringify(error.response || error.message));
+          			this.nextpage = "login.jsp";
+          			alert("입력 정보를 확인하세요");
           		})
-          		
-          		
-          		
-          		/*
-          		var params = new URLSearchParams();
-                params.append('userId', this.userid);
-                params.append('password', this.userpass);
-                axios.post('http://127.0.0.1:7788/user/login'
-                  ,params)
-		            .then(function (response) {
-		                console.log(response);
-		            })
-		            .catch(error=>{
-		             	console.log(error);
-		             	this.errored = true
-		             	alert("로그인 실패");
-		             })                    
-          			.finally(()=>location.href="../main/index.jsp")   
-          		*/
+          		.finally(()=>location.href=this.nextpage);
+   
           },
           init() {
         	  if(storage.getItem("jwt-auth-token")) {
@@ -173,22 +162,12 @@
         	  }else {
         		  storage.setItem("jwt-auth-token", "");
         	  }
-          }
+          },
           
-        
-          
-         /* login : function () {
-              if (this.user.userid == '') {alert('아이디를 입력해주세요.');return;}
-              if (this.user.userpass == '') {alert('비밀번호를 입력해주세요.');return;}
-              this.$http.post('/127.0.0.1:7788/user/login', {loginUser:this.user}).then((response) => {
-                  if (response.data.success == true) {
-                      alert(response.data.message);
-                      this.$router.push('index.jsp'); //로그인 성공시 index 페이지로 이동
-                  } else {
-                      alert(response.data.message);
-                  }
-              });
-          }*/
+          goHome(){
+        	  location.href="login.jsp";
+
+          }          
       },
       mounted() {
     	  this.init();
