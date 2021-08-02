@@ -54,7 +54,7 @@
                <div class="post-entry">
 		       		<a :href=("board_detail.jsp?boardId="+board.boardId) class="mb-3 img-wrap">
 		       		
-					{{board.picture}}
+					
 		       		<img v-if="board.picture==null" src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
 		       		<img v-else :src=("http://127.0.0.1:7788/board/getMainFile/"+board.picture) alt="Image placeholder" class="img-fluid">
 		       		</a>

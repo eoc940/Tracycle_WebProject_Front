@@ -55,12 +55,20 @@
                         <textarea name="" id="content" cols="30" rows="20" class="form-control" v-model="board.content"></textarea>
                       </div>
                       <div class="form-group">
+                      	<select class="selectpicker" name="selectedArea" v-model="area.areaId">
+					    		<option v-for="sarea in areaList" :value="sarea.areaId">
+					    			{{sarea.areaName}}
+					    		</option>
+					    </select>
+                      	<!-- 
+                      	
                         <label for="content" class="label-font-bold">지역 </label><br>
 						    <select class="selectpicker" name="selectedArea" v-model="area.areaId">
 					    		<option v-for="sarea in areaList" :value="sarea.areaId">
 					    			{{sarea.areaName}}
 					    		</option>
 					    	</select>
+                      	 -->
                       </div>
                       <div class="form-group">
                         <label for="content" class="label-font-bold">카테고리</label><br>
