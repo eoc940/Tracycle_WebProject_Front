@@ -9,6 +9,8 @@
 
     <title>지구를 위한 Tracycle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
     
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -239,6 +241,9 @@
   
 
 
+
+
+</script>
   </body>
 
 </html>
