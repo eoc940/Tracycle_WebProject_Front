@@ -56,11 +56,11 @@
 		       		<img v-if="board.picture==null" src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
 		       		<img v-else src="../images/img_4.jpg" alt="Image placeholder" class="img-fluid">
 		       		</a>
-		       		<h3><a href="board_detail.jsp">{{board.title}}</a></h3>
+		       		<h3><a :href=("board_detail.jsp?boardId="+board.boardId)>{{board.title}}</a></h3>
 		       		<span class="date mb-4 d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></span>
 		       
 		       <p>{{board.content | splitContent}}</p>
-		       <p><a href="borad_detail.jsp" class="link-underline main-color">Read More</a></p>
+		       <p><a :href=("board_detail.jsp?boardId="+board.boardId) class="link-underline main-color">Read More</a></p>
           </div>
 	
 		</div>
