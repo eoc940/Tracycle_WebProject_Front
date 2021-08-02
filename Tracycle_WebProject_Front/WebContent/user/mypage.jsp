@@ -40,7 +40,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-              <span class="mypage_id">ID <p></p></span>
+              <span class="mypage_id">ID {{userId}}<p></p></span>
               <p class="mb-0 modifyUser"><a href="user_update.jsp" class="btn btn-primary px-3 py-2">정보 수정</a></p>
               <p class="mb-0 deleteUser"><a href="#" class="btn btn-primary px-3 py-2 ">회원 탈퇴</a></p>
         </div>
@@ -92,6 +92,17 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
-
+  <script type="text/javascript">
+    const storage = window.sessionStorage;
+	alert(storage.getItem("login_user"));
+	new Vue({
+		el:"#app",
+		data() {
+			return {
+				userId : storage.getItem("login_user")
+			}
+		}
+	})
+  </script>
   </body>
 </html>

@@ -99,8 +99,8 @@
     	  	},
     	  	getInfo() {
     	  		axios.post("http://127.0.0.1:7788/user/info", {
-    	  			userId:"dkdk456",
-    	  			password:"456"
+    	  			userId:this.userId,
+    	  			password:this.password
     	  		},
     	  		{
     	  			headers : {
