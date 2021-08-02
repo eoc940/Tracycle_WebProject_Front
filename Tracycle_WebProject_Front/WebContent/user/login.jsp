@@ -34,17 +34,23 @@
               <tbody>            
                 <tr>
                   <th><span>아이디</span></th>
-                  <td><input type="text" placeholder="ID 를 입력하세요." class="inputId"  v-model="userid" required></td>
+                  <td><input type="text" placeholder="ID 를 입력하세요." class="inputId"  v-model="userId" required></td>
                 </tr>
                 <tr>
                   <th><span>비밀번호</span></th>
-                  <td><input type="password" placeholder="비밀번호를 입력해주세요." class="inputPass"  v-model="userpass" required></td>
+                  <td><input type="password" placeholder="비밀번호를 입력해주세요." class="inputPass"  v-model="password" required></td>
                 </tr>
               </tbody>
             </table>
             <div class="exform_txt"></div>
           </div>
           <!-- join_form E  -->
+          <button id="getInfo" @click="getInfo">정보확인</button>
+          <button id="getInfo" @click="logout">로그아웃</button><br>
+          메시지 : {{message}}<br>
+          상태 : {{status}}<br>
+          토큰 : {{token}}<br>
+          정보 : {{info}}
           
           <div class="btn_wrap">
 	          <div class="homeNregister">
@@ -62,58 +68,108 @@
   
   
   <script>
-
+  
+  const storage = window.sessionStorage;
   
   new Vue({
       el: "#app",           
       data(){
           return {
-        	 
-        	  userid:'',
-              userpass:'',  
-         	
+        	  userId:'',
+              password:'',  
+         	  message : "로그인해주세요",
               usercheck:{},
+              status:"",
+              token:"",
+              info:"",
               errored:false,
-              empEmpty:true
+              nextpage:''
           }
       },
-
-
       methods:{
+    	  	setInfo(status, token, info) {
+    	  		this.status = status;
+    	  		this.token = token;
+    	  		this.info = info;
+    	  	},
+    	  	logout() {
+    	  		storage.setItem("jwt-auth-token", "");
+    	  		storage.setItem("login_user", "");
+    	  		this.message = "로그인해주세요";
+    	  		this.setInfo("로그아웃 성공", "", "");
+    	  	},
+    	  	getInfo() {
+    	  		axios.post("http://127.0.0.1:7788/user/info", {
+    	  			userId:"dkdk456",
+    	  			password:"456"
+    	  		},
+    	  		{
+    	  			headers : {
+    	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+    	  			}
+    	  		}
+    	  	)
+    	  	.then(response=>{
+    	  		this.setInfo(
+    	  			"정보 조회 성공",
+    	  			this.token,
+    	  			JSON.stringify(response.data)
+    	  		);
+    	  	})
+    	  	.catch(error=>{
+    	  		this.setInfo("정보 조회 실패", "", error.response.data.message);
+    	  	})
+    	  	},
 
           	login(){
-          		
-          		var params = new URLSearchParams();
-                params.append('userId', this.userid);
-                params.append('password', this.userpass);
-                axios.post('http://127.0.0.1:7788/user/login'
-                  ,params)
-		            .then(function (response) {
-		                console.log(response);
-		            })
-		            .catch(error=>{
-		             	console.log(error);
-		             	this.errored = true
-		             	alert("로그인 실패");
-		             })                    
-          			.finally(()=>location.href="../main/index.jsp")   
+          		storage.setItem("jwt-auth-token", "");
+          		storage.setItem("login_user", "");
+          		axios.post("http://127.0.0.1:7788/user/login", {
+          			userId:this.userId,
+          			password:this.password
+          		})
+          		.then(response=>{
+          			if(response.data.status) {
+          				this.message = response.data.data.nickName + "님 로그인 되었습니다";
+          				console.dir(response.headers["jwt-auth-token"]);
+          				this.setInfo(
+          					"로그인 성공",
+          					response.headers["jwt-auth-token"],
+          					JSON.stringify(response.data.data)
+          				);
+          				storage.setItem("jwt-auth-token", response.headers["jwt-auth-token"]);
+          				storage.setItem("login_user", response.data.data.userId);
+          				this.nextpage = "../main/index.jsp";
+          			}else {
+          				this.setInfo("","","");
+          				this.message = "로그인해주세요";
+          				alert("입력 정보를 확인하세요");
+          			}
+          		})
+          		.catch(error=>{
+          			this.setInfo("실패", "", JSON.stringify(error.response || error.message));
+          			this.nextpage = "login.jsp";
+          			alert("입력 정보를 확인하세요");
+          		})
+          		.finally(()=>location.href=this.nextpage);
+   
+          },
+          init() {
+        	  if(storage.getItem("jwt-auth-token")) {
+        		  this.message = storage.getItem("login_user") + "로 로그인 되었습니다";
+        	  }else {
+        		  storage.setItem("jwt-auth-token", "");
+        	  }
+          },
+          
+          goHome(){
+        	  location.href="login.jsp";
           }
           
-        
-          
-         /* login : function () {
-              if (this.user.userid == '') {alert('아이디를 입력해주세요.');return;}
-              if (this.user.userpass == '') {alert('비밀번호를 입력해주세요.');return;}
-              this.$http.post('/127.0.0.1:7788/user/login', {loginUser:this.user}).then((response) => {
-                  if (response.data.success == true) {
-                      alert(response.data.message);
-                      this.$router.push('index.jsp'); //로그인 성공시 index 페이지로 이동
-                  } else {
-                      alert(response.data.message);
-                  }
-              });
-          }*/
-      }  
+      },
+      mounted() {
+    	  this.init();
+      }
   })
   </script>    
 </body>

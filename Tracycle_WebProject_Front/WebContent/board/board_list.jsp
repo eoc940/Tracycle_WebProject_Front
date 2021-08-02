@@ -3,6 +3,9 @@
 <html>
   <head>
     <title>지구를 위한 Tracycle</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    	<!--한글폰트 링크 -->
@@ -113,6 +116,9 @@
   <script src="../js/moment.js"></script>
    
     <script>
+    
+    const storage = window.sessionStorage;
+    
         new Vue({
             el: "#app",           
             data(){
@@ -146,13 +152,19 @@
             },
             mounted(){
                 axios
-             	 .get('http://127.0.0.1:7788/board/getAllBoard')
+             	 .get('http://127.0.0.1:7788/board/getAllBoard',
+             		{
+     	  			headers : {
+     	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+     	  			}
+     	  		})
                 .then(response=>(this.info = response.data))
                 .catch(error=>{
                     console.log(error);
                     this.errored = true
                 })
                 .finally(()=>this.loading = false)
+                
             },
             methods:{
             	findByCategory(cateNum){
