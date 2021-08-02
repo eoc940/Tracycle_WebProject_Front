@@ -36,11 +36,11 @@
 
    <jsp:include page="../header.jsp"></jsp:include>
  
-  <div class="site-section bg-light">
+  <div id="app"  class="site-section bg-light">
     <div class="container">
       
 
-      <div id="app" class="row mt-5 mb-5">
+      <div class="row mt-5 mb-5">
  			<div class="col-md-12 mt-5 mb-5">
 			<div class="categories">
 	            <h3>Categories</h3>
@@ -66,9 +66,10 @@
 		</div>
 
       </div>
-       <div class=" pt-5 pb-5 text-center">
+       <div v-if="isLogin" class=" pt-5 pb-5 text-center">
 			<a href="board_form.jsp" class="btn py-3 px-4 btn-primary">Write Post</a>
         </div>
+        
       <nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-center">
 		    <li class="page-item disabled">
@@ -132,9 +133,18 @@
                     ],
                     category:"",
                     loading:true,
-                    errored:false
+                    errored:false,
+                    userId:storage.getItem("login_user")
                 }
-            }, 
+            },
+            computed: {
+                isLogin: function () {
+                 	if(this.userId==null||this.userId=='')	
+                 		return false;
+                 	else
+                 		return true;
+                }
+              },
             filters:{
             	formatDate(value){
             		if (value) {
