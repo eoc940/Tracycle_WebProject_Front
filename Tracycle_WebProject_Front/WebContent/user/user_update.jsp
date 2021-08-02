@@ -50,7 +50,7 @@
           <!-- join_form E  -->
           
           <div class="btn_wrap">
-          <a href = "mypage.jsp" @click = "updateUser"  class="submit-btn">저장</a>
+          <a href = "mypage.jsp" v-on:click="submitPost()"  class="submit-btn">저장</a>
           </div>
         </div> <!-- form_txtInput E -->
       </div><!-- content E-->
@@ -64,6 +64,8 @@
         			errored: false,
         			mynickname: '',
         			myaddress: '',
+        			user:{"userId":"gogilbert"},
+        			password:{"password":"1234qwer"}
         			result:''
         		}
         	},

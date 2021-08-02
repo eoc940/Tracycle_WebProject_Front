@@ -40,7 +40,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-              <span class="mypage_id">ID <p></p></span>
+              <span class="mypage_id">ID {{user.userId}} <p></p></span>
               <p class="mb-0 modifyUser"><a href="user_update.jsp" class="btn btn-primary px-3 py-2">정보 수정</a></p>
               <p class="mb-0 deleteUser"><a href="#" class="btn btn-primary px-3 py-2 ">회원 탈퇴</a></p>
         </div>
@@ -50,16 +50,16 @@
           <div class="post">
           	<h2 class="display-4 mb-3">My Posting</h2>
           	<div class="mycontent">
-          		<h4>내가 쓴 게시물 제목</h4>
-          		<p> 글 내용 앞 부분</p>
+          		<h4>{{board.title}}</h4>
+          		<p> {{board.content}}</p>
           	</div>
           </div>
           
           <div class="comment">
           	<h2 class="display-4 mb-3">My Comment</h2>
           	<div class="mycontent">
-          		<h4>내가 댓글 단 게시물 제목</h4>
-          		<p> 댓글 내용</p>
+          		<h4>{{comment.title}}</h4>
+          		<p> {{comment.content}}</p>
           	</div>
           </div>
           
@@ -92,6 +92,20 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
-
+  
+  <script>
+  	new Vue({
+  		el:"#app",
+  		data() {
+  			return {
+  				user:{"userId":"gogilbert"}
+  				board:[ ],
+  				comment:[ ],
+                loading:true,
+                errored:false
+  			}
+  		}
+  	})
+  </script>
   </body>
 </html>
