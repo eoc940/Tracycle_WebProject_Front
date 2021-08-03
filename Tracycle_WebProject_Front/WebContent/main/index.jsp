@@ -1,30 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-=======
-    
->>>>>>> upstream/main
 <!DOCTYPE html>
 <!--  -->
   <head>
   <meta charset="UTF-8">
     <title>지구를 위한 Tracycle</title>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
- 
-  	
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    	<!--한글폰트 링크 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet">
-    
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../css/animate.css">
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
@@ -56,8 +47,7 @@
           <li class="nav-item"><a href="../report/report.jsp" class="nav-link">Report</a></li>  
           <li class="nav-item" v-if="jwtauthtoken==''"><a href="../user/login.jsp" class="nav-link">Login</a></li>        
 		  <li class="nav-item" v-if="jwtauthtoken!=''"><a href="index.jsp" v-on:click="logout" class="nav-link" >Logout</a></li>
-		  <li class="nav-item" v-if="jwtauthtoken!=''"><a href="../user/mypage.jsp" class="nav-link">My page</a></li>  
-		 
+		  <li class="nav-item" v-if="jwtauthtoken!=''"><a href="../user/mypage.jsp" class="nav-link">My page</a></li>   
         </ul>
       </div>
     </div>
@@ -102,11 +92,10 @@
               <p class="mb-0"><a href="../report/report.jsp" class="btn btn-white px-3 py-2">View Our Report</a></p>  
            </div>
         </div>
-<!--         <div class="col-md-6 welcome-text">
+<!--      <div class="col-md-6 welcome-text">
           <h2 class="display-4 mb-3">Who Are We?</h2>
           <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
           <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-
           <p class="mb-0"><a href="#" class="btn btn-primary px-3 py-2">Learn More</a></p>
         </div> -->
         <div class="col-md-6 welcome-text">
@@ -132,7 +121,6 @@
       </div>
     </div>
   </div> <!-- .site-section -->
-		
 		
  <script>
  //const storage = window.sessionStorage;
@@ -191,9 +179,7 @@
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/youtube.js"></script>
-<<<<<<< HEAD
-  
-=======
+
 
 <script>
 const storage = window.sessionStorage;
@@ -227,7 +213,5 @@ new Vue({
 
 </script>
 
-
->>>>>>> upstream/main
   </body>
 </html>
