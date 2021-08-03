@@ -131,8 +131,7 @@
 		
 		
  <script>
- //const storage = window.sessionStorage;
- //var jwtauthtoken:storage.getItem("jwt-auth-token");
+
   // Load the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
   tag.src = "https://www.youtube.com/player_api";

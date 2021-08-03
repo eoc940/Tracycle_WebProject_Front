@@ -34,11 +34,11 @@
               <tbody>            
                 <tr>
                   <th><span>아이디</span></th>
-                  <td><input type="text" placeholder="ID 를 입력하세요." class="inputId"  v-model="userId" required></td>
+                  <td><input type="text" placeholder="ID를 입력하세요." class="inputId"  v-model="userId" @input="idpassOk" required></td>
                 </tr>
                 <tr>
                   <th><span>비밀번호</span></th>
-                  <td><input type="password" placeholder="비밀번호를 입력해주세요." class="inputPass"  v-model="password" required></td>
+                  <td><input type="password" placeholder="비밀번호를 입력해주세요." class="inputPass"  v-model="password" @input="pwpassOk" required></td>
                 </tr>
               </tbody>
             </table>
@@ -58,15 +58,13 @@
 	          <span><a href="register.jsp" class="register-btn">회원가입</a></span>
 	          </div>
 	          
-           	  <button type="submit" class="submit-btn" @click="login">Login</button>
+           	  <button type="submit" v-if="idpass==true && pwpass==true" class="submit-btn" @click="login">Login</button>
+           	  <button v-else class="not-submit-btn">Login</button>
           </div>
         </div> <!-- form_txtInput E -->
       </div><!-- content E-->
     </div> <!-- container E -->
-    
 
-  
-  
   <script>
   
   const storage = window.sessionStorage;
@@ -83,10 +81,12 @@
               token:"",
               info:"",
               errored:false,
-              nextpage:''
-     
+              nextpage:'',
+              idpass:'',
+          	  pwpass:''
           }
       },
+      
       methods:{
     	  	setInfo(status, token, info) {
     	  		this.status = status;
@@ -166,11 +166,31 @@
           
           goHome(){
         	  location.href="login.jsp";
-
-          }          
+          },
+          
+          idpassOk(){
+       		
+       		if(this.userId != null ){
+       			this.idpass = true;
+       		}else {
+       			this.idpass=false;	
+       		}
+       	},
+       	
+       	pwpassOk(){
+       		if(this.password != null ){
+       			this.pwpass = true;
+       		}else {
+       			this.pwpass=false;	
+       		}
+       	}
+      	
       },
+      
       mounted() {
     	  this.init();
+    	  
+    	  
       }
   })
   </script>    
