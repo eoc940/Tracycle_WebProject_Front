@@ -47,7 +47,7 @@
 			    <div class="col-md-12"> <h3>조회수 : {{board.viewCount}}</h3>
 			    <div class="board-title">
 					<h2 class="mb-3 mt-5">{{board.title}}</h2>
-					 <div v-if="writer==userId"> <a href="#" class="board_edit" @click.prevent="deleteBoard(board.boardId)" >삭제</a><a href="#" class="board_edit">수정</a></div>
+					 <div v-if="writer==userId"> <a href="#" class="board_edit" @click.prevent="deleteBoard(board.boardId)" >삭제</a><a href="board_update.jsp?boardId=${param.boardId}" class="board_edit">수정</a></div>
 					<h4 class="date d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></h4>
 	                <h3 class="right d-block">{{writer}}</h3>
                </div>
@@ -249,7 +249,7 @@
                 })
                 .finally(()=>this.loading = false),
                 
-                
+             
                 
                 axios
              	 .get('http://127.0.0.1:7788/comment/getAllComment/'+${param.boardId},

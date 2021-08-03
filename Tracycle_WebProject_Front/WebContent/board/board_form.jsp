@@ -78,7 +78,7 @@
 					    		</option>
 					    	</select>
                       </div>
-                      <!-- 
+                      
                       </div>
                        <div class="form-group">
                         <label for="content" class="label-font-bold">카테고리</label><br>
@@ -88,15 +88,15 @@
 					    		</option>
 					    	</select>
                       </div>
-                       --> 
+                      
                       
                       <div class="form-group">
                         <label for="content" class="label-font-bold">나눔 상태</label><br>
 						    <select class="selectpicker" v-model="board.status">
- 							   <option data-content="<span class='badge badge-pill badge-warning'>나눔대기</span>" :value=1>나눔대기</option>
- 							   <option data-content="<span class='badge badge-pill badge-success'>나눔진행</span>" :value=2>나눔진행</option>
- 							   <option data-content="<span class='badge badge-pill badge-danger'>나눔중단</span>" :value=3>나눔대기</option>
- 							   <option data-content="<span class='badge badge-pill badge-end'>나눔완료</span>" :value=4>나눔완료 </option>
+ 							   <option data-content="<span class='badge badge-pill badge-warning'>나눔대기</span>" :value=0>나눔대기</option>
+ 							   <option data-content="<span class='badge badge-pill badge-success'>나눔진행</span>" :value=1>나눔진행</option>
+ 							   <option data-content="<span class='badge badge-pill badge-danger'>나눔중단</span>" :value=2>나눔중단</option>
+ 							   <option data-content="<span class='badge badge-pill badge-end'>나눔완료</span>" :value=3>나눔완료 </option>
   							</select>
                       </div>
                     

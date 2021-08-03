@@ -60,15 +60,15 @@
 					    			{{sarea.areaName}}
 					    		</option>
 					    </select>
-                      	<!-- 
                       	
+                      	<!-- 
                         <label for="content" class="label-font-bold">지역 </label><br>
 						    <select class="selectpicker" name="selectedArea" v-model="area.areaId">
 					    		<option v-for="sarea in areaList" :value="sarea.areaId">
 					    			{{sarea.areaName}}
 					    		</option>
-					    	</select>
-                      	 -->
+					    	</select> -->
+                      	 
                       </div>
                       <div class="form-group">
                         <label for="content" class="label-font-bold">카테고리</label><br>
@@ -78,7 +78,7 @@
 					    		</option>
 					    	</select>
                       </div>
-                      <!-- 
+                      
                       </div>
                        <div class="form-group">
                         <label for="content" class="label-font-bold">카테고리</label><br>
@@ -88,15 +88,15 @@
 					    		</option>
 					    	</select>
                       </div>
-                       --> 
+                       
                       
                       <div class="form-group">
                         <label for="content" class="label-font-bold">나눔 상태</label><br>
 						    <select class="selectpicker" v-model="board.status">
- 							   <option data-content="<span class='badge badge-pill badge-warning'>나눔대기</span>" :value=1>나눔대기</option>
- 							   <option data-content="<span class='badge badge-pill badge-success'>나눔진행</span>" :value=2>나눔진행</option>
- 							   <option data-content="<span class='badge badge-pill badge-danger'>나눔중단</span>" :value=3>나눔대기</option>
- 							   <option data-content="<span class='badge badge-pill badge-end'>나눔완료</span>" :value=4>나눔완료 </option>
+ 							   <option data-content="<span class='badge badge-pill badge-warning'>나눔대기</span>" :value=0>나눔대기</option>
+ 							   <option data-content="<span class='badge badge-pill badge-success'>나눔진행</span>" :value=1>나눔진행</option>
+ 							   <option data-content="<span class='badge badge-pill badge-danger'>나눔중단</span>" :value=2>나눔중단</option>
+ 							   <option data-content="<span class='badge badge-pill badge-end'>나눔완료</span>" :value=3>나눔완료 </option>
   							</select>
                       </div>
                     
@@ -220,8 +220,7 @@
  	  			this.board.content = response.data.content;
  	  			this.board.viewCount = response.data.viewCount;
  	  			this.board.status = response.data.status;
- 	  			this.area = response.data.area;
- 	  			alert(this.area.areaId);
+ 	  			
  	  		})
  	  		.catch(error=>{
 				alert(error);
@@ -251,32 +250,63 @@
 				var minutes = today.getMinutes(); 
 				var seconds = today.getSeconds();
 				var dateString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-				const formData = new FormData();
-				formData.append("title",this.board.title);
-				formData.append("content",this.board.content);
-				formData.append("areaId",this.area.areaId);
-				formData.append("categoryId",this.category.categoryId);
-				formData.append("viewCount",this.board.viewCount);
-				formData.append("userId",this.userId);
-				formData.append("date",dateString);
-				formData.append("status",this.board.status);
-				formData.append("mainFile",this.mainFile)
-				for(var i=0; i<this.subFile.length; i++) {
-					formData.append("file", this.subFile[i]);
-				}
-				for(var key of formData.entries()) {
-					console.log(key[0]+', '+key[1]);
+				if(this.mainFile.length == 0) { // 사진 없는 경우
+					axios
+					.put('http://127.0.0.1:7788/board/updateBoardOnlyText',
+						{
+							boardId:${param.boardId},
+							title:this.board.title,
+							content:this.board.content,
+							date:dateString,
+							viewCount:this.board.viewCount,
+							status:this.board.status,
+							user:this.user,
+							area:this.area,
+							category:this.category
+						},
+    	             		{
+    	      	  			headers : {
+    	      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+    	      	  			}
+    	      	  		}		
+					).then(response=>(this.result = response.data))
+					.catch(error=>{
+    	                console.log(error);
+    	                this.errored = true
+    	            })
+					.finally(()=>location.href="board_list.jsp")
+				}else{ // 사진 들어있는 경우
+					const formData = new FormData();
+					formData.append("boardId",${param.boardId});
+					formData.append("title",this.board.title);
+					formData.append("content",this.board.content);
+					formData.append("areaId",this.area.areaId);
+					formData.append("categoryId",this.category.categoryId);
+					formData.append("viewCount",this.board.viewCount);
+					formData.append("userId",this.userId);
+					formData.append("date",dateString);
+					formData.append("status",this.board.status);
+					formData.append("mainFile",this.mainFile)
+					for(var i=0; i<this.subFile.length; i++) {
+						formData.append("file", this.subFile[i]);
+					}
+					for(var key of formData.entries()) {
+						console.log(key[0]+', '+key[1]);
+					}
+					
+					axios.put('http://127.0.0.1:7788/board/updateBoard', formData,
+							{headers:{ 'Content-Type': 'multipart/form-data',
+								"jwt-auth-token":storage.getItem("jwt-auth-token") }})
+					.then(response=>{
+						this.result= response.data
+					}).catch(error=>{
+						console.log(error);
+	                    this.errored = true
+					})
+					.finally(()=>location.href="board_list.jsp")
 				}
 				
-				axios.post('http://127.0.0.1:7788/board/writeBoard', formData,
-						{headers:{ 'Content-Type': 'multipart/form-data' }})
-				.then(response=>{
-					this.result= response.data
-				}).catch(error=>{
-					console.log(error);
-                    this.errored = true
-				})
-				.finally(()=>location.href="board_list.jsp")
+				
 			}
 			
 		}
