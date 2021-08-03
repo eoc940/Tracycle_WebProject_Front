@@ -43,30 +43,36 @@
     <div class="container">
             
             <div class="row">
-			    <div class="col-md-12">
+
+			    <div class="col-md-12"> <h3>조회수 : {{board.viewCount}}</h3>
 			    <div class="board-title">
 					<h2 class="mb-3 mt-5">{{board.title}}</h2>
 					 <div v-if="writer==userId"> <a href="#" class="board_edit" @click.prevent="deleteBoard(board.boardId)" >삭제</a><a href="#" class="board_edit">수정</a></div>
 					<h4 class="date d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></h4>
 	                <h3 class="right d-block">{{writer}}</h3>
                </div>
-               <div v-for="image in images" >
-				          	<img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)>
-				  </div>
                 <div class="site-section">
 				    <div class="container">
 				      <div class="block-31 mb-5" style="position: relative;">
-				       
+				       	  <div v-for="image in images">
+				       	  <img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)>
+				       	  </div>
+				       	  <!--
 				          <div v-for="image in images" class="owl-carousel loop-block-31">
-				          	<img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)>
-				          	 <!--
-				          	<div class="block-30 no-overlay item" ></div>
-				            <div class="block-30 no-overlay item" style="background-image: url('../images/about1.jpg');"></div>
+				          	
+				             
+				          	<div><img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)>
+				          	
+				          	<div class="block-30 no-overlay item" ><img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)></div>
+				          	<div class="block-30 no-overlay item" ><img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)></div>
+				          	 
+				            <div class="block-30 no-overlay item" style="background-image: url('http://127.0.0.1:7788/board/getFile/46fa23ea8d48e73cfb743d623c3e6661');"></div>
+				            
 				            <div class="block-30 no-overlay item" style="background-image: url('../images/main2.jpg');"></div>
 				            <div class="block-30 no-overlay item" style="background-image: url('../images/about2.jpg');"></div>
 				            <div class="block-30 no-overlay item" style="background-image: url('../images/nature.jpg');"></div>
-				             -->
-				          </div>
+				              
+				          </div>-->
 				           
 				        </div>
 				    </div>
@@ -192,7 +198,7 @@
     Vue.config.devtools = true;
 
     //const storage = window.sessionStorage;
-
+		Vue.config.devtools = true;
         new Vue({
             el: "#blog",
             data(){
@@ -232,22 +238,22 @@
             	}
             },
             mounted(){
-                axios
-             	 .get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId},
-                  		{
+            	
+            	axios
+                .put('http://127.0.0.1:7788/board/addViewCount/'+${param.boardId},
+                	{
       	  			headers : {
       	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
-      	  			}
-      	  		})
-                .then(response=>{this.board = response.data;
-                this.writer=this.board.user.userId;
-           
-                })
+      	  			}}	
+                )
+                .then(response=>(console.log(response.data)))
                 .catch(error=>{
                     console.log(error);
                     this.errored = true
                 })
                 .finally(()=>this.loading = false),
+                
+                
                 
                 axios
              	 .get('http://127.0.0.1:7788/comment/getAllComment/'+${param.boardId},
@@ -264,13 +270,31 @@
                 .finally(()=>this.loading = false),
                 
                 axios
+            	 .get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId},
+                 		{
+     	  			headers : {
+     	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+     	  			}
+     	  		})
+               .then(response=>{this.board = response.data;
+               this.writer=this.board.user.userId;
+          		alert(this.board.viewCount);
+               })
+               .catch(error=>{
+                   console.log(error);
+                   this.errored = true
+               })
+               .finally(()=>this.loading = false),
+                
+                axios
                 .get('http://127.0.0.1:7788/board/getFiles/'+${param.boardId},
+                	
                 	{
       	  			headers : {
       	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
-      	  			}
-                })
-                .then(response=>(this.images = response.data))
+      	  			}}
+                )
+                .then(response=>{this.images = response.data; console.log(this.images);})
                 .catch(error=>{
                 	console.log(error);
                 	console.log(this.images);
@@ -278,6 +302,8 @@
                 	this.errored = true
                 })
                 .finally(()=>this.loading = false)
+                
+                
             },
             methods:{
            		submitComment(){
