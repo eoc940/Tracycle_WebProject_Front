@@ -50,6 +50,9 @@
 					<h4 class="date d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></h4>
 	                <h3 class="right d-block">{{writer}}</h3>
                </div>
+               <div v-for="image in images" >
+				          	<img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)>
+				  </div>
                 <div class="site-section">
 				    <div class="container">
 				      <div class="block-31 mb-5" style="position: relative;">
@@ -83,6 +86,11 @@
                         <h3>{{cmt.user.userId}} <div v-if="userId==cmt.user.userId"> <a href="#" @click.prevent="deleteComment(cmt.commentId)" class="edit">삭제</a><a href="#" @click.prevent="openEdit(cmt)" class="edit">수정</a></div> </h3>
                          <div v-if="cmt.secret==1">
                          	<div v-if="userId==cmt.user.userId">
+	                         	 <a class="reply">비밀댓글</a>
+	                        	<div class="meta">{{cmt.date | formatDateComment}}</div>
+	                        	<p>{{cmt.content}}</p>
+                         	</div>
+                         	<div v-else-if="userId==writer">
 	                         	 <a class="reply">비밀댓글</a>
 	                        	<div class="meta">{{cmt.date | formatDateComment}}</div>
 	                        	<p>{{cmt.content}}</p>
