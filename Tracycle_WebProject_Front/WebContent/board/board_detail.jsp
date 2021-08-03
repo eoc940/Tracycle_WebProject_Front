@@ -278,7 +278,6 @@
      	  		})
                .then(response=>{this.board = response.data;
                this.writer=this.board.user.userId;
-          		alert(this.board.viewCount);
                })
                .catch(error=>{
                    console.log(error);
@@ -298,7 +297,7 @@
                 .catch(error=>{
                 	console.log(error);
                 	console.log(this.images);
-                	alert(this.images);
+
                 	this.errored = true
                 })
                 .finally(()=>this.loading = false)

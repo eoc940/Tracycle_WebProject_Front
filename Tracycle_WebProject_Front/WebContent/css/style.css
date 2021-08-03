@@ -2365,3 +2365,11 @@ dropdown .btn:focus,.btn:active,.btn:focus{
 	.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
 	line-height:1.5!important;
 	}
+
+/*pagination */
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}

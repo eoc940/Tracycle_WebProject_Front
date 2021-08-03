@@ -77,13 +77,14 @@
         
       <nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-center">
-		    <li class="page-item disabled">
+		    <li class="page-item disabled" v-if="prev">
 		      <a class="page-link" href="#" tabindex="-1" aria-disabled="true"> &laquo; </a>
 		    </li>
-		    <li class="page-item"><a class="page-link main-color" href="#">1</a></li>
-		    <li class="page-item"><a class="page-link main-color" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link main-color" href="#">3</a></li>
-		    <li class="page-item">
+		    <!-- <li class="page-item"><a class="page-link main-color" href="#">1</a></li>   -->
+		    <li v-for="index in endPageIndex-startPageIndex + 1 " :key="index" class="page-item" :class="{active:( (startPageIndex + index - 1) == currentPageIndex)}">
+     		 <a href="#" class="page-link main-color"  @click.prevent="movePage(startPageIndex + index - 1)">{{ startPageIndex + index - 1 }}</a>
+    		</li>
+		    <li class="page-item" v-if="next">
 		      <a class="page-link main-color" href="#">&raquo;</a>
 		    </li>
 		  </ul>
@@ -119,7 +120,7 @@
   <script src="../js/moment.js"></script>
    
     <script>
-    
+    Vue.config.devtools = true;
     //const storage = window.sessionStorage;
     
         new Vue({
@@ -139,7 +140,19 @@
                     category:"",
                     loading:true,
                     errored:false,
-                    userId:storage.getItem("login_user")
+                    userId:storage.getItem("login_user"),
+                    
+                    /* pagination */
+                    totalListItemCount: 0,//전체 게시글 갯수 
+                    listRowCount: 6,//한페이지에 몇개 limit
+                    pageLinkCount: 10, //<< >> 사이에 들어갈 페이지 개수 
+                    currentPageIndex: 1,//현재페이지
+                    pageCount: 0,//총페이지 갯수
+                    startPageIndex: 0, //시작페이지 인덱스 
+                    endPageIndex: 0, //끝페이지 인덱스 
+                    prev: false, //<< 출력 
+                    next: false //>> 출력 
+
                 }
             },
             computed: {
@@ -163,33 +176,93 @@
             	}
             },
             mounted(){
-                axios
-             	 .get('http://127.0.0.1:7788/board/getAllBoard',
-             		{
-     	  			headers : {
-     	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
-     	  			}
-     	  		})
-                .then(response=>{this.info = response.data; console.log(this.info);})
-                .catch(error=>{
-                    console.log(error);
-                    this.errored = true
-                })
-                .finally(()=>this.loading = false)
-                
-                
+            	offset=(this.currentPageIndex-1)*this.listRowCount;
+        		axios
+            	.get('http://127.0.0.1:7788/board/getBoardLimitOffset/'+offset)
+               .then(response=>{this.info = response.data;})
+               .catch(error=>{
+                   console.log(error);
+                   this.errored = true
+               })
+               .finally(()=>this.loading = false)
             },
             methods:{
             	findByCategory(cateNum){
             		axios
-            			.get('http://127.0.0.1:7788/board/findByCategory/'+cateNum)
-            			.then(response=>(this.info= response.data))
+        			.get('http://127.0.0.1:7788/board/findByCategory/'+cateNum)
+        			.then(response=>(this.info= response.data))
+	                .catch(error=>{
+	                    console.log(error);
+	                    this.errored = true
+	                })
+        		.finally(()=>this.loading = false)
+            	},
+            	getBoard(){
+            		offset=(this.currentPageIndex-1)*this.listRowCount;
+            		axios
+                	.get('http://127.0.0.1:7788/board/getBoardLimitOffset/'+offset)
+                   .then(response=>{this.info = response.data;})
+                   .catch(error=>{
+                       console.log(error);
+                       this.errored = true
+                   })
+                   .finally(()=>this.loading = false)
+            	},
+            	/* pagination */
+            	
+            	initPagination(){
+            		axios
+            		.get('http://127.0.0.1:7788/board/getBoardTotalCount')
+            			.then(response=>{this.totalListItemCount= response.data;
+            			 this.initUI();
+            			 })
 		                .catch(error=>{
 		                    console.log(error);
 		                    this.errored = true
 		                })
             		.finally(()=>this.loading = false)
-            	}
+            	},
+                initUI(){
+
+            	      this.pageCount = Math.ceil(this.totalListItemCount/this.listRowCount);
+
+            	      if( (this.currentPageIndex % this.pageLinkCount) == 0 ){
+            	        this.startPageIndex = ((this.currentPageIndex / this.pageLinkCount)-1)*this.pageLinkCount + 1
+            	      }else{
+            	        this.startPageIndex = Math.floor(this.currentPageIndex / this.pageLinkCount)*this.pageLinkCount + 1
+            	      }
+
+            	      if( (this.currentPageIndex % this.pageLinkCount) == 0 ){ //10, 20...맨마지막
+            	        this.endPageIndex = ((this.currentPageIndex / this.pageLinkCount)-1)*this.pageLinkCount + this.pageLinkCount
+            	      }else{
+            	        this.endPageIndex =  Math.floor(this.currentPageIndex / this.pageLinkCount)*this.pageLinkCount + this.pageLinkCount;
+            	      }
+
+            	      if(this.endPageIndex > this.pageCount){
+            	        this.endPageIndex = this.pageCount
+            	      }
+
+            	      if( this.currentPageIndex <= this.pageLinkCount ){
+            	        this.prev = false;
+            	      }else{
+            	        this.prev = true;
+            	      }
+
+            	      if(this.endPageIndex >= this.pageCount){
+            	        this.endPageIndex = this.pageCount;
+            	        this.next = false;
+            	      }else{
+            	        this.next = true;
+            	      }
+            	    },
+            	    movePage(param) {
+            	       this.currentPageIndex = param;
+            	       this.getBoard();
+            	    }
+            }, 
+            created() {
+                this.initPagination();
+                this.getBoard();
             }
             
         })
