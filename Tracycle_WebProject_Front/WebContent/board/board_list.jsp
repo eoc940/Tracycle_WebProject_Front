@@ -178,7 +178,7 @@
      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
      	  			}
      	  		})
-                .then(response=>(this.info = response.data))
+                .then(response=>{this.info = response.data; console.log(this.info);})
                 .catch(error=>{
                     console.log(error);
                     this.errored = true
@@ -193,6 +193,7 @@
                     this.errored = true
                 })
                  .finally(()=>this.loading = false)
+
             },
             methods:{
             	findByCategory(cateNum){
@@ -224,6 +225,7 @@
             }
             
         })
+        
     </script>
   </body>
 </html>

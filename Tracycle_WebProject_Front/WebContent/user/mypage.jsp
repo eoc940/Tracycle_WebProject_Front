@@ -33,6 +33,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
+
               <span class="mypage_id">ID : {{userId}} <p></p></span>
               <p class="mb-0 modifyUser"><a href="user_update.jsp" class="btn btn-primary px-3 py-2">정보 수정</a></p>
               <p class="mb-0 deleteUser"><a href="../main/index.jsp" class="btn btn-primary px-3 py-2 " @click="deleteUser()">회원 탈퇴</a></p>
@@ -139,6 +140,7 @@
         	}
         }
   	});
+
   </script>
   </body>
 </html>
