@@ -2355,8 +2355,13 @@ dropdown .btn:focus,.btn:active,.btn:focus{
         float: right;}
         @media (max-width: 991.98px) {
    		.board_edit {
-      float: left;
-      margin-bottom: 3rem!important; } }
+     /*  float: left;
+      margin-bottom: 3rem!important; */ } }
 .board_edit:hover {
           color: #fff;
           background: black; } 
+          
+.board-title
+	.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+	line-height:1.5!important;
+	}
