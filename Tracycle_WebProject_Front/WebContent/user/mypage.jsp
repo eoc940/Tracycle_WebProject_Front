@@ -33,11 +33,8 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-<<<<<<< HEAD
-              <span class="mypage_id">ID {{userId}}<p></p></span>
-=======
+
               <span class="mypage_id">ID : {{userId}} <p></p></span>
->>>>>>> 37aa55150872c786f84a8dbd8df33340521408eb
               <p class="mb-0 modifyUser"><a href="user_update.jsp" class="btn btn-primary px-3 py-2">정보 수정</a></p>
               <p class="mb-0 deleteUser"><a href="../main/index.jsp" class="btn btn-primary px-3 py-2 " @click="deleteUser()">회원 탈퇴</a></p>
         </div>
@@ -81,19 +78,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
-<<<<<<< HEAD
-  <script type="text/javascript">
-    const storage = window.sessionStorage;
-	alert(storage.getItem("login_user"));
-	new Vue({
-		el:"#app",
-		data() {
-			return {
-				userId : storage.getItem("login_user")
-			}
-		}
-	})
-=======
+
   <script>
  //const storage = window.sessionStorage;
   	new Vue({
@@ -156,7 +141,7 @@
         	}
         }
   	});
->>>>>>> 37aa55150872c786f84a8dbd8df33340521408eb
+
   </script>
   </body>
 </html>
