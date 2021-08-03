@@ -135,22 +135,25 @@
             })
             .finally(()=>this.loading = false) 
         },
+        
         methods:{
         	deleteUser(userId){
-        		axios
-        		.delete('http://127.0.0.1:7788/user/deleteUser/'+this.userId,
-        				{
-               	   headers : {
-               	  		"jwt-auth-token":storage.getItem("jwt-auth-token")
-               	   }
-               	})
-             .then(response=>(this.boardinfo = response.data))
-             .catch(error=>{
-                 console.log(error);
-                 this.errored = true
-             })
-             .finally(()=>this.loading = false)
-           }
+        		if(confirm("계정을 삭제 하시겠습니까?")){
+        			axios
+        			.delete('http://127.0.0.1:7788/user/deleteUser/'+this.userId,
+        			{
+        				headers : {
+          	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+          	  			}
+        			})
+        			.then(response=>(this.result= response.data))
+        			.catch(error=>{
+                        console.log(error);
+                        this.errored = true
+                    })
+                    .finally(()=>location.href="../main/index.jsp") 
+        		}
+        	}
         }
   	});
 >>>>>>> 37aa55150872c786f84a8dbd8df33340521408eb
