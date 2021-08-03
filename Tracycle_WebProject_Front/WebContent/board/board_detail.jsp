@@ -53,12 +53,18 @@
                 <div class="site-section">
 				    <div class="container">
 				      <div class="block-31 mb-5" style="position: relative;">
-				          <div class="owl-carousel loop-block-31">
+				       
+				          <div v-for="image in images" class="owl-carousel loop-block-31">
+				          	<img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)>
+				          	 <!--
+				          	<div class="block-30 no-overlay item" ></div>
 				            <div class="block-30 no-overlay item" style="background-image: url('../images/about1.jpg');"></div>
 				            <div class="block-30 no-overlay item" style="background-image: url('../images/main2.jpg');"></div>
 				            <div class="block-30 no-overlay item" style="background-image: url('../images/about2.jpg');"></div>
 				            <div class="block-30 no-overlay item" style="background-image: url('../images/nature.jpg');"></div>
+				             -->
 				          </div>
+				           
 				        </div>
 				    </div>
 			  </div>
@@ -186,6 +192,7 @@
                 	board:[ ],
                 	writer:"",
                 	comments:[ ],
+                	images:[ ],
                     status_class:[
                     	"ml-2 badge badge-pill badge-warning",
                     	"ml-2 badge badge-pill badge-success",   	
@@ -226,6 +233,7 @@
       	  		})
                 .then(response=>{this.board = response.data;
                 this.writer=this.board.user.userId;
+           
                 })
                 .catch(error=>{
                     console.log(error);
@@ -244,6 +252,22 @@
                 .catch(error=>{
                     console.log(error);
                     this.errored = true
+                })
+                .finally(()=>this.loading = false),
+                
+                axios
+                .get('http://127.0.0.1:7788/board/getFiles/'+${param.boardId},
+                	{
+      	  			headers : {
+      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+      	  			}
+                })
+                .then(response=>(this.images = response.data))
+                .catch(error=>{
+                	console.log(error);
+                	console.log(this.images);
+                	alert(this.images);
+                	this.errored = true
                 })
                 .finally(()=>this.loading = false)
             },
