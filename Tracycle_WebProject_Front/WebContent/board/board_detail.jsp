@@ -51,7 +51,6 @@
 					<h4 class="date d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></h4>
 	                <h3 class="right d-block">{{writer}}</h3>
                </div>
-
                 <div class="site-section">
 				    <div class="container">
 				      <div class="block-31 mb-5" style="position: relative;">
@@ -93,6 +92,11 @@
                         <h3>{{cmt.user.userId}} <div v-if="userId==cmt.user.userId"> <a href="#" @click.prevent="deleteComment(cmt.commentId)" class="edit">삭제</a><a href="#" @click.prevent="openEdit(cmt)" class="edit">수정</a></div> </h3>
                          <div v-if="cmt.secret==1">
                          	<div v-if="userId==cmt.user.userId">
+	                         	 <a class="reply">비밀댓글</a>
+	                        	<div class="meta">{{cmt.date | formatDateComment}}</div>
+	                        	<p>{{cmt.content}}</p>
+                         	</div>
+                         	<div v-else-if="userId==writer">
 	                         	 <a class="reply">비밀댓글</a>
 	                        	<div class="meta">{{cmt.date | formatDateComment}}</div>
 	                        	<p>{{cmt.content}}</p>
@@ -274,7 +278,6 @@
      	  		})
                .then(response=>{this.board = response.data;
                this.writer=this.board.user.userId;
-          		alert(this.board.viewCount);
                })
                .catch(error=>{
                    console.log(error);
@@ -294,7 +297,7 @@
                 .catch(error=>{
                 	console.log(error);
                 	console.log(this.images);
-                	alert(this.images);
+
                 	this.errored = true
                 })
                 .finally(()=>this.loading = false)
