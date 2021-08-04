@@ -33,7 +33,7 @@
               <tbody @input="pressbutton">
                 <tr>
                   <th><span>아이디</span></th>
-                  <td><input type="text" placeholder="ID 를 입력하세요. (영문, 숫자 조합 5자 이상/특수문자, 공백 사용 불가)" minlength="5" class="inputId"  v-model="userid" required @blur="[checkId(), idcnt()]"><p v-html="idinvalidmessage"></p><div class="idCheck"><button @click= "validationId" class="idCheck" style="cursor:pointer;">ID Check</button></div></td>
+                  <td><input type="text" placeholder="ID 를 입력하세요. (영문, 숫자 조합 5자 이상/특수문자, 공백 사용 불가)" minlength="5" class="inputId"  v-model.trim="userid"  @blur="[checkId(), idcnt()]"><p v-html="idinvalidmessage"  required></p><div class="idCheck"><button @click= "validationId" class="idCheck" style="cursor:pointer;">ID Check</button></div></td>
                 </tr>
                
                 <tr>
@@ -189,7 +189,20 @@
              	}
  		 },
  		 
- 		
+ 		watch:{
+ 			userid(val){
+ 			        const reg = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+					const space = /\s/;;
+					const specialCharacters = /[~!@\#$%^&*\()\-=+_']/gi; 
+					
+ 			      if(reg.exec(val)!==null || space.exec(val)!==null || specialCharacters.exec(val)!==null){
+ 			       this.idinvalidmessage = "영문, 숫자 조합 5자 이상 입력해주세요. (특수문자, 공백 사용 불가)";
+ 			       return this.userid = this.userid.slice(0,-1);
+ 			      }else{
+ 			    	 //this.idinvalidmessage = "";
+ 			      }
+ 			  }
+ 			}
   })
 
 
