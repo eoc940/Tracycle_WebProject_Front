@@ -43,37 +43,53 @@
 	            <a href="#" class="main-color" @click.prevent="findByCategory(2)">주방용품</a> |
 	            <a href="#" class="main-color" @click.prevent="findByCategory(3)">가구류</a> |
 	            <a href="#" class="main-color" @click.prevent="findByCategory(4)">침구류</a> |
-	            <a href="#" class="main-color" @click.prevent="findByCategory(5)">기타</a> 
-	       </div></div>
-     	 <div v-for="board in info" class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-               <div class="post-entry">
-		       		<a :href=("board_detail.jsp?boardId="+board.boardId) class="mb-3 img-wrap">
-		       		
-					
-		       		<img v-if="board.picture==null" src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
-		       		<img v-else :src=("http://127.0.0.1:7788/board/getFile/"+board.picture) alt="Image placeholder" class="img-fluid">
-		       		</a>
-		       		<h3><a :href=("board_detail.jsp?boardId="+board.boardId)>{{board.title}}</a></h3>
-		       		<span class="date mb-4 d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></span>
-		       
-		       <p>{{board.content | splitContent}}</p>
-		       <p><a :href=("board_detail.jsp?boardId="+board.boardId) class="link-underline main-color">Read More</a></p>
-          </div>
-	
+	            <a href="#" class="main-color" @click.prevent="findByCategory(5)">기타</a>
+	       </div>
+	       <div class="serachbar">
+	       		
+	       		<h6>Search for Area</h6>
+	       		<select name="area"@change="findByArea()" v-model="areaNum">
+	       			<option v-for="area in areaInfo" :value="area.areaId">{{area.areaId}}:{{area.areaName}}</option>
+	       		</select><p></p>
+	       		<form action="id" method="get">
+	       			<select name = "searchField" id = "searchField">
+	       				<option value = "list">전체</option>
+	       				<option value = "id">아이디</option>
+	       				<option value = "title">제목</option>
+	       				<option value = "content">내용</option>
+	       			</select>
+	       		<input type = "text" id="searchText" name ="searchText"  title="검색어를 입력하세요"  >
+	       		<input type = "submit" value="검색">
+	       		</form>
+	       </div>
+	    </div>
+     	<div v-for="board in info" class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
+        	<div class="post-entry">
+		    	<a :href=("board_detail.jsp?boardId="+board.boardId) class="mb-3 img-wrap">
+		       	<img v-if="board.picture==null" src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
+		       	<img v-else :src=("http://127.0.0.1:7788/board/getFile/"+board.picture) alt="Image placeholder" class="img-fluid">
+		       	</a>
+		       	<h3><a :href=("board_detail.jsp?boardId="+board.boardId)>{{board.title}}</a></h3>
+		       	<span class="date mb-4 d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></span>
+		        <p>{{board.content | splitContent}}</p>
+		        <p><a :href=("board_detail.jsp?boardId="+board.boardId) class="link-underline main-color">Read More</a></p>
+            </div>
 		</div>
       </div>
        <div v-if="isLogin" class=" pt-5 pb-5 text-center">
 			<a href="board_form.jsp" class="btn py-3 px-4 btn-primary">Write Post</a>
        </div>
+
       <nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-center">
-		    <li class="page-item disabled">
+		    <li class="page-item disabled" v-if="prev">
 		      <a class="page-link" href="#" tabindex="-1" aria-disabled="true"> &laquo; </a>
 		    </li>
-		    <li class="page-item"><a class="page-link main-color" href="#">1</a></li>
-		    <li class="page-item"><a class="page-link main-color" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link main-color" href="#">3</a></li>
-		    <li class="page-item">
+		    <!-- <li class="page-item"><a class="page-link main-color" href="#">1</a></li>   -->
+		    <li v-for="index in endPageIndex-startPageIndex + 1 " :key="index" class="page-item" :class="{active:( (startPageIndex + index - 1) == currentPageIndex)}">
+     		 <a href="#" class="page-link main-color"  @click.prevent="movePage(startPageIndex + index - 1)">{{ startPageIndex + index - 1 }}</a>
+    		</li>
+		    <li class="page-item" v-if="next">
 		      <a class="page-link main-color" href="#">&raquo;</a>
 		    </li>
 		  </ul>
@@ -101,7 +117,9 @@
   <script src="../js/main.js"></script>
   <script src="../js/moment.js"></script>
     <script>
-    //const storage = window.sessionStorage;
+
+    Vue.config.devtools = true;
+
         new Vue({
             el: "#app",           
             data(){
@@ -121,7 +139,19 @@
                     areaNum:"",
                     loading:true,
                     errored:false,
-                    userId:storage.getItem("login_user")
+                    userId:storage.getItem("login_user"),
+                    
+                    /* pagination */
+                    totalListItemCount: 0,//전체 게시글 갯수 
+                    listRowCount: 6,//한페이지에 몇개 limit
+                    pageLinkCount: 10, //<< >> 사이에 들어갈 페이지 개수 
+                    currentPageIndex: 1,//현재페이지
+                    pageCount: 0,//총페이지 갯수
+                    startPageIndex: 0, //시작페이지 인덱스 
+                    endPageIndex: 0, //끝페이지 인덱스 
+                    prev: false, //<< 출력 
+                    next: false //>> 출력 
+
                 }
             },
             computed: {
@@ -145,20 +175,17 @@
             	}
             },
             mounted(){
-                axios
-             	 .get('http://127.0.0.1:7788/board/getAllBoard',
-             		{
-     	  			headers : {
-     	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
-     	  			}
-     	  		})
-                .then(response=>{this.info = response.data; console.log(this.info);})
-                .catch(error=>{
-                    console.log(error);
-                    this.errored = true
-                })
 
-                .finally(()=>this.loading = false),
+            	offset=(this.currentPageIndex-1)*this.listRowCount;
+        		axios
+            	.get('http://127.0.0.1:7788/board/getBoardLimitOffset/'+offset)
+               .then(response=>{this.info = response.data;})
+               .catch(error=>{
+                   console.log(error);
+                   this.errored = true
+               })
+               .finally(()=>this.loading = false),
+                
                 axios
              	 .get('http://127.0.0.1:7788/board/getAllArea')
                  .then(response=>(this.areaInfo = response.data))
@@ -172,19 +199,40 @@
             methods:{
             	findByCategory(cateNum){
             		axios
-            			.get('http://127.0.0.1:7788/board/findByCategory/'+cateNum,
-            					{
-             	  			headers : {
-             	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
-             	  			}
-             	  		})
-            			.then(response=>(this.info= response.data))
+        			.get('http://127.0.0.1:7788/board/findByCategory/'+cateNum)
+        			.then(response=>(this.info= response.data))
+	                .catch(error=>{
+	                    console.log(error);
+	                    this.errored = true
+	                })
+        		.finally(()=>this.loading = false)
+            	},
+            	getBoard(){
+            		offset=(this.currentPageIndex-1)*this.listRowCount;
+            		axios
+                	.get('http://127.0.0.1:7788/board/getBoardLimitOffset/'+offset)
+                   .then(response=>{this.info = response.data;})
+                   .catch(error=>{
+                       console.log(error);
+                       this.errored = true
+                   })
+                   .finally(()=>this.loading = false)
+            	},
+            	/* pagination */
+            	
+            	initPagination(){
+            		axios
+            		.get('http://127.0.0.1:7788/board/getBoardTotalCount')
+            			.then(response=>{this.totalListItemCount= response.data;
+            			 this.initUI();
+            			 })
 		                .catch(error=>{
 		                    console.log(error);
 		                    this.errored = true
 		                })
             		.finally(()=>this.loading = false)
             	},
+
             	findByArea(areaNum){
             		axios
             			.get('http://127.0.0.1:7788/board/findByArea/'+this.areaNum)
@@ -195,6 +243,59 @@
             			})
             		.finally(()=>this.loading = false)
             	}
+
+                initUI(){
+
+            	      this.pageCount = Math.ceil(this.totalListItemCount/this.listRowCount);
+
+            	      if( (this.currentPageIndex % this.pageLinkCount) == 0 ){
+            	        this.startPageIndex = ((this.currentPageIndex / this.pageLinkCount)-1)*this.pageLinkCount + 1
+            	      }else{
+            	        this.startPageIndex = Math.floor(this.currentPageIndex / this.pageLinkCount)*this.pageLinkCount + 1
+            	      }
+
+            	      if( (this.currentPageIndex % this.pageLinkCount) == 0 ){ //10, 20...맨마지막
+            	        this.endPageIndex = ((this.currentPageIndex / this.pageLinkCount)-1)*this.pageLinkCount + this.pageLinkCount
+            	      }else{
+            	        this.endPageIndex =  Math.floor(this.currentPageIndex / this.pageLinkCount)*this.pageLinkCount + this.pageLinkCount;
+            	      }
+
+            	      if(this.endPageIndex > this.pageCount){
+            	        this.endPageIndex = this.pageCount
+            	      }
+
+            	      if( this.currentPageIndex <= this.pageLinkCount ){
+            	        this.prev = false;
+            	      }else{
+            	        this.prev = true;
+            	      }
+
+            	      if(this.endPageIndex >= this.pageCount){
+            	        this.endPageIndex = this.pageCount;
+            	        this.next = false;
+            	      }else{
+            	        this.next = true;
+            	      }
+            	    },
+            	    movePage(param) {
+            	       this.currentPageIndex = param;
+            	       this.getBoard();
+            	    },            	
+                	findByArea(areaNum){
+                		axios
+                			.get('http://127.0.0.1:7788/board/findByArea/'+this.areaNum)
+                			.then(respone=>(this.info= response.data))
+                			.catch(error=>{
+                				console.log(error);
+                				this.errored = true
+                			})
+                		.finally(()=>this.loading = false)
+                	}
+            }, 
+            created() {
+                this.initPagination();
+                this.getBoard();
+
             }
         })
         
