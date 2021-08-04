@@ -36,30 +36,33 @@
   <div id="app"  class="site-section bg-light">
     <div class="container">
       <div class="row mt-5 mb-5">
- 		<div class="col-md-12 mt-5 mb-5">
-			<div class="categories">
-	            <h3>Categories</h3>
-	            <a href="#" @click.prevent="findByCategory(1)" >가전제품</a> |
-	            <a href="#" class="main-color" @click.prevent="findByCategory(2)">주방용품</a> |
-	            <a href="#" class="main-color" @click.prevent="findByCategory(3)">가구류</a> |
-	            <a href="#" class="main-color" @click.prevent="findByCategory(4)">침구류</a> |
-	            <a href="#" class="main-color" @click.prevent="findByCategory(5)">기타</a>
-	       </div>
-	       <div class="serachbar">
-	       		
-	       		<h6>Search for Area</h6>
-	       		<select name="area"@change="findByArea()" v-model="areaNum">
-	       			<option v-for="area in areaInfo" :value="area.areaId">{{area.areaId}}:{{area.areaName}}</option>
-	       		</select><p></p>
+ 		<div class="col-md-12 mt-5 mb-5">			
+	       <div class="serachbar">	       			       		
 	       		<form action="id" method="get">
-	       			<select name = "searchField" id = "searchField">
-	       				<option value = "list">전체</option>
-	       				<option value = "id">아이디</option>
-	       				<option value = "title">제목</option>
-	       				<option value = "content">내용</option>
+	       			<select name = "searchField" id = "searchField" v-model="selected" @change="selectedOk">	
+	       			    <option value = "search-id">전체</option> 				
+	       				<option value = "search-id">아이디</option>
+	       				<option value = "search-title">제목</option>
+	       				<option value = "search-content">내용</option>
+	       				<option value = "search-category">카테고리</option>
+	       				<option value = "search-area">지역</option>
 	       			</select>
-	       		<input type = "text" id="searchText" name ="searchText"  title="검색어를 입력하세요"  >
-	       		<input type = "submit" value="검색">
+	       		
+	       		<select name="category" v-model="category" v-if="useOptional=='categoryOptional'" @change="findByCategory">
+					<option v-for="category in categoryInfo" :value="category.categoryId" >
+						{{category.categoryId}}:{{category.categoryName}}
+					</option>
+				</select>
+				<select name="area" v-model="areaNum" v-else-if="useOptional=='areaOptional'"  @change="findByAreaInMethods">
+					<option v-for="area in areaInfo" :value="area.areaId">
+						{{area.areaId}}:{{area.areaName}}
+					</option>
+				</select>
+				
+				<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'" placeholder="검색어를 입력하세요" v-model="keyword" >
+	       		<input type = "button"  v-if="selected=='search-id'" value="검색" @click="findById">
+	       		<input type = "button"  v-if="selected=='search-title'" value="검색" @click="findByTitle">
+	       		<input type = "button"  v-if="selected=='search-content'" value="검색" @click="findByContent">    		
 	       		</form>
 	       </div>
 	    </div>
@@ -126,6 +129,9 @@
                 return {
                     info:[ ],
                     areaInfo:[ ],
+                    categoryInfo:[],
+                    selected:'',
+                    useOptional:'notOptional',
                     status_class:[
                     	"ml-2 badge badge-pill badge-warning",
                     	"ml-2 badge badge-pill badge-success",   	
@@ -139,8 +145,8 @@
                     areaNum:"",
                     loading:true,
                     errored:false,
-                    userId:storage.getItem("login_user"),
-                    
+                    userId:storage.getItem("login_user"),                   
+                    keyword:'',
                     /* pagination */
                     totalListItemCount: 0,//전체 게시글 갯수 
                     listRowCount: 6,//한페이지에 몇개 limit
@@ -194,12 +200,22 @@
                     this.errored = true
                 })
                  .finally(()=>this.loading = false)
+                 
+                 
+                axios
+                 .get('http://127.0.0.1:7788/board/getAllCategory')
+                 .then(response=>(this.categoryInfo = response.data))
+                 .catch(error=>{
+                    console.log(error);
+                    this.errored = true
+                })
+                 .finally(()=>this.loading = false)
 
             },
             methods:{
-            	findByCategory(cateNum){
+            	findByCategory(category){
             		axios
-        			.get('http://127.0.0.1:7788/board/findByCategory/'+cateNum)
+        			.get('http://127.0.0.1:7788/board/findByCategory/'+this.category)
         			.then(response=>(this.info= response.data))
 	                .catch(error=>{
 	                    console.log(error);
@@ -207,6 +223,7 @@
 	                })
         		.finally(()=>this.loading = false)
             	},
+            	
             	getBoard(){
             		offset=(this.currentPageIndex-1)*this.listRowCount;
             		axios
@@ -218,6 +235,59 @@
                    })
                    .finally(()=>this.loading = false)
             	},
+
+            	findById(keyword){
+            		axios
+        			.get('http://127.0.0.1:7788/board/findById/'+this.keyword)
+        			.then(response=>(this.info= response.data))
+	                .catch(error=>{
+	                    console.log(error);
+	                    this.errored = true
+	                })
+        		.finally(()=>this.loading = false)
+            	},
+            	
+            	findByTitle(keyword){
+            		axios
+        			.get('http://127.0.0.1:7788/board/findByTitle/'+this.keyword)
+        			.then(response=>(this.info= response.data))
+	                .catch(error=>{
+	                    console.log(error);
+	                    this.errored = true
+	                })
+        		.finally(()=>this.loading = false)
+            	},
+            	
+            	findByContent(keyword){
+            		axios
+        			.get('http://127.0.0.1:7788/board/findByContent/'+this.keyword)
+        			.then(response=>(this.info= response.data))
+	                .catch(error=>{
+	                    console.log(error);
+	                    this.errored = true
+	                })
+        		.finally(()=>this.loading = false)
+            	},
+            	
+            	selectedOk(){
+            		if(this.selected=="search-area")
+            			this.useOptional = "areaOptional"
+            		else if(this.selected=="search-category") 
+            			this.useOptional = "categoryOptional"           		       		
+            		else 
+            			this.useOptional = "notOptional"
+   
+            	},
+            	
+            	/*keywordSearch(){           		
+            		if(this.selected=="search-id")
+            			this.findById();
+            		else if(this.selected=="search-title") 
+            			this.findByTitle();           		       		
+            		else if(this.selected=="search-content")
+            			this.findByContent();
+            	},*/
+            	
             	/* pagination */
             	
             	initPagination(){
@@ -233,10 +303,10 @@
             		.finally(()=>this.loading = false)
             	},
 
-            	findByArea(areaNum){
+            	findByAreaInMethods(areaNum){
             		axios
             			.get('http://127.0.0.1:7788/board/findByArea/'+this.areaNum)
-            			.then(respone=>(this.info= response.data))
+            			.then(response=>(this.info= response.data))
             			.catch(error=>{
             				console.log(error);
             				this.errored = true
