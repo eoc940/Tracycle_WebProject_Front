@@ -95,6 +95,9 @@
         </div>
       </div>   
     </div>
+  </div>
+
+  </body>
 
 <script>
 const storage = window.sessionStorage;

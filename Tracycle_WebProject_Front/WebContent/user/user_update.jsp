@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <meta charset="UTF-8">
  <title>지구를 위한 Tracycle</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
@@ -12,7 +14,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;600&display=swap" rel="stylesheet">
@@ -29,16 +31,16 @@
                 <col width="30%"/>
                 <col width="auto"/>
               </colgroup>
+
               <tbody>  
              	<tr>
                   <th><span>아이디</span></th>
-                  <td><input type="text" :value=userId readonly /></td>
-                </tr>          
+                  <td><input type="text" :value=userId readonly /></td>     
                 <tr>
                   <th><span>닉네임</span></th>
                   <td><input type="text" :placeholder=userInfo.nickName v-model="newNickName"></td>
-                </tr>
-                <tr>
+                </tr> 
+                 <tr>
                   <th><span>주  소</span></th>
                   <td><input type="text" :placeholder=userInfo.address v-model="newAddress"></td>
                 </tr>                
@@ -53,13 +55,14 @@
           <!-- join_form E  -->
           
           <div class="btn_wrap">
-            <button type="submit" v-if="pass==true" class="submit-btn" @click="updateUser">저장</button>
-         
+            <button type="submit" v-if="pass==true" class="submit-btn" @click="updateUser">저장</button>        
             <button v-else class="not-submit-btn">저장</button>
+
           </div>
         </div> <!-- form_txtInput E -->
       </div><!-- content E-->
     </div> <!-- container E -->
+
     
  <script>  
  

@@ -43,28 +43,23 @@
 	            <a href="#" class="main-color" @click.prevent="findByCategory(2)">주방용품</a> |
 	            <a href="#" class="main-color" @click.prevent="findByCategory(3)">가구류</a> |
 	            <a href="#" class="main-color" @click.prevent="findByCategory(4)">침구류</a> |
-	            <a href="#" class="main-color" @click.prevent="findByCategory(5)">기타</a>
-	       </div>
-	       <div class="serachbar">
-	       		<label for="searchOption">Search for Area</label>
-	       		<select name="area" @change="findByArea" v-model="areaNum">
-	       			<option v-for="area in areaInfo" :value="area.areaId">{{area.areaId}}:{{area.areaName}}</option>
-	       		</select><p></p>
-	       		<input id="searchOption" title="검색어를 입력하세요"  type = "text">
-	       		<input type = "button" value="검색" >
-	       </div>
-	    </div>
-     	<div v-for="board in info" class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
-        	<div class="post-entry">
-		    	<a :href=("board_detail.jsp?boardId="+board.boardId) class="mb-3 img-wrap">
-		       	<img v-if="board.picture==null" src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
-		       	<img v-else src="../images/img_4.jpg" alt="Image placeholder" class="img-fluid">
-		       	</a>
-		       	<h3><a :href=("board_detail.jsp?boardId="+board.boardId)>{{board.title}}</a></h3>
-		       	<span class="date mb-4 d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></span>
-		        <p>{{board.content | splitContent}}</p>
-		        <p><a :href=("board_detail.jsp?boardId="+board.boardId) class="link-underline main-color">Read More</a></p>
-            </div>
+	            <a href="#" class="main-color" @click.prevent="findByCategory(5)">기타</a> 
+	       </div></div>
+     	 <div v-for="board in info" class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
+               <div class="post-entry">
+		       		<a :href=("board_detail.jsp?boardId="+board.boardId) class="mb-3 img-wrap">
+		       		
+					
+		       		<img v-if="board.picture==null" src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
+		       		<img v-else :src=("http://127.0.0.1:7788/board/getFile/"+board.picture) alt="Image placeholder" class="img-fluid">
+		       		</a>
+		       		<h3><a :href=("board_detail.jsp?boardId="+board.boardId)>{{board.title}}</a></h3>
+		       		<span class="date mb-4 d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></span>
+		       
+		       <p>{{board.content | splitContent}}</p>
+		       <p><a :href=("board_detail.jsp?boardId="+board.boardId) class="link-underline main-color">Read More</a></p>
+          </div>
+	
 		</div>
       </div>
        <div v-if="isLogin" class=" pt-5 pb-5 text-center">
@@ -157,11 +152,12 @@
      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
      	  			}
      	  		})
-                .then(response=>(this.info = response.data))
+                .then(response=>{this.info = response.data; console.log(this.info);})
                 .catch(error=>{
                     console.log(error);
                     this.errored = true
                 })
+
                 .finally(()=>this.loading = false),
                 axios
              	 .get('http://127.0.0.1:7788/board/getAllArea')
@@ -171,6 +167,7 @@
                     this.errored = true
                 })
                  .finally(()=>this.loading = false)
+
             },
             methods:{
             	findByCategory(cateNum){
@@ -200,6 +197,7 @@
             	}
             }
         })
+        
     </script>
   </body>
 </html>

@@ -22,11 +22,11 @@
 </head>
 <body>
  <div class="wrap wd668" id="app">
-      <div class="container">
+      <div class="container" >
         <div class="form_txtInput">
           <h2 class="sub_tit_txt">LOGIN</h2>
           <div class="join_form_modify">
-            <table>
+            <table @input="bothPass">
               <colgroup>
                 <col width="30%"/>
                 <col width="auto"/>
@@ -34,11 +34,11 @@
               <tbody>            
                 <tr>
                   <th><span>아이디</span></th>
-                  <td><input type="text" placeholder="ID를 입력하세요." class="inputId"  v-model="userId" @input="idpassOk" required></td>
+                  <td><input type="text" placeholder="ID를 입력하세요." class="inputId"  v-model="userId"  required></td>
                 </tr>
                 <tr>
                   <th><span>비밀번호</span></th>
-                  <td><input type="password" placeholder="비밀번호를 입력해주세요." class="inputPass"  v-model="password" @input="pwpassOk" required></td>
+                  <td><input type="password" placeholder="비밀번호를 입력해주세요." class="inputPass"  v-model="password"  required></td>
                 </tr>
               </tbody>
             </table>
@@ -58,7 +58,7 @@
 	          <span><a href="register.jsp" class="register-btn">회원가입</a></span>
 	          </div>
 	          
-           	  <button type="submit" v-if="idpass==true && pwpass==true" class="submit-btn" @click="login">Login</button>
+           	  <button type="submit" v-if="bothpass==true" class="submit-btn" @click="login">Login</button>
            	  <button v-else class="not-submit-btn">Login</button>
           </div>
         </div> <!-- form_txtInput E -->
@@ -81,9 +81,8 @@
               token:"",
               info:"",
               errored:false,
-              nextpage:'',
-              idpass:'',
-          	  pwpass:''
+              nextpage:'',            
+          	  bothpass:''
           }
       },
       
@@ -101,8 +100,8 @@
     	  	},
     	  	getInfo() {
     	  		axios.post("http://127.0.0.1:7788/user/info", {
-    	  			userId:"dkdk456",
-    	  			password:"456"
+    	  			userId:this.userId,
+    	  			password:this.password
     	  		},
     	  		{
     	  			headers : {
@@ -167,31 +166,22 @@
           goHome(){
         	  location.href="login.jsp";
           },
-          
-          idpassOk(){
-       		
-       		if(this.userId != null ){
-       			this.idpass = true;
-       		}else {
-       			this.idpass=false;	
-       		}
-       	},
-       	
-       	pwpassOk(){
-       		if(this.password != null ){
-       			this.pwpass = true;
-       		}else {
-       			this.pwpass=false;	
-       		}
-       	}
-      	
+    
+	       bothPass(){
+	    	   if(this.userId != '' && this.password != '') this.bothpass=true;
+	    	   else this.bothpass=false;
+	       }
+	       
+	      
       },
       
+    
       mounted() {
     	  this.init();
-    	  
-    	  
+   	  
       }
+      
+     
   })
   </script>    
 </body>

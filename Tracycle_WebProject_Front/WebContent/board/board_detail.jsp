@@ -43,20 +43,38 @@
     <div class="container">
             
             <div class="row">
-			    <div class="col-md-12">
-				<h2 class="mb-3 mt-5">{{board.title}} <div v-if="writer==userId"> <a href="#" class="board_edit" @click.prevent="deleteBoard(board.boardId)" >삭제</a><a href="#" class="board_edit">수정</a></div></h2>
-				<h4 class="date d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></h4>
-                <h3 class="right d-block">{{writer}}</h3>
-               
+
+			    <div class="col-md-12"> <h3>조회수 : {{board.viewCount}}</h3>
+			    <div class="board-title">
+					<h2 class="mb-3 mt-5">{{board.title}}</h2>
+					 <div v-if="writer==userId"> <a href="#" class="board_edit" @click.prevent="deleteBoard(board.boardId)" >삭제</a><a href="board_update.jsp?boardId=${param.boardId}" class="board_edit">수정</a></div>
+					<h4 class="date d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></h4>
+	                <h3 class="right d-block">{{writer}}</h3>
+               </div>
+
                 <div class="site-section">
 				    <div class="container">
 				      <div class="block-31 mb-5" style="position: relative;">
-				          <div class="owl-carousel loop-block-31">
-				            <div class="block-30 no-overlay item" style="background-image: url('../images/about1.jpg');"></div>
+				       	  <div v-for="image in images">
+				       	  <img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)>
+				       	  </div>
+				       	  <!--
+				          <div v-for="image in images" class="owl-carousel loop-block-31">
+				          	
+				             
+				          	<div><img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)>
+				          	
+				          	<div class="block-30 no-overlay item" ><img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)></div>
+				          	<div class="block-30 no-overlay item" ><img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)></div>
+				          	 
+				            <div class="block-30 no-overlay item" style="background-image: url('http://127.0.0.1:7788/board/getFile/46fa23ea8d48e73cfb743d623c3e6661');"></div>
+				            
 				            <div class="block-30 no-overlay item" style="background-image: url('../images/main2.jpg');"></div>
 				            <div class="block-30 no-overlay item" style="background-image: url('../images/about2.jpg');"></div>
 				            <div class="block-30 no-overlay item" style="background-image: url('../images/nature.jpg');"></div>
-				          </div>
+				              
+				          </div>-->
+				           
 				        </div>
 				    </div>
 			  </div>
@@ -71,15 +89,15 @@
                       <div class="vcard bio">
                         <img src="../images/user.png" alt="Image placeholder">
                       </div>
-                      <div class="comment-body">
-                        <h3>{{cmt.user.userId}} <div v-if="userId==cmt.user.userId"> <a href="#" @click.prevent="deleteComment(cmt.commentId)" class="edit">삭제</a><a href="#" @click.prevent="updateComment(cmt.commentId)" class="edit">수정</a></div> </h3>
+                      <div v-if="editId!=cmt.commentId" class="comment-body">
+                        <h3>{{cmt.user.userId}} <div v-if="userId==cmt.user.userId"> <a href="#" @click.prevent="deleteComment(cmt.commentId)" class="edit">삭제</a><a href="#" @click.prevent="openEdit(cmt)" class="edit">수정</a></div> </h3>
                          <div v-if="cmt.secret==1">
                          	<div v-if="userId==cmt.user.userId">
 	                         	 <a class="reply">비밀댓글</a>
 	                        	<div class="meta">{{cmt.date | formatDateComment}}</div>
 	                        	<p>{{cmt.content}}</p>
                          	</div>
-                         	<div v-else>
+                         	<div v-else >
                          		<a class="reply">비밀댓글</a>
                          	</div>
                          </div>
@@ -87,6 +105,20 @@
 	                        <div class="meta">{{cmt.date | formatDateComment}}</div>
 	                        <p>{{cmt.content}}</p>
                         </div>
+                      </div>
+                      
+                      <div v-else class="comment-body">
+	                      <form action="#" class="">
+		                      <h3>{{userId}}</h3>
+		                      <div class="form-group">
+		                        <label for="message" class="label-font-bold">댓글 내용</label> <input type="checkbox" v-model="editInfo.secret" true-value="1" false-value="0"> 비밀글
+		                        <textarea name="" id="message" cols="30" rows="5" class="form-control" v-model="editInfo.content"></textarea>
+		                      </div>
+		                      <div class="form-group text-center">
+		                        <input type="button" value="Cancel" @click="cancelComment()" class="btn py-2 px-3 btn-primary">
+		                        <input type="button" value="Update" @click="updateComment()" class="btn py-2 px-3 btn-primary">
+		                      </div>
+	                 	   </form>
                       </div>
                     </li>
 
@@ -114,12 +146,12 @@
                       </div>
 
                       <div class="form-group">
-                        <label for="message" class="label-font-bold">댓글 내용</label> <input type="checkbox" v-model="info.secret" @change="checkSecret"> 비밀글
-                        <textarea name="" id="message" cols="30" rows="10" class="form-control" v-model="info.content"></textarea>
+                        <label for="message" class="label-font-bold">댓글 내용</label> <input type="checkbox" v-model="info.secret" true-value="1" false-value="0"> 비밀글
+		                <textarea name="" id="message" cols="30" rows="5" class="form-control" v-model="info.content"></textarea>
                       </div>
-                      <div class="form-group text-center">
-                        <input type="button" value="Write Comment" @click="submitComment()" class="btn py-3 px-4 btn-primary">
-                      </div>
+                      <div class="form-group text-center mb-5">
+		                        <input type="button" value="Write Comment" @click="submitComment()" class="btn py-3 px-4 btn-primary">
+		              </div>
 
                     </form>
                   </div>
@@ -159,9 +191,10 @@
   <script src="../js/moment.js"></script>
   
     <script>
-    
-    //const storage = window.sessionStorage;
+    Vue.config.devtools = true;
 
+    //const storage = window.sessionStorage;
+		Vue.config.devtools = true;
         new Vue({
             el: "#blog",
             data(){
@@ -169,6 +202,7 @@
                 	board:[ ],
                 	writer:"",
                 	comments:[ ],
+                	images:[ ],
                     status_class:[
                     	"ml-2 badge badge-pill badge-warning",
                     	"ml-2 badge badge-pill badge-success",   	
@@ -182,7 +216,9 @@
                     errored:false,
                     info:{"secret":0,user:{"userId":storage.getItem("login_user")},board:{boardId:${param.boardId}}},
                     result:'',
-                    userId:storage.getItem("login_user")
+                    userId:storage.getItem("login_user"),
+                    editId:0,
+                    editInfo:{},
                 }
             },            
             filters:{
@@ -198,21 +234,22 @@
             	}
             },
             mounted(){
-                axios
-             	 .get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId},
-                  		{
+            	
+            	axios
+                .put('http://127.0.0.1:7788/board/addViewCount/'+${param.boardId},
+                	{
       	  			headers : {
       	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
-      	  			}
-      	  		})
-                .then(response=>{this.board = response.data;
-                this.writer=this.board.user.userId;
-                })
+      	  			}}	
+                )
+                .then(response=>(console.log(response.data)))
                 .catch(error=>{
                     console.log(error);
                     this.errored = true
                 })
                 .finally(()=>this.loading = false),
+                
+             
                 
                 axios
              	 .get('http://127.0.0.1:7788/comment/getAllComment/'+${param.boardId},
@@ -226,13 +263,45 @@
                     console.log(error);
                     this.errored = true
                 })
+                .finally(()=>this.loading = false),
+                
+                axios
+            	 .get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId},
+                 		{
+     	  			headers : {
+     	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+     	  			}
+     	  		})
+               .then(response=>{this.board = response.data;
+               this.writer=this.board.user.userId;
+          		alert(this.board.viewCount);
+               })
+               .catch(error=>{
+                   console.log(error);
+                   this.errored = true
+               })
+               .finally(()=>this.loading = false),
+                
+                axios
+                .get('http://127.0.0.1:7788/board/getFiles/'+${param.boardId},
+                	
+                	{
+      	  			headers : {
+      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+      	  			}}
+                )
+                .then(response=>{this.images = response.data; console.log(this.images);})
+                .catch(error=>{
+                	console.log(error);
+                	console.log(this.images);
+                	alert(this.images);
+                	this.errored = true
+                })
                 .finally(()=>this.loading = false)
+                
+                
             },
             methods:{
-           		checkSecret(){
-           			if(this.info.secret==true) this.info.secret=1;
-           			else this.info.secret=0;
-           		},
            		submitComment(){
            			var today = new Date();
     				var year = today.getFullYear();
@@ -294,9 +363,50 @@
 	                     this.errored = true
 	                 })
 	           		.finally(()=>location.href="board_list.jsp")
-          	 	}}
+          	 	}},
+           		openEdit(cmt){
+          	 	this.editId=cmt.commentId;
+        		this.editInfo=cmt;
+          	 	},
+          	 	cancelComment(){
+          	 	this.editId=0;
+        		this.editInfo={};
+          	 	},
+          	 	updateComment(){
+          	 		if(confirm("댓글을 수정 하시겠습니까?")){
+          	 			var today = new Date();
+        				var year = today.getFullYear();
+        				var month = ('0' + (today.getMonth() + 1)).slice(-2);
+        				var day = ('0' + today.getDate()).slice(-2);
+        				var hours = today.getHours(); 
+        				var minutes = today.getMinutes(); 
+        				var seconds = today.getSeconds();
+        				var dateString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+    	           		axios
+    	             	 .put('http://127.0.0.1:7788/comment/updateComment',
+    	             	 {date:dateString,
+    	             	  commentId:this.editId,
+    	             	  content:this.editInfo.content,
+    	             	  secret:this.editInfo.secret,
+    	             	  user:this.editInfo.user,
+    	             	  board:this.editInfo.board
+    	             	 },
+    	             		{
+    	      	  			headers : {
+    	      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+    	      	  			}
+    	      	  		}
+    	             	 ).then(response=>(this.result= response.data))
+    	                .catch(error=>{
+    	                    console.log(error);
+    	                    this.errored = true
+    	                })
+    	                .finally(()=>location.href="board_detail.jsp?boardId="+${param.boardId}) 
+          	 		
+          	 	}
 
             }
+          }
 
         })
     </script>
