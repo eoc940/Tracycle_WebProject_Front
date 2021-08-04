@@ -2373,3 +2373,17 @@ dropdown .btn:focus,.btn:active,.btn:focus{
     background-color: var(--main-color);
     border-color: var(--main-color);
 }
+
+.writer{
+	color:#595b5f!important
+}
+
+.detail_image{
+	max-width: 80%;
+    margin-bottom: 20px;
+    }
+.list_image{
+	width: 100%;
+    height: 250px;
+    object-fit: cover;
+}

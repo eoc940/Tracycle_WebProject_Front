@@ -39,7 +39,9 @@
  		<div class="col-md-12 mt-5 mb-5">			
 	       <div class="serachbar">	       			       		
 	       		<form action="id" method="get">
-	       			<select name = "searchField" id = "searchField" v-model="selected" @change="selectedOk">	       				
+
+	       			<select name = "searchField" id = "searchField" v-model="selected" @change="selectedOk">	
+	       			    <option value = "search-id">전체</option> 				
 	       				<option value = "search-id">아이디</option>
 	       				<option value = "search-title">제목</option>
 	       				<option value = "search-content">내용</option>
@@ -57,18 +59,18 @@
 						{{area.areaId}}:{{area.areaName}}
 					</option>
 				</select>
-				
-				<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'" placeholder="검색어를 입력하세요"  >
-	       		<input type = "submit"  v-if="useOptional=='notOptional'" value="검색">
-	       		
+					<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'" placeholder="검색어를 입력하세요" v-model="keyword" >
+	       			<input type = "button"  v-if="selected=='search-id'" value="검색" @click="findById">
+	       			<input type = "button"  v-if="selected=='search-title'" value="검색" @click="findByTitle">
+	       			<input type = "button"  v-if="selected=='search-content'" value="검색" @click="findByContent">    		
 	       		</form>
 	       </div>
 	    </div>
      	<div v-for="board in info" class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
         	<div class="post-entry">
 		    	<a :href=("board_detail.jsp?boardId="+board.boardId) class="mb-3 img-wrap">
-		       	<img v-if="board.picture==null" src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
-		       	<img v-else :src=("http://127.0.0.1:7788/board/getFile/"+board.picture) alt="Image placeholder" class="img-fluid">
+		       	<img class="list_image img-fluid" v-if="board.picture==null" src="../images/non-image.png" alt="Image placeholder">
+		       	<img class="list_image img-fluid" v-else :src=("http://127.0.0.1:7788/board/getFile/"+board.picture) alt="Image placeholder">
 		       	</a>
 		       	<h3><a :href=("board_detail.jsp?boardId="+board.boardId)>{{board.title}}</a></h3>
 		       	<span class="date mb-4 d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></span>
@@ -143,8 +145,8 @@
                     areaNum:"",
                     loading:true,
                     errored:false,
-                    userId:storage.getItem("login_user"),
-                    
+                    userId:storage.getItem("login_user"),                   
+                    keyword:'',
                     /* pagination */
                     totalListItemCount: 0,//전체 게시글 갯수 
                     listRowCount: 6,//한페이지에 몇개 limit
@@ -233,6 +235,39 @@
                    })
                    .finally(()=>this.loading = false)
             	},
+
+            	findById(keyword){
+            		axios
+        			.get('http://127.0.0.1:7788/board/findById/'+this.keyword)
+        			.then(response=>(this.info= response.data))
+	                .catch(error=>{
+	                    console.log(error);
+	                    this.errored = true
+	                })
+        		.finally(()=>this.loading = false)
+            	},
+            	
+            	findByTitle(keyword){
+            		axios
+        			.get('http://127.0.0.1:7788/board/findByTitle/'+this.keyword)
+        			.then(response=>(this.info= response.data))
+	                .catch(error=>{
+	                    console.log(error);
+	                    this.errored = true
+	                })
+        		.finally(()=>this.loading = false)
+            	},
+            	
+            	findByContent(keyword){
+            		axios
+        			.get('http://127.0.0.1:7788/board/findByContent/'+this.keyword)
+        			.then(response=>(this.info= response.data))
+	                .catch(error=>{
+	                    console.log(error);
+	                    this.errored = true
+	                })
+        		.finally(()=>this.loading = false)
+            	},
             	
             	selectedOk(){
             		if(this.selected=="search-area")
@@ -241,8 +276,16 @@
             			this.useOptional = "categoryOptional"           		       		
             		else
             			this.useOptional = "notOptional"
-
             	},
+           	
+            	/*keywordSearch(){           		
+            		if(this.selected=="search-id")
+            			this.findById();
+            		else if(this.selected=="search-title") 
+            			this.findByTitle();           		       		
+            		else if(this.selected=="search-content")
+            			this.findByContent();
+            	},*/
             	
             	/* pagination */
             	
@@ -268,20 +311,7 @@
             				this.errored = true
             			})
             		.finally(()=>this.loading = false)
-            	},
-            	
-            	findByTitle(title){
-            		axios
-            			.get('http://127.0.0.1:7788/board/findByArea/'+this.title)
-            			.then(response=>(this.info= response.data))
-            			.catch(error=>{
-            				console.log(error);
-            				this.errored = true
-            			})
-            		.finally(()=>this.loading = false)
-            	},
-            	
-            	
+            	},      	
 
                 initUI(){
 
