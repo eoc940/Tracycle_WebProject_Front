@@ -66,8 +66,8 @@
      	<div v-for="board in info" class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
         	<div class="post-entry">
 		    	<a :href=("board_detail.jsp?boardId="+board.boardId) class="mb-3 img-wrap">
-		       	<img v-if="board.picture==null" src="../images/non-image.png" alt="Image placeholder" class="img-fluid">
-		       	<img v-else :src=("http://127.0.0.1:7788/board/getFile/"+board.picture) alt="Image placeholder" class="img-fluid">
+		       	<img class="list_image img-fluid" v-if="board.picture==null" src="../images/non-image.png" alt="Image placeholder">
+		       	<img class="list_image img-fluid" v-else :src=("http://127.0.0.1:7788/board/getFile/"+board.picture) alt="Image placeholder">
 		       	</a>
 		       	<h3><a :href=("board_detail.jsp?boardId="+board.boardId)>{{board.title}}</a></h3>
 		       	<span class="date mb-4 d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></span>
