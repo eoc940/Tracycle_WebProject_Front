@@ -44,18 +44,19 @@
             
             <div class="row">
 
-			    <div class="col-md-12"> <h3>조회수 : {{board.viewCount}}</h3>
+			    <div class="col-md-12">
 			    <div class="board-title">
 					<h2 class="mb-3 mt-5">{{board.title}}</h2>
 					 <div v-if="writer==userId"> <a href="#" class="board_edit" @click.prevent="deleteBoard(board.boardId)" >삭제</a><a href="board_update.jsp?boardId=${param.boardId}" class="board_edit">수정</a></div>
 					<h4 class="date d-block text-muted">{{board.date | formatDate}}<span :class="status_class[board.status]" v-text="status_list[board.status]"></span></h4>
-	                <h3 class="right d-block">{{writer}}</h3>
+	                <h6>조회수 : {{board.viewCount}}</h6>
+	                <h3 class="right d-block writer">{{writer}}</h3>
                </div>
                 <div class="site-section">
 				    <div class="container">
 				      <div class="block-31 mb-5" style="position: relative;">
 				       	  <div v-for="image in images">
-				       	  <img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)>
+				       	  <img class="detail_image" alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)>
 				       	  </div>
 				       	  <!--
 				          <div v-for="image in images" class="owl-carousel loop-block-31">
@@ -128,19 +129,22 @@
 
                   </ul>
                   <!-- END comment-list -->
-         <div class="comment-form-wrap"><nav aria-label="Page navigation example">
+         <div class="comment-form-wrap">
+         
+        <nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-center">
-		    <li class="page-item disabled">
+		    <li class="page-item disabled" v-if="page.prev">
 		      <a class="page-link" href="#" tabindex="-1" aria-disabled="true"> &laquo; </a>
 		    </li>
-		    <li class="page-item"><a class="page-link main-color" href="#">1</a></li>
-		    <li class="page-item"><a class="page-link main-color" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link main-color" href="#">3</a></li>
-		    <li class="page-item">
+		    <li v-for="index in page.endPageIndex-page.startPageIndex + 1 " :key="index" class="page-item" :class="{active:( (page.startPageIndex + index - 1) == page.currentPageIndex)}">
+     		 <a href="#" class="page-link main-color"  @click.prevent="movePage(page.startPageIndex + index - 1)">{{ page.startPageIndex + index - 1 }}</a>
+    		</li>
+		    <li class="page-item" v-if="page.next">
 		      <a class="page-link main-color" href="#">&raquo;</a>
 		    </li>
 		  </ul>
-		</nav></div>
+		</nav>
+		</div>
                   <div class="comment-form-wrap pt-5">
                   
                     <h3 class="mb-5">Leave a Comment</h3>
@@ -223,6 +227,18 @@
                     userId:storage.getItem("login_user"),
                     editId:0,
                     editInfo:{},
+                    /* pagination */
+                    page:{
+                    totalListItemCount: 0,//전체 게시글 갯수 
+                    listRowCount: 10,//한페이지에 몇개 limit
+                    pageLinkCount: 10, //<< >> 사이에 들어갈 페이지 개수 
+                    currentPageIndex: 1,//현재페이지
+                    pageCount: 0,//총페이지 갯수
+                    startPageIndex: 0, //시작페이지 인덱스 
+                    endPageIndex: 0, //끝페이지 인덱스 
+                    prev: false, //<< 출력 
+                    next: false //>> 출력 
+                    }
                 }
             },            
             filters:{
@@ -239,23 +255,27 @@
             },
             mounted(){
 
-                axios
-             	 .get('http://127.0.0.1:7788/comment/getAllComment/'+${param.boardId},
-                  		{
-      	  			headers : {
-      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
-      	  			}
-      	  		})
+                /*  axios
+             	 .get('http://127.0.0.1:7788/comment/getAllComment/'+${param.boardId})
                 .then(response=>(this.comments = response.data))
                 .catch(error=>{
                     console.log(error);
                     this.errored = true
                 })
-                .finally(()=>this.loading = false),
+                .finally(()=>this.loading = false),  */
+                
+                offset=(this.page.currentPageIndex-1)*this.page.listRowCount;
+        		axios
+            	.get('http://127.0.0.1:7788/comment/getCommentLimitOffset/'+${param.boardId}+'/'+offset)
+               .then(response=>{this.comments = response.data;})
+               .catch(error=>{
+                   console.log(error);
+                   this.errored = true
+               })
+               .finally(()=>this.loading = false),
                 
                 axios
-            	 .get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId} +'/add',
-            			 
+            	 .get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId} +'/add', 
                  		{
      	  			headers : {
      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
@@ -393,7 +413,72 @@
           	 		
           	 	}
 
-            }
+            },
+            getComment(){
+            	offset=(this.page.currentPageIndex-1)*this.page.listRowCount;
+        		axios
+            	.get('http://127.0.0.1:7788/comment/getCommentLimitOffset/'+${param.boardId}+'/'+offset)
+               .then(response=>{this.comments = response.data;})
+               .catch(error=>{
+                   console.log(error);
+                   this.errored = true
+               })
+               .finally(()=>this.loading = false)
+        	},
+            initPagination(){
+        		axios
+        		.get('http://127.0.0.1:7788/comment/getCommentTotalCount/'+${param.boardId})
+        			.then(response=>{this.page.totalListItemCount= response.data;
+        			 this.initUI();
+        			 })
+	                .catch(error=>{
+	                    console.log(error);
+	                    this.errored = true
+	                })
+        		.finally(()=>this.loading = false)
+        	},
+            initUI(){
+
+      	      this.page.pageCount = Math.ceil(this.page.totalListItemCount/this.page.listRowCount);
+
+      	      if( (this.page.currentPageIndex % this.page.pageLinkCount) == 0 ){
+      	        this.page.startPageIndex = ((this.page.currentPageIndex / this.page.pageLinkCount)-1)*this.page.pageLinkCount + 1
+      	      }else{
+      	        this.page.startPageIndex = Math.floor(this.page.currentPageIndex / this.page.pageLinkCount)*this.page.pageLinkCount + 1
+      	      }
+
+      	      if( (this.page.currentPageIndex % this.page.pageLinkCount) == 0 ){ //10, 20...맨마지막
+      	        this.page.endPageIndex = ((this.page.currentPageIndex / this.page.pageLinkCount)-1)*this.page.pageLinkCount + this.page.pageLinkCount
+      	      }else{
+      	        this.page.endPageIndex =  Math.floor(this.page.currentPageIndex / this.page.pageLinkCount)*this.page.pageLinkCount + this.page.pageLinkCount;
+      	      }
+
+      	      if(this.page.endPageIndex > this.page.pageCount){
+      	        this.page.endPageIndex = this.page.pageCount
+      	      }
+
+      	      if( this.page.currentPageIndex <= this.page.pageLinkCount ){
+      	        this.page.prev = false;
+      	      }else{
+      	        this.page.prev = true;
+      	      }
+
+      	      if(this.page.endPageIndex >= this.page.pageCount){
+      	        this.page.endPageIndex = this.page.pageCount;
+      	        this.page.next = false;
+      	      }else{
+      	        this.page.next = true;
+      	      }
+      	    },
+      	    movePage(param) {
+      	       this.page.currentPageIndex = param;
+      	       this.getComment();
+      	    }
+          },
+          
+          created() {
+              this.initPagination();
+              this.getComment();
           }
 
         })
