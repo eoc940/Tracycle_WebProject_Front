@@ -30,10 +30,10 @@
                 <col width="30%"/>
                 <col width="auto"/>
               </colgroup>
-              <tbody>
+              <tbody @input="pressbutton">
                 <tr>
                   <th><span>아이디</span></th>
-                  <td><input type="text" placeholder="ID 를 입력하세요. (영문, 숫자 조합 5자 이상/특수문자, 공백 사용 불가)" minlength="5" class="inputId"  v-model="userid" required @blur="[checkId(), idcnt()]"><div class="idCheck"><button @click= "validationId" class="idCheck" style="cursor:pointer;">ID Check</button></div></td>
+                  <td><input type="text" placeholder="ID 를 입력하세요. (영문, 숫자 조합 5자 이상/특수문자, 공백 사용 불가)" minlength="5" class="inputId"  v-model="userid" required @blur="[checkId(), idcnt()]"><p v-html="idinvalidmessage"></p><div class="idCheck"><button @click= "validationId" class="idCheck" style="cursor:pointer;">ID Check</button></div></td>
                 </tr>
                
                 <tr>
@@ -50,7 +50,7 @@
                 </tr>
                  <tr>
                   <th><span>주  소</span></th>
-                  <td><input type="text" @input="pressbutton" @change="useraddrcheck" placeholder="주소를 입력하세요." v-model="useraddr" class="inputAddr" required></td>
+                  <td><input type="text" @change="useraddrcheck" placeholder="주소를 입력하세요." v-model="useraddr" class="inputAddr" required></td>
                 </tr>
                 
               </tbody>
@@ -61,7 +61,7 @@
           
           <div class="btn_wrap">
           
-            	<button type="submit" v-if="pass==true" class="submit-btn" @click="addUser">가입</button>
+            	<button type="submit" v-if="pass==true" class="submit-btn" @click="invalidIdMessage()">가입</button>
          
             	<button v-else class="not-submit-btn">가입</button>
           
@@ -87,6 +87,8 @@
                      errored:false,
                      empEmpty:true,
                      pass:'',
+                     idpass:'',
+                     idinvalidmessage:"",
                      check:''
 
                  }
@@ -131,10 +133,10 @@
              	passCheck(){
              		
              		if(this.userpass != this.userpasscheck){
-             			
+             			this.check=false;
              			alert("비밀번호가 일치하지 않습니다.");
              		}else if(this.userpass ==''){
-             			
+             			this.check=false;
              			alert("비밀번호를 입력해주세요.");
              		}else{
              			this.check = true;
@@ -144,7 +146,7 @@
              	
              	pressbutton(){
              		
-             		if(this.userid.length >= 5 && this.userpass.length >= 6 && this.username !='' && this.useraddr !='' && this.check==true){
+             		if(this.userid.length >= 5 && this.userpass.length >= 6 && this.username !='' && this.useraddr !='' && this.check==true && this.userpasscheck != ''){
              			this.pass = true;
              		}else{
              			this.pass=false;	
@@ -166,10 +168,28 @@
       		
              	validationId(){
              		
-             		if(this.useridcheck == true) alert("사용가능한 아이디입니다.");
-             		else alert("이미 사용중인 아이디입니다.");
+             		if(this.useridcheck == true){
+             			this.idpass=true;
+             			alert("사용가능한 아이디입니다.");
+             			this.idinvalidmessage="";
+             		}else{
+             			this.idpass=false;
+             			alert("이미 사용중인 아이디입니다.");
+             		}
+             		
+             	},
+             	
+             	invalidIdMessage(){
+             		if(this.idpass!=true){
+             			this.idinvalidmessage="아이디 중복 체크를 해주세요.";
+             		}else{
+             			alert("가입을 축하합니다.");
+             			this.addUser();
+             		}
              	}
- 		 }
+ 		 },
+ 		 
+ 		
   })
 
 

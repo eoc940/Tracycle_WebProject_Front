@@ -7,6 +7,8 @@
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <meta charset="UTF-8">
  <title>지구를 위한 Tracycle</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--한글폰트 링크 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,25 +31,23 @@
                 <col width="30%"/>
                 <col width="auto"/>
               </colgroup>
-              <tbody>
-                 <tr>
-                  <th><span>아이디</span></th>
-                  <td><input name ="userId" value= "{{user.userId}}" readonly="readonly"></td>
-                </tr>
+
+              <tbody>  
              	<tr>
-                  <th><span>비밀번호</span></th>
-                  <td><input type="password" name = "password" placeholder="비밀번호를 입력해주세요." ></td>
-                </tr>          
+                  <th><span>아이디</span></th>
+                  <td><input type="text" :value=userId readonly /></td>     
                 <tr>
                   <th><span>닉네임</span></th>
-                  <td><input type="text" name = "nickname" v-model = "mynickname"></td>
-                </tr>
+                  <td><input type="text" :placeholder=userInfo.nickName v-model="newNickName"></td>
+                </tr> 
                  <tr>
                   <th><span>주  소</span></th>
-                  <td><input type="text" placeholder="주소를 입력하세요." name = "address" v-model = "myaddress"></td>
+                  <td><input type="text" :placeholder=userInfo.address v-model="newAddress"></td>
+                </tr>                
+                <tr>
+                  <th><span>현재 비밀번호 확인</span></th>
+                  <td><input type="password" @input="pressbutton" placeholder="비밀번호를 확인하세요" v-model="inputpassword"></td>
                 </tr>
-                
-               
               </tbody>
             </table>
             <div class="exform_txt"></div>
@@ -55,38 +55,83 @@
           <!-- join_form E  -->
           
           <div class="btn_wrap">
-          <a href = "mypage.jsp" @click="updateUser" class="submit-btn">저장</a>
+            <button type="submit" v-if="pass==true" class="submit-btn" @click="updateUser">저장</button>        
+            <button v-else class="not-submit-btn">저장</button>
+
           </div>
         </div> <!-- form_txtInput E -->
       </div><!-- content E-->
     </div> <!-- container E -->
-    <script>
-        new Vue ({
-        	el : "#app",
-            data() {
-        		return {
-        			loading: true,
-        			errored: false,
-        			mynickname: '',
-        			myaddress: '',
-        			result:''
-        		}
-        	},
-        	methods: {
-        		updateUser(){
-        			axios
-            		.put('http://127.0.0.1:7788/user/updateUser',
-            			{nickname : this.mynickname,
-            			 address : this.myaddress})
-            		.then(response=>(this.result = response.data))
-        			.catch(error=>{
-        			console.log(error);
-        			this.errored = true
-        		})	 
-        			.finally(()=>location.href="mypage.jsp")
-            }
-         }
-      })
-   </script>
+
+    
+ <script>  
+ 
+ const storage = window.sessionStorage;
+ 
+ new Vue({
+  		el:"#app",
+  		data() {
+  			return {  
+  				userId: storage.getItem("login_user"),
+  				jwtauthtoken: storage.getItem("jwt-auth-token"),  				  				
+  				userInfo:[],
+  				inputpassword:'',			
+  				pass:'',
+  				newNickName:'',
+  				newAddress:'',
+  				nextpage:'mypage.jsp'
+  			}
+  		},
+  		
+  		mounted(){
+            axios          
+	            .get('http://127.0.0.1:7788/user/findByUserId/'+this.userId,
+	            		{
+	              	   headers : {
+	              	  		"jwt-auth-token":storage.getItem("jwt-auth-token")
+	              	   }
+	            })
+	            .then(response=>(this.userInfo = response.data))
+	            .catch(error=>{
+	                console.log(error);
+	                this.errored = true
+	            })
+	            .finally(()=>this.loading = false)
+        },
+        
+        methods:{
+
+        	pressbutton(){
+         		
+         		if(this.inputpassword==this.userInfo.password){
+         			this.pass = true;
+         		}else{
+         			this.pass=false;	
+         		}
+         	},
+         	
+         	updateUser(){
+         		axios
+    					   .put('http://127.0.0.1:7788/user/updateUser',
+    					  {			
+    			
+    						userId: this.userId,
+    						nickName: this.newNickName,				        
+    				        address: this.newAddress
+    				   
+    					  })
+    					  .then(response=>(this.result= response.data))
+    									
+    		              .catch(error=>{
+    		                   console.log(error);
+    		                   this.errored = true
+    		                   alert("정보 변경 실패!");
+    		                   this.nextpage="user_update.jsp";
+    		                })
+    		              .finally(()=>location.href=this.nextpage)    					 
+         	}        	
+        }       
+  	});
+ </script> 
 </body>
 </html>

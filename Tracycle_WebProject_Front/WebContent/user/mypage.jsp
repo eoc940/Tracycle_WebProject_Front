@@ -33,7 +33,6 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-
               <span class="mypage_id">ID : {{userId}} <p></p></span>
               <p class="mb-0 modifyUser"><a href="user_update.jsp" class="btn btn-primary px-3 py-2">정보 수정</a></p>
               <p class="mb-0 deleteUser"><a href="../main/index.jsp" class="btn btn-primary px-3 py-2 " @click="deleteUser()">회원 탈퇴</a></p>
@@ -41,8 +40,7 @@
         <div class="col-sm-8">
           <div class="post" >
           	<h2 class="display-4 mb-3">My Posting</h2>
-          	<div class="mycontent"  v-for="board in boardinfo">
-          		<h6>글 번호 : {{board.boardId}}</h6>
+          	<div class="mycontent"  v-for="board in info">
           		<h4>{{board.title}}</h4>
           		<p>{{board.content}}</p>
           	</div>
@@ -80,13 +78,14 @@
   <script src="../js/main.js"></script>
   <script>
  //const storage = window.sessionStorage;
+  
   	new Vue({
   		el:"#app",
   		data() {
   			return {  
   				userId: storage.getItem("login_user"),
   				jwtauthtoken: storage.getItem("jwt-auth-token"),
-  				boardinfo:[ ],
+  				info:[ ],
   				commentinfo:[ ]
   			}
   		},
@@ -98,12 +97,13 @@
               	  		"jwt-auth-token":storage.getItem("jwt-auth-token")
               	   }
               	})
-            .then(response=>(this.boardinfo = response.data))
+            .then(response=>(this.info = response.data))
             .catch(error=>{
                 console.log(error);
                 this.errored = true
             })
-            .finally(()=>this.loading = false),
+            .finally(()=>this.loading = false)
+            
             
             axios
             .get('http://127.0.0.1:7788/comment/findCommentById/'+this.userId,
@@ -130,7 +130,10 @@
           	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
           	  			}
         			})
-        			.then(response=>(this.result= response.data))
+        			.then(response=>{this.result= response.data
+        				storage.setItem("jwt-auth-token", "");
+        	  			storage.setItem("login_user", "");
+        	  			})
         			.catch(error=>{
                         console.log(error);
                         this.errored = true
@@ -139,8 +142,9 @@
         		}
         	}
         }
+        
+       
   	});
-
   </script>
   </body>
 </html>
