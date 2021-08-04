@@ -380,7 +380,6 @@ const lineChart = new Chart(document.getElementById('lineChart'), {
             },
             
             fill: {
-              //opacity: [0.85, 0.25, 1],
               gradient: {
                 inverseColors: false,
                 shade: 'light',
@@ -531,7 +530,8 @@ const lineChart = new Chart(document.getElementById('lineChart'), {
             	"2018",
             	"2019",
             	"2020"
-            ],
+            ], 
+            
             colors: ['#809CA8',
             	
             function({value, seriesIndex, w}) {
@@ -547,7 +547,10 @@ const lineChart = new Chart(document.getElementById('lineChart'), {
               size: 0
             },
             xaxis: {
-              tickAmount: 30
+              tickAmount: 30,
+              labels: {
+            	  rotate: 0
+              }
             },
             
             yaxis: [{
