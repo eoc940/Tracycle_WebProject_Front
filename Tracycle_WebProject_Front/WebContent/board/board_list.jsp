@@ -242,7 +242,7 @@
             				this.errored = true
             			})
             		.finally(()=>this.loading = false)
-            	}
+            	},
 
                 initUI(){
 
@@ -296,6 +296,7 @@
                 this.initPagination();
                 this.getBoard();
 
+                
             }
         })
         
