@@ -3,7 +3,6 @@
 <html>
   <head>
     <title>지구를 위한 Tracycle</title>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <meta charset="utf-8">
@@ -33,9 +32,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
-
    <jsp:include page="../header.jsp"></jsp:include>
- 
   <div id="app"  class="site-section bg-light">
     <div class="container">
       <div class="row mt-5 mb-5">
@@ -82,7 +79,7 @@
        <div v-if="isLogin" class=" pt-5 pb-5 text-center">
 			<a href="board_form.jsp" class="btn py-3 px-4 btn-primary">Write Post</a>
        </div>
-        
+
       <nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-center">
 		    <li class="page-item disabled" v-if="prev">
@@ -98,15 +95,10 @@
 		  </ul>
 		</nav>
     </div>
-    
   </div> <!-- .section -->
-
 	<jsp:include page="../footer.jsp"></jsp:include>
-
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
   <script src="../js/jquery.min.js"></script>
   <script src="../js/jquery-migrate-3.0.1.min.js"></script>
   <script src="../js/popper.min.js"></script>
@@ -124,11 +116,10 @@
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/moment.js"></script>
-   
     <script>
+
     Vue.config.devtools = true;
-    //const storage = window.sessionStorage;
-    
+
         new Vue({
             el: "#app",           
             data(){
@@ -242,6 +233,17 @@
             		.finally(()=>this.loading = false)
             	},
 
+            	findByArea(areaNum){
+            		axios
+            			.get('http://127.0.0.1:7788/board/findByArea/'+this.areaNum)
+            			.then(respone=>(this.info= response.data))
+            			.catch(error=>{
+            				console.log(error);
+            				this.errored = true
+            			})
+            		.finally(()=>this.loading = false)
+            	}
+
                 initUI(){
 
             	      this.pageCount = Math.ceil(this.totalListItemCount/this.listRowCount);
@@ -294,9 +296,7 @@
                 this.initPagination();
                 this.getBoard();
 
-
             }
-            
         })
         
     </script>
