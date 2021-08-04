@@ -238,23 +238,7 @@
             	}
             },
             mounted(){
-            	
-            	axios
-                .put('http://127.0.0.1:7788/board/addViewCount/'+${param.boardId},
-                	{
-      	  			headers : {
-      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
-      	  			}}	
-                )
-                .then(response=>(console.log(response.data)))
-                .catch(error=>{
-                    console.log(error);
-                    this.errored = true
-                })
-                .finally(()=>this.loading = false),
-                
-             
-                
+
                 axios
              	 .get('http://127.0.0.1:7788/comment/getAllComment/'+${param.boardId},
                   		{
@@ -270,7 +254,8 @@
                 .finally(()=>this.loading = false),
                 
                 axios
-            	 .get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId},
+            	 .get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId} +'/add',
+            			 
                  		{
      	  			headers : {
      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
