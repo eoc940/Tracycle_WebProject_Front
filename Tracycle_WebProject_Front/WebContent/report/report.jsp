@@ -9,8 +9,6 @@
 
     <title>지구를 위한 Tracycle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-  	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
     
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -195,8 +193,7 @@
                 </div>
 
                
-                <!-- mixed chart -->
-              
+            <!-- mixed chart -->
 			<div id="app">
 		      <div id="chart">
 		      <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
@@ -209,6 +206,14 @@
         </div>
       </div>
     </div>
+    
+    <!-- Heatmap -->
+    <div id="apph">
+      <div id="chart">
+      <apexchart type="heatmap" height="350" :options="chartOptions" :series="series"></apexchart>
+    </div>
+    </div>
+    
   </div> <!-- .site-section -->
 
 <jsp:include page="../footer.jsp"></jsp:include>
@@ -217,7 +222,7 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-<!--ㅡmixed chart  -->
+  <!-- For mixed chart & Heatmap -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>	
@@ -240,10 +245,6 @@
   <script src="../js/chart.js"></script>
   
 
-
-
-
-</script>
   </body>
 
 </html>

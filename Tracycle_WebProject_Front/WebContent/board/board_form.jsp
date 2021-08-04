@@ -81,14 +81,14 @@
                       </div>
                       
                       </div>
-                       <div class="form-group">
+                      <!--  <div class="form-group">
                         <label for="content" class="label-font-bold">카테고리</label><br>
 						    <select class="" name="selectedCategory" v-model="category.categoryId">
 					    		<option v-for="scategory in categoryList" :value="scategory.categoryId">
 					    			{{scategory.categoryName}}
 					    		</option>
 					    	</select>
-                      </div>
+                      </div> -->
                       
                       
                       <div class="form-group">
@@ -253,7 +253,11 @@
 				.finally(()=>location.href="board_list.jsp")
 			}
 			
-		}
+		},
+		updated: function(){
+			  this.$nextTick(function(){ $('.selectpicker').selectpicker('refresh'); });
+			}
+		
 	})
 
 </script>
