@@ -210,7 +210,8 @@
 			})
 			.finally(()=>this.loading = false),
 			axios
-			.get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId},{
+			.get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId}+'/noadd',
+					{
  	  			headers : {
  	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
  	  			}
