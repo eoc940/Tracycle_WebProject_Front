@@ -311,6 +311,10 @@
             },
             methods:{
            		submitComment(){
+           			if(this.info.content==null||this.info.content==""){
+           				alert("댓글을 입력해주세요");
+           				return;
+           			}
            			var today = new Date();
     				var year = today.getFullYear();
     				var month = ('0' + (today.getMonth() + 1)).slice(-2);
@@ -338,7 +342,7 @@
 	                    this.errored = true
 	                })
 	                .finally(()=>location.href="board_detail.jsp?boardId="+${param.boardId}) 
-           
+           			
           	 	},
            		deleteComment(commentId){
           	 		if(confirm("댓글을 삭제 하시겠습니까?")){
