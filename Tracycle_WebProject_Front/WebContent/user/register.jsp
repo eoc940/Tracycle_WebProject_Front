@@ -33,7 +33,7 @@
               <tbody @input="pressbutton">
                 <tr>
                   <th><span>아이디</span></th>
-                  <td><input type="text" placeholder="ID 를 입력하세요. (영문, 숫자 조합 5자 이상/특수문자, 공백 사용 불가)" minlength="5" class="inputId"  v-model.trim="userid"  @blur="[checkId(), idcnt()]"><p v-html="idinvalidmessage"  required></p><div class="idCheck"><button @click= "validationId" class="idCheck" style="cursor:pointer;">ID Check</button></div></td>
+                  <td><input type="text" placeholder="ID 를 입력하세요. (영문, 숫자 조합 5자 이상/특수문자, 공백 사용 불가)" minlength="5" class="inputId"  v-model.trim="userid"  @blur="[checkId(), idcnt()]" @change="againCheckId"><p v-html="idinvalidmessage"  required></p><div class="idCheck"><button @click= "validationId" class="idCheck" style="cursor:pointer;">ID Check</button></div></td>
                 </tr>
                
                 <tr>
@@ -61,7 +61,7 @@
           
           <div class="btn_wrap">
           
-            	<button type="submit" v-if="pass==true" class="submit-btn" @click="invalidIdMessage()">가입</button>
+            	<button type="submit" v-if="pass==true" class="submit-btn" @click="[invalidIdMessage(),checkId()]">가입</button>
          
             	<button v-else class="not-submit-btn">가입</button>
           
@@ -186,6 +186,10 @@
              			alert("가입을 축하합니다.");
              			this.addUser();
              		}
+             	},
+             	
+             	againCheckId(){
+             		this.idpass=false;
              	}
  		 },
  		 
