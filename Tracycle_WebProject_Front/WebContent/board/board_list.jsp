@@ -39,7 +39,6 @@
  		<div class="col-md-12 mt-5 mb-5">			
 	       <div class="serachbar">	       			       		
 	       		<form action="id" method="get">
-
 	       			<select name = "searchField" id = "searchField" v-model="selected" @change="selectedOk">	
 	       			    <option value = "search-id">전체</option> 				
 	       				<option value = "search-id">아이디</option>
@@ -49,21 +48,23 @@
 	       				<option value = "search-area">지역</option>
 	       			</select>
 	       		
-	       		<select name="category" v-model="category" v-if="useOptional=='categoryOptional'" @change="findByCategory">
-					<option v-for="category in categoryInfo" :value="category.categoryId" >
-						{{category.categoryId}}:{{category.categoryName}}
-					</option>
-				</select>
-				<select name="area" v-model="areaNum" v-else-if="useOptional=='areaOptional'"  @change="findByAreaInMethods">
-					<option v-for="area in areaInfo" :value="area.areaId">
-						{{area.areaId}}:{{area.areaName}}
-					</option>
-				</select>
-					<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'" placeholder="검색어를 입력하세요" v-model="keyword" >
-	       			<input type = "button"  v-if="selected=='search-id'" value="검색" @click="findById">
-	       			<input type = "button"  v-if="selected=='search-title'" value="검색" @click="findByTitle">
-	       			<input type = "button"  v-if="selected=='search-content'" value="검색" @click="findByContent">    		
-	       		</form>
+		       		<select name="category" v-model="category" v-if="useOptional=='categoryOptional'" @change="findByCategory">
+						<option v-for="category in categoryInfo" :value="category.categoryId" >
+							{{category.categoryId}}:{{category.categoryName}}
+						</option>
+					</select>
+					
+					<select name="area" v-model="areaNum" v-else-if="useOptional=='areaOptional'"  @change="findByAreaInMethods">
+						<option v-for="area in areaInfo" :value="area.areaId">
+							{{area.areaId}}:{{area.areaName}}
+						</option>
+					</select>
+					
+						<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'" placeholder="검색어를 입력하세요"  v-model="keyword">
+		       			<input type = "button"  v-if="selected=='search-id'" value="검색"  @click="findById">
+		       			<input type = "button"  v-if="selected=='search-title'" value="검색"  @click="findByTitle">
+		       			<input type = "button"  v-if="selected=='search-content'" value="검색"  @click="findByContent">    		
+		       	</form>
 	       </div>
 	    </div>
      	<div v-for="board in info" class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
@@ -199,7 +200,7 @@
                     console.log(error);
                     this.errored = true
                 })
-                 .finally(()=>this.loading = false)
+                 .finally(()=>this.loading = false),
                  
                  
                 axios
