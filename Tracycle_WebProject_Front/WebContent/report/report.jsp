@@ -20,7 +20,6 @@
 	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
 
-
     <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../css/animate.css">
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
@@ -33,6 +32,8 @@
     <link rel="stylesheet" href="../css/fancybox.min.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/chart.css">
+    
     
     
  <script>
@@ -86,18 +87,13 @@
         </div>
         <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
 		 <!-- Content -->
-            <div class="mt-2 mb-5 px-5 mx-5">
-             <!--  -->
+
               <!-- Charts -->
-              <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-3 lg:grid-cols-3">
-              
-              
+             
                
-                  
-                 <h4 class="text-lg font-semibold text-gray-500 dark:text-light pb-3 mb-5">전국 생활폐기물 배출량</h4>
                  <!-- line Chart -->
-	             <div id="appl">    
-	             	<div id="chart">
+	             <div id="chart">    
+	             	<div id="appl">
 	        		  	<apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
 	      			</div>
 	             </div>
@@ -105,29 +101,25 @@
 	             <br>
 			   	 <br>
                 
-	  			<h4 class="text-lg font-semibold text-gray-500 dark:text-light pb-3 mb-5">세계 해수면 높이 & 기온 변화</h4> 
+	  			
 	            <!-- mixed chart -->
-				<div id="app">
-			      <div id="chart">
-			      <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
+				<div id="chart">
+			      <div id="app">
+			      	<apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
 			      </div>
 			    </div>
 			    <br>
 			    <br>
 			    <br>
 			    
-			    
-			    
-			    <h4 class="text-lg font-semibold text-gray-500 dark:text-light pb-3 mb-5">국내 평균 기온 변화 Heatmap</h4>  
+			   
 			    <!-- Heatmap -->
-			    <div id="apph">
-			      <div id="chart">
-			      <apexchart type="heatmap" height="350" :options="chartOptions" :series="series"></apexchart>
+			    <div id="chart">
+			      <div id="apph">
+			      	<apexchart type="heatmap" height="350" :options="chartOptions" :series="series"></apexchart>
 			      </div>
 			    </div>  
 		          
-       		</div>
-         </div>
        </main>
         </div>
       </div>

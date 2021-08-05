@@ -1,8 +1,3 @@
-
-const random = (max = 100) => {
-  return Math.round(Math.random() * max) + 20
-}
-
 // line chart data
 new Vue({
     el: '#appl',
@@ -17,10 +12,11 @@ new Vue({
       }],
       chartOptions: {
         chart: {
+          width: "100%",	
           height: 350,
           type: 'line',
           zoom: {
-            enabled: false
+            enabled: true
           }
         },
         dataLabels: {
@@ -61,6 +57,19 @@ new Vue({
 	        },
         	
         }],
+        
+        responsive: [
+            {
+              breakpoint: 1000,
+              options: {
+                plotOptions: {
+                  line: {
+                    horizontal: false
+                  }
+                }
+              }
+            }
+          ],
         
       },
       
@@ -369,9 +378,13 @@ new Vue({
           }],
           chartOptions: {
             chart: {
+              width: "100%",	
               height: 350,
               type: 'line',
               stacked: false,
+              zoom: {
+                  enabled: true
+                }
             },
             stroke: {
               width: [0, 2, 5],
@@ -602,6 +615,28 @@ new Vue({
                	 },
                 },
               }],
+              
+              legend: {
+            	    position: "top",
+            	    verticalAlign: "top",
+            	    containerMargin: {
+            	      left: 35,
+            	      right: 60
+            	    }
+            	  },
+            	  
+              responsive: [
+            	    {
+            	      breakpoint: 1000,
+            	      options: {
+            	        plotOptions: {
+            	          bar: {
+            	            horizontal: false
+            	          }
+            	        }
+            	      }
+            	    }
+            	  ],
             
             tooltip: {
                 shared: true,
@@ -700,9 +735,9 @@ new Vue({
       
       chartOptions: {
         chart: {
+          width: "100%",
           height: 350,
-          width: 3000,
-          type: 'heatmap',
+          type: 'heatmap'
         },
         
         plotOptions: {
@@ -712,17 +747,17 @@ new Vue({
         			ranges: [{
         				from: -4.42,
         				to: -0.1,
-        				name: 'low',
+        				name: 'Low',
         				color: '#284561'
         			}, {
         				from: -0.1,
         				to: 1,
-        				name: 'middle',
+        				name: 'Middle',
         				color: '#E08A78'
         			}, {
         			    from: 1,
         			    to: 3.5,
-        			    name: 'high',
+        			    name: 'High',
         			    color: '#E66043'
         			}
         			]
@@ -741,8 +776,29 @@ new Vue({
         	labels: {
         		rotate: 0
         	}
-        }, 
+        },
         
+        legend: {
+      	    position: "top",
+      	    verticalAlign: "top",
+      	    containerMargin: {
+      	      left: 35,
+      	      right: 60
+      	    }
+      	  },
+        
+        responsive: [
+            {
+              breakpoint: 1000,
+              options: {
+                plotOptions: {
+                  heatmap: {
+                    horizontal: false
+                  }
+                }
+              }
+            }
+          ],
       },
     },
   })
