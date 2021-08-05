@@ -17,10 +17,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet">
-	<!-- 차트 링크 --> 
+	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
 
 
     <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
@@ -52,7 +50,7 @@
         )
     </script>
 
-    
+    <!-- Apexchart CDN --> 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
@@ -94,39 +92,40 @@
               <div class="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-3 lg:grid-cols-3">
               
               
-               <!-- Line chart card -->
-                <div class="col-span-2 bg-white rounded-md dark:bg-darker" x-data="{ isOn: false }">
-                  <!-- Card header -->
-                  <div class="flex items-center justify-between p-4 border-b dark:border-primary">
-                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light pb-5 mb-5">전국 생활폐기물 배출량</h4>
-                    <div class="flex items-center">
-                        <div
-                          class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-darker"
-                        ></div>
+               
                   
-                    </div>
-                  </div>
-                  <!-- Chart -->
-                  <div class="relative">
-                    <canvas class="h-150" id="lineChart"></canvas>
-                  </div>
-                  
-                  <div class="m-4"id="lineContent2">
-                	<p> </p>
-                	<p> </p>
-                	<p> </p>
-               	 </div>
-                </div>
+                 <h4 class="text-lg font-semibold text-gray-500 dark:text-light pb-3 mb-5">전국 생활폐기물 배출량</h4>
+                 <!-- line Chart -->
+	             <div id="appl">    
+	             	<div id="chart">
+	        		  	<apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
+	      			</div>
+	             </div>
+	             <br>
+	             <br>
+			   	 <br>
                 
-                
-              
-            <!-- mixed chart -->
-			<div id="app">
-		      <div id="chart">
-		      <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
-		    </div>
-		    </div>
-		            
+	  			<h4 class="text-lg font-semibold text-gray-500 dark:text-light pb-3 mb-5">세계 해수면 높이 & 기온 변화</h4> 
+	            <!-- mixed chart -->
+				<div id="app">
+			      <div id="chart">
+			      <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
+			      </div>
+			    </div>
+			    <br>
+			    <br>
+			    <br>
+			    
+			    
+			    
+			    <h4 class="text-lg font-semibold text-gray-500 dark:text-light pb-3 mb-5">국내 평균 기온 변화 Heatmap</h4>  
+			    <!-- Heatmap -->
+			    <div id="apph">
+			      <div id="chart">
+			      <apexchart type="heatmap" height="350" :options="chartOptions" :series="series"></apexchart>
+			      </div>
+			    </div>  
+		          
        		</div>
          </div>
        </main>
@@ -134,12 +133,7 @@
       </div>
     </div>
     
-    <!-- Heatmap -->
-    <div id="apph">
-      <div id="chart">
-      <apexchart type="heatmap" height="350" :options="chartOptions" :series="series"></apexchart>
-    </div>
-    </div>
+ 
     
   </div> <!-- .site-section -->
 
