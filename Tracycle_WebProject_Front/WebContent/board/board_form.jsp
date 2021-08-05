@@ -208,13 +208,39 @@
 			
 			mainFileUpload(){
 				this.mainFile = this.$refs.mainFile.files[0];
+				if (this.mainFile.length > 1) {
+					this.mainFile = [];
+					alert("메인 이미지는 1장만 가능합니다");
+				}
 				console.log(this.mainFile);
 			},
 			subFileUpload(){
 				this.subFile = this.$refs.subFile.files;
+				if (this.subFile.length > 4) {
+					this.subFile = [];
+					alert("이미지는 4개 이하로 올려주세요");
+				}
 				for(var i=0; i<this.subFile.length; i++) {
 					console.log(this.subFile[i])
 				}
+			},
+			validation() {
+				if(this.board.title == null || this.board.title.trim()=="") {
+					alert("제목을 입력해 주세요"); return false;
+				} else if (this.board.content == null || this.board.content.trim()=="") {
+					alert("내용을 입력해 주세요"); return false;
+				} else if (this.area.areaId == null){
+					alert("지역을 선택해 주세요"); return false;
+				} else if (this.category.categoryId == null) {
+					alert("품목을 선택해 주세요"); return false;
+				} else if (this.board.status == null) {
+					alert("상태를 선택해 주세요"); return false;
+				} else if (this.mainFile.length == 0) {
+					alert("메인 이미지를 업로드해 주세요"); return false;
+				} else if (this.subFile.length == 0) {
+					alert("이미지를 업로드해 주세요"); return false;
+				}
+				return true;
 			},
 			submitPost(){
 				var today = new Date();
@@ -225,32 +251,37 @@
 				var minutes = today.getMinutes(); 
 				var seconds = today.getSeconds();
 				var dateString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-				const formData = new FormData();
-				formData.append("title",this.board.title);
-				formData.append("content",this.board.content);
-				formData.append("areaId",this.area.areaId);
-				formData.append("categoryId",this.category.categoryId);
-				formData.append("viewCount",0);
-				formData.append("userId",this.userId);
-				formData.append("date",dateString);
-				formData.append("status",this.board.status);
-				formData.append("mainFile",this.mainFile)
-				for(var i=0; i<this.subFile.length; i++) {
-					formData.append("file", this.subFile[i]);
-				}
-				for(var key of formData.entries()) {
-					console.log(key[0]+', '+key[1]);
+				
+				if(this.validation()) {
+					const formData = new FormData();
+					formData.append("title",this.board.title);
+					formData.append("content",this.board.content);
+					formData.append("areaId",this.area.areaId);
+					formData.append("categoryId",this.category.categoryId);
+					formData.append("viewCount",0);
+					formData.append("userId",this.userId);
+					formData.append("date",dateString);
+					formData.append("status",this.board.status);
+					formData.append("mainFile",this.mainFile)
+					for(var i=0; i<this.subFile.length; i++) {
+						formData.append("file", this.subFile[i]);
+					}
+					for(var key of formData.entries()) {
+						console.log(key[0]+', '+key[1]);
+					}
+					axios.post('http://127.0.0.1:7788/board/writeBoard', formData,
+							{headers:{ 'Content-Type': 'multipart/form-data',
+								"jwt-auth-token":storage.getItem("jwt-auth-token")}})
+					.then(response=>{
+						this.result= response.data
+					}).catch(error=>{
+						console.log(error);
+	                    this.errored = true
+					})
+					.finally(()=>location.href="board_list.jsp")
 				}
 				
-				axios.post('http://127.0.0.1:7788/board/writeBoard', formData,
-						{headers:{ 'Content-Type': 'multipart/form-data' }})
-				.then(response=>{
-					this.result= response.data
-				}).catch(error=>{
-					console.log(error);
-                    this.errored = true
-				})
-				.finally(()=>location.href="board_list.jsp")
+				
 			}
 			
 		},

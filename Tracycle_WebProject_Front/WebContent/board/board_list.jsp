@@ -385,6 +385,7 @@
                 this.initPagination();
                 this.getBoard();
 
+                
             }
         })
         
