@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
   <head>
     <title>지구를 위한 Tracycle</title>
@@ -40,7 +41,7 @@
 	       <div class="serachbar">	       			       		
 	       		<form action="id" method="get">
 	       			<select name = "searchField" id = "searchField" v-model="selected" @change="selectedOk">	
-	       			    <option value = "search-id">전체</option> 				
+	       			    <option value = "search-all" >전체</option> 				
 	       				<option value = "search-id">아이디</option>
 	       				<option value = "search-title">제목</option>
 	       				<option value = "search-content">내용</option>
@@ -48,18 +49,25 @@
 	       				<option value = "search-area">지역</option>
 	       			</select>
 	       		
-	       		<select name="category" v-model="category" v-if="useOptional=='categoryOptional'" @change="findByCategory">
+	       		<!--  <select name="category" v-model="category" v-if="useOptional=='allOptional'" @change="getAllBoard">-->
+					
+				</select>
+	       		
+	       		<select name="category" v-model="category" v-if="useOptional=='categoryOptional'" @change="findByCategory">	       			
 					<option v-for="category in categoryInfo" :value="category.categoryId" >
 						{{category.categoryId}}:{{category.categoryName}}
 					</option>
 				</select>
+				
 				<select name="area" v-model="areaNum" v-else-if="useOptional=='areaOptional'"  @change="findByAreaInMethods">
 					<option v-for="area in areaInfo" :value="area.areaId">
 						{{area.areaId}}:{{area.areaName}}
 					</option>
 				</select>
 				
-				<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'" placeholder="검색어를 입력하세요" v-model="keyword" >
+				<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'&& selected=='search-id'" placeholder="검색어를 입력하세요" v-model="keyword" @keydown.enter.prevent="findById">
+				<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'&& selected=='search-title'" placeholder="검색어를 입력하세요" v-model="keyword" @keydown.enter.prevent="findByTitle">
+				<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional' &&selected=='search-content'" placeholder="검색어를 입력하세요" v-model="keyword" @keydown.enter.prevent="findByContent">
 	       		<input type = "button"  v-if="selected=='search-id'" value="검색" @click="findById">
 	       		<input type = "button"  v-if="selected=='search-title'" value="검색" @click="findByTitle">
 	       		<input type = "button"  v-if="selected=='search-content'" value="검색" @click="findByContent">    		
@@ -130,8 +138,8 @@
                     info:[ ],
                     areaInfo:[ ],
                     categoryInfo:[],
-                    selected:'',
-                    useOptional:'notOptional',
+                    selected:"search-all",
+                    useOptional:'allOptional',
                     status_class:[
                     	"ml-2 badge badge-pill badge-warning",
                     	"ml-2 badge badge-pill badge-success",   	
@@ -213,6 +221,10 @@
 
             },
             methods:{
+            	
+            	
+            	
+            	
             	findByCategory(category){
             		axios
         			.get('http://127.0.0.1:7788/board/findByCategory/'+this.category)
@@ -270,23 +282,30 @@
             	},
             	
             	selectedOk(){
-            		if(this.selected=="search-area")
+            		
+            		if(this.selected=="search-area"){
             			this.useOptional = "areaOptional"
-            		else if(this.selected=="search-category") 
-            			this.useOptional = "categoryOptional"           		       		
+            			this.areaNum=""
+            		}else if(this.selected=="search-category"){ 
+            			this.useOptional = "categoryOptional"  
+            			this.category=""
+            		}
+            		else if(this.selected=="search-all"){
+                    	this.useOptional = "allOptional"
+                    		axios
+	            			.get('http://127.0.0.1:7788/board/getAllBoard')
+	            			.then(response=>(this.info= response.data))
+	    	                .catch(error=>{
+	    	                    console.log(error);
+	    	                    this.errored = true
+	    	                })
+	            		.finally(()=>this.loading = false)
+            		}	
             		else 
-            			this.useOptional = "notOptional"
-   
+            			this.useOptional = "notOptional"   
             	},
             	
-            	/*keywordSearch(){           		
-            		if(this.selected=="search-id")
-            			this.findById();
-            		else if(this.selected=="search-title") 
-            			this.findByTitle();           		       		
-            		else if(this.selected=="search-content")
-            			this.findByContent();
-            	},*/
+
             	
             	/* pagination */
             	
