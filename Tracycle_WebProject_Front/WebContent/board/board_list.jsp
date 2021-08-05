@@ -49,23 +49,29 @@
 	       				<option value = "search-area">지역</option>
 	       			</select>
 	       		
-		       		<select name="category" v-model="category" v-if="useOptional=='categoryOptional'" @change="findByCategory">
-						<option v-for="category in categoryInfo" :value="category.categoryId" >
-							{{category.categoryId}}:{{category.categoryName}}
-						</option>
-					</select>
+	       		<!--  <select name="category" v-model="category" v-if="useOptional=='allOptional'" @change="getAllBoard">-->
 					
-					<select name="area" v-model="areaNum" v-else-if="useOptional=='areaOptional'"  @change="findByAreaInMethods">
-						<option v-for="area in areaInfo" :value="area.areaId">
-							{{area.areaId}}:{{area.areaName}}
-						</option>
-					</select>
-						<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'" placeholder="검색어를 입력하세요"  v-model="keyword">
-		       			<input type = "button"  v-if="selected=='search-id'" value="검색"  @click="findById">
-		       			<input type = "button"  v-if="selected=='search-title'" value="검색"  @click="findByTitle">
-		       			<input type = "button"  v-if="selected=='search-content'" value="검색"  @click="findByContent">    		
-		       	</form>
-	       		<!--  <select name="category" v-model="category" v-if="useOptional=='allOptional'" @change="getAllBoard"> </select>-->
+				</select>
+	       		
+	       		<select name="category" v-model="category" v-if="useOptional=='categoryOptional'" @change="findByCategory">	       			
+					<option v-for="category in categoryInfo" :value="category.categoryId" >
+						{{category.categoryId}}:{{category.categoryName}}
+					</option>
+				</select>
+				
+				<select name="area" v-model="areaNum" v-else-if="useOptional=='areaOptional'"  @change="findByAreaInMethods">
+					<option v-for="area in areaInfo" :value="area.areaId">
+						{{area.areaId}}:{{area.areaName}}
+					</option>
+				</select>
+				
+				<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'&& selected=='search-id'" placeholder="검색어를 입력하세요" v-model="keyword" @keydown.enter.prevent="findById">
+				<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'&& selected=='search-title'" placeholder="검색어를 입력하세요" v-model="keyword" @keydown.enter.prevent="findByTitle">
+				<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional' &&selected=='search-content'" placeholder="검색어를 입력하세요" v-model="keyword" @keydown.enter.prevent="findByContent">
+	       		<input type = "button"  v-if="selected=='search-id'" value="검색" @click="findById">
+	       		<input type = "button"  v-if="selected=='search-title'" value="검색" @click="findByTitle">
+	       		<input type = "button"  v-if="selected=='search-content'" value="검색" @click="findByContent">    		
+	       		</form>
 	       </div>
 	    </div>
      	<div v-for="board in info" class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
@@ -122,9 +128,7 @@
   <script src="../js/main.js"></script>
   <script src="../js/moment.js"></script>
     <script>
-
     Vue.config.devtools = true;
-
         new Vue({
             el: "#app",           
             data(){
@@ -159,7 +163,6 @@
                     endPageIndex: 0, //끝페이지 인덱스 
                     prev: false, //<< 출력 
                     next: false //>> 출력 
-
                 }
             },
             computed: {
@@ -183,7 +186,6 @@
             	}
             },
             mounted(){
-
             	offset=(this.currentPageIndex-1)*this.listRowCount;
         		axios
             	.get('http://127.0.0.1:7788/board/getBoardLimitOffset/'+offset)
@@ -201,7 +203,7 @@
                     console.log(error);
                     this.errored = true
                 })
-                 .finally(()=>this.loading = false),
+                 .finally(()=>this.loading = false)
                  
                  
                 axios
@@ -212,10 +214,12 @@
                     this.errored = true
                 })
                  .finally(()=>this.loading = false)
-
             },
             methods:{
-
+            	
+            	
+            	
+            	
             	findByCategory(category){
             		axios
         			.get('http://127.0.0.1:7788/board/findByCategory/'+this.category)
@@ -238,7 +242,6 @@
                    })
                    .finally(()=>this.loading = false)
             	},
-
             	findById(keyword){
             		axios
         			.get('http://127.0.0.1:7788/board/findById/'+this.keyword)
@@ -272,21 +275,10 @@
         		.finally(()=>this.loading = false)
             	},
             	
-            	
-            	
             	selectedOk(){
             		
             		if(this.selected=="search-area"){
             			this.useOptional = "areaOptional"
-           	
-            	/*keywordSearch(){           		
-            		if(this.selected=="search-id")
-            			this.findById();
-            		else if(this.selected=="search-title") 
-            			this.findByTitle();           		       		
-            		else if(this.selected=="search-content")
-            			this.findByContent();
-            	},*/
             			this.areaNum=""
             		}else if(this.selected=="search-category"){ 
             			this.useOptional = "categoryOptional"  
@@ -307,6 +299,7 @@
             			this.useOptional = "notOptional"   
             	},
             	
+            	
             	/* pagination */
             	
             	initPagination(){
@@ -321,7 +314,6 @@
 		                })
             		.finally(()=>this.loading = false)
             	},
-
             	findByAreaInMethods(areaNum){
             		axios
             			.get('http://127.0.0.1:7788/board/findByArea/'+this.areaNum)
@@ -331,34 +323,27 @@
             				this.errored = true
             			})
             		.finally(()=>this.loading = false)
-            	},      	
-
+            	},
                 initUI(){
-
             	      this.pageCount = Math.ceil(this.totalListItemCount/this.listRowCount);
-
             	      if( (this.currentPageIndex % this.pageLinkCount) == 0 ){
             	        this.startPageIndex = ((this.currentPageIndex / this.pageLinkCount)-1)*this.pageLinkCount + 1
             	      }else{
             	        this.startPageIndex = Math.floor(this.currentPageIndex / this.pageLinkCount)*this.pageLinkCount + 1
             	      }
-
             	      if( (this.currentPageIndex % this.pageLinkCount) == 0 ){ //10, 20...맨마지막
             	        this.endPageIndex = ((this.currentPageIndex / this.pageLinkCount)-1)*this.pageLinkCount + this.pageLinkCount
             	      }else{
             	        this.endPageIndex =  Math.floor(this.currentPageIndex / this.pageLinkCount)*this.pageLinkCount + this.pageLinkCount;
             	      }
-
             	      if(this.endPageIndex > this.pageCount){
             	        this.endPageIndex = this.pageCount
             	      }
-
             	      if( this.currentPageIndex <= this.pageLinkCount ){
             	        this.prev = false;
             	      }else{
             	        this.prev = true;
             	      }
-
             	      if(this.endPageIndex >= this.pageCount){
             	        this.endPageIndex = this.pageCount;
             	        this.next = false;
@@ -373,7 +358,7 @@
                 	findByArea(areaNum){
                 		axios
                 			.get('http://127.0.0.1:7788/board/findByArea/'+this.areaNum)
-                			.then(response=>(this.info= response.data))
+                			.then(respone=>(this.info= response.data))
                 			.catch(error=>{
                 				console.log(error);
                 				this.errored = true
@@ -384,11 +369,10 @@
             created() {
                 this.initPagination();
                 this.getBoard();
-
                 
             }
         })
         
     </script>
-  </body> 
+  </body>
 </html>
