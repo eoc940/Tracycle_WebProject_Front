@@ -366,6 +366,7 @@
                 this.initPagination();
                 this.getBoard();
 
+                
             }
         })
         

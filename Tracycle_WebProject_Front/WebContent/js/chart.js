@@ -4,157 +4,23 @@ const random = (max = 100) => {
 }
 
 // bar&line chart data
-const randomData = () => {
+const trashData = () => {
   return [
 	  401658, 418214, 429128, 429531, 446102, 497238
-
   ]
 }
 
+const years = ['2014', '2015', '2016', '2017', '2018', '2019']
 
 
-const months = ['2014', '2015', '2016', '2017', '2018', '2019']
-
-const barChart = new Chart(document.getElementById('barChart'), {
-  type: 'bar',
-  data: {
-    labels: months,
-    datasets: [
-      {
-        data: randomData(),
-        backgroundColor: ' rgba(128, 156, 168, 1)',
-        hoverBackgroundColor: 'gray',
-      },
-    ],
-  },
-  options: {
-    scales: {
-      yAxes: [
-        {
-          gridLines: false,
-          ticks: {
-        	 min:300000,
-        	 max:500000,
-            beginAtZero: true,
-            stepSize: 50,
-            fontSize: 12,
-            fontColor: 'rgba(128, 156, 168, 1)',
-            fontFamily: 'Nunito, sans-serif',
-            padding: 10,
-          },
-        },
-      ],
-      xAxes: [
-        {
-          gridLines: false,
-          ticks: {
-            fontSize: 12,
-            fontColor: 'rgba(128, 156, 168, 1)',
-            fontFamily: 'Nunito, sans-serif',
-            padding: 5,
-          },
-          categoryPercentage: 0.5,
-          maxBarThickness: '10',
-        },
-      ],
-    },
-    cornerRadius: 2,
-    maintainAspectRatio: false,
-    legend: {
-      display: false,
-    },
-  },
-})
-
-const doughnutChart = new Chart(document.getElementById('doughnutChart'), {
-  type: 'doughnut',
-  data: {
-    labels: ['2018', '2019', '2020'],
-    datasets: [
-      {
-        data: [random(), random(), random()],
-        backgroundColor: ' rgba(128, 156, 168, 1)',
-        hoverBackgroundColor: 'gray',
-        borderWidth: 0,
-        weight: 0.5,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    legend: {
-      position: 'bottom',
-    },
-
-    title: {
-      display: false,
-    },
-    animation: {
-      animateScale: true,
-      animateRotate: true,
-    },
-  },
-})
-
-const activeUsersChart = new Chart(document.getElementById('activeUsersChart'), {
-  type: 'bar',
-  data: {
-    labels: [...randomData(), ...randomData()],
-    datasets: [
-      {
-        data: [...randomData(), ...randomData()],
-        backgroundColor: ' rgba(128, 156, 168, 1)',
-        borderWidth: 0,
-        categoryPercentage: 1,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      yAxes: [
-        {
-          display: false,
-          gridLines: false,
-        },
-      ],
-      xAxes: [
-        {
-          display: false,
-          gridLines: false,
-        },
-      ],
-      ticks: {
-        padding: 10,
-      },
-    },
-    cornerRadius: 2,
-    maintainAspectRatio: false,
-    legend: {
-      display: false,
-    },
-    tooltips: {
-      prefix: 'Users',
-      bodySpacing: 4,
-      footerSpacing: 4,
-      hasIndicator: true,
-      mode: 'index',
-      intersect: true,
-    },
-    hover: {
-      mode: 'nearest',
-      intersect: true,
-    },
-  },
-})
-
+// 맨 첫번째 lineChart
 const lineChart = new Chart(document.getElementById('lineChart'), {
   type: 'line',
   data: {
-    labels: months,
+    labels: years,
     datasets: [
       {
-        data: randomData(),
+        data: trashData(),
         fill: false,
         borderColor: ' rgba(128, 156, 168, 1)',
         borderWidth: 2,
@@ -195,25 +61,9 @@ const lineChart = new Chart(document.getElementById('lineChart'), {
       hasIndicator: true,
       intersect: false,
     },
+    
   },
 })
-
-let randomUserCount = 0
-
-const usersCount = document.getElementById('usersCount')
-
-const fakeUsersCount = () => {
-  randomUserCount = random()
-  activeUsersChart.data.datasets[0].data.push(randomUserCount)
-  activeUsersChart.data.datasets[0].data.splice(0, 1)
-  activeUsersChart.update()
-  usersCount.innerText = randomUserCount
-}
-
-setInterval(() => {
-  fakeUsersCount()
-}, 1000)
-
 
 /*mixed 차트*/
       new Vue({
@@ -526,11 +376,10 @@ setInterval(() => {
             plotOptions: {
               bar: {
                 columnWidth: '50%'
-              }
+              },
             },
             
             fill: {
-              opacity: [0.85, 0.25, 1],
               gradient: {
                 inverseColors: false,
                 shade: 'light',
@@ -681,58 +530,73 @@ setInterval(() => {
             	"2018",
             	"2019",
             	"2020"
-            ],
-            colors: ['#008FFB', '#FB0303'],
+            ], 
+            
+            colors: ['#809CA8',
+            	
+            function({value, seriesIndex, w}) {
+            	if (value < 0) {
+            		return '#008FFB'
+            		
+            	} else {
+            		return '#FF6947'
+            	}
+            }],
+            
             markers: {
               size: 0
             },
             xaxis: {
-              tickAmount: 30
+              tickAmount: 30,
+              labels: {
+            	  rotate: 0
+              }
             },
             
             yaxis: [{
               title: {
                 text: 'Sea Level (m)',
                 style: {
-                	color: '#008FFB',
+                	color: '#809CA8',
                 }	
               },
               
              decimalsInFloat: 1,
              axisTicks: {
             	 show: true,
-            	 color: '#008FFB'
+            	 color: '#809CA8'
              },
              axisBorder: {
             	 show: true,
-            	 color: '#008FFB'
+            	 color: '#809CA8'
              },
              labels: {
             	 style: {
-            		 colors: '#008FFB'
+            		 colors: '#809CA8'
             	 }
              },
+             
                  
             }, {
              opposite: true,
              title: {
             	 text: 'Temperature (°C)',
             	 style: {
-            		 color: '#FB0303',
+            		 color: '#FF6947',
             	 }	 
                },   
               decimalsInFloat: 1,
               axisTicks: {
              	 show:true,
-             	 color: '#FB0303'
+             	 color: '#FF6947'
               },
               axisBorder: {
              	 show:true,
-             	 color: '#FB0303'
+             	 color: '#FF6947'
               },
               labels: {
              	 style: {
-             		 colors: '#FB0303'
+             		 colors: '#FF6947'
              	 },
               },
             }],
@@ -748,6 +612,9 @@ setInterval(() => {
                     return y;
                     
                   }
+                },
+                marker: {
+                	show: false
                 }
               },
           },
@@ -867,7 +734,7 @@ new Vue({
         },
      
         title: {
-          text: '온도변화 폭 Heatmap'
+          text: '온도변화 Heatmap'
         },
         xaxis: {
         	categories: Year,
