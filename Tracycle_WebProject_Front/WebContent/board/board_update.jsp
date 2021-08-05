@@ -55,20 +55,21 @@
                         <textarea name="" id="content" cols="30" rows="20" class="form-control" v-model="board.content"></textarea>
                       </div>
                       <div class="form-group">
+                       <label for="content" class="label-font-bold">지역 </label><br>
                       	<select class="selectpicker" name="selectedArea" v-model="area.areaId">
 					    		<option v-for="sarea in areaList" :value="sarea.areaId">
 					    			{{sarea.areaName}}
 					    		</option>
 					    </select>
-                      	
                       	<!-- 
+                      	
                         <label for="content" class="label-font-bold">지역 </label><br>
 						    <select class="selectpicker" name="selectedArea" v-model="area.areaId">
 					    		<option v-for="sarea in areaList" :value="sarea.areaId">
 					    			{{sarea.areaName}}
 					    		</option>
-					    	</select> -->
-                      	 
+					    	</select>
+                      	 -->
                       </div>
                       <div class="form-group">
                         <label for="content" class="label-font-bold">카테고리</label><br>
@@ -80,15 +81,15 @@
                       </div>
                       
                       </div>
-                       <div class="form-group">
+                      <!--  <div class="form-group">
                         <label for="content" class="label-font-bold">카테고리</label><br>
 						    <select class="" name="selectedCategory" v-model="category.categoryId">
 					    		<option v-for="scategory in categoryList" :value="scategory.categoryId">
 					    			{{scategory.categoryName}}
 					    		</option>
 					    	</select>
-                      </div>
-                       
+                      </div> -->
+                      
                       
                       <div class="form-group">
                         <label for="content" class="label-font-bold">나눔 상태</label><br>
@@ -114,7 +115,7 @@
 					 <!-- 작성시 게시글 작성 버튼 -->
 					  <div class="form-group text-center pt-5 pb-5">
 					  	<input type="submit" value="Cancel" class="btn py-3 px-4 btn-cancel">	
-                        <input type="button" v-on:click="updatePost()" value="Update Post" class="btn py-3 px-4 btn-primary">
+                        <input type="button" v-on:click="submitPost()" value="Write Post" class="btn py-3 px-4 btn-primary">
                       </div>
                       <!-- 수정시 게시글 수정 버튼 -->
 					  <!-- <div class="form-group text-center pt-5 pb-5">
@@ -152,10 +153,8 @@
   <script src="../js/aos.js"></script>
   <script src="../js/jquery.animateNumber.min.js"></script>
   <script src="../js/main.js"></script>\
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.js" integrity="sha512-t2sE4D8vBHZoytr423dbCPmX8MUKM9bNiVKGOMpqFYEsV8/GilxvresTtCsv9RDzqGMcizOd7EuXssJUtaGZLg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.css" integrity="sha512-03p8fFZpOREY+YEQKSxxretkFih/D3AVX5Uw16CAaJRg14x9WOF18ZGYUnEqIpIqjxxgLlKgIB2kKIjiOD6++w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <script>
 	//const storage = window.sessionStorage;
@@ -163,12 +162,7 @@
 		el: "#blog",
 		data(){
 			return {
-				board:{
-					title:'',
-					content:'',
-					viewCount:0,
-					status:0
-				},
+				board:{},
 				areaList:[],
 				categoryList:[],
 				mainFile:[],
@@ -208,55 +202,29 @@
 				console.log(error);
 				this.errored = true;
 			})
-			.finally(()=>this.loading = false),
-			axios
-			.get('http://127.0.0.1:7788/board/getBoard/'+${param.boardId}+'/noadd',
-					{
- 	  			headers : {
- 	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
- 	  			}
- 	  		})
- 	  		.then(response=>{
- 	  			this.board.title = response.data.title;
- 	  			this.board.content = response.data.content;
- 	  			this.board.viewCount = response.data.viewCount;
- 	  			this.board.status = response.data.status;
- 	  			
- 	  		})
- 	  		.catch(error=>{
-				alert(error);
-				console.log(error);
-				this.errored = true;
-			})
-			
+			.finally(()=>this.loading = false)
 		},
 		methods:{
 			
 			mainFileUpload(){
 				this.mainFile = this.$refs.mainFile.files[0];
+				if (this.mainFile.length > 1) {
+					this.mainFile = [];
+					alert("메인 이미지는 1장만 가능합니다");
+				}
 				console.log(this.mainFile);
 			},
 			subFileUpload(){
 				this.subFile = this.$refs.subFile.files;
+				if (this.subFile.length > 4) {
+					this.subFile = [];
+					alert("이미지는 4개 이하로 올려주세요");
+				}
 				for(var i=0; i<this.subFile.length; i++) {
 					console.log(this.subFile[i])
 				}
 			},
-			validationOnlyText() {
-				if(this.board.title == null || this.board.title.trim()=="") {
-					alert("제목을 입력해 주세요"); return false;
-				} else if (this.board.content == null || this.board.content.trim()=="") {
-					alert("내용을 입력해 주세요"); return false;
-				} else if (this.area.areaId == null){
-					alert("지역을 선택해 주세요"); return false;
-				} else if (this.category.categoryId == null) {
-					alert("품목을 선택해 주세요"); return false;
-				} else if (this.board.status == null) {
-					alert("상태를 선택해 주세요"); return false;
-				}
-				return true;
-			},
-			validationIncludingFile() {
+			validation() {
 				if(this.board.title == null || this.board.title.trim()=="") {
 					alert("제목을 입력해 주세요"); return false;
 				} else if (this.board.content == null || this.board.content.trim()=="") {
@@ -274,7 +242,7 @@
 				}
 				return true;
 			},
-			updatePost(){
+			submitPost(){
 				var today = new Date();
 				var year = today.getFullYear();
 				var month = ('0' + (today.getMonth() + 1)).slice(-2);
@@ -283,73 +251,46 @@
 				var minutes = today.getMinutes(); 
 				var seconds = today.getSeconds();
 				var dateString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-				if(this.mainFile.length == 0) { // 사진 없는 경우
-					if(this.validationOnlyText()) {
-						axios
-						.put('http://127.0.0.1:7788/board/updateBoardOnlyText',
-							{
-								boardId:${param.boardId},
-								title:this.board.title,
-								content:this.board.content,
-								date:dateString,
-								viewCount:this.board.viewCount,
-								status:this.board.status,
-								user:this.user,
-								area:this.area,
-								category:this.category
-							},
-	    	             		{
-	    	      	  			headers : {
-	    	      	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
-	    	      	  			}
-	    	      	  		}		
-						).then(response=>(this.result = response.data))
-						.catch(error=>{
-	    	                console.log(error);
-	    	                this.errored = true
-	    	            })
-						.finally(()=>location.href="board_list.jsp")
+				
+				if(this.validation()) {
+					const formData = new FormData();
+					formData.append("title",this.board.title);
+					formData.append("content",this.board.content);
+					formData.append("areaId",this.area.areaId);
+					formData.append("categoryId",this.category.categoryId);
+					formData.append("viewCount",0);
+					formData.append("userId",this.userId);
+					formData.append("date",dateString);
+					formData.append("status",this.board.status);
+					formData.append("mainFile",this.mainFile)
+					for(var i=0; i<this.subFile.length; i++) {
+						formData.append("file", this.subFile[i]);
 					}
-				}else{ // 사진 들어있는 경우
-					if(this.validationIncludingFile()) {
-						const formData = new FormData();
-						formData.append("boardId",${param.boardId});
-						formData.append("title",this.board.title);
-						formData.append("content",this.board.content);
-						formData.append("areaId",this.area.areaId);
-						formData.append("categoryId",this.category.categoryId);
-						formData.append("viewCount",this.board.viewCount);
-						formData.append("userId",this.userId);
-						formData.append("date",dateString);
-						formData.append("status",this.board.status);
-						formData.append("mainFile",this.mainFile)
-						for(var i=0; i<this.subFile.length; i++) {
-							formData.append("file", this.subFile[i]);
-						}
-						for(var key of formData.entries()) {
-							console.log(key[0]+', '+key[1]);
-						}
-						
-						axios.put('http://127.0.0.1:7788/board/updateBoard', formData,
-								{headers:{ 'Content-Type': 'multipart/form-data',
-									"jwt-auth-token":storage.getItem("jwt-auth-token") }})
-						.then(response=>{
-							this.result= response.data
-						}).catch(error=>{
-							console.log(error);
-		                    this.errored = true
-						})
-						.finally(()=>location.href="board_list.jsp")
+					for(var key of formData.entries()) {
+						console.log(key[0]+', '+key[1]);
 					}
-					
+					axios
+					.post('http://127.0.0.1:7788/board/writeBoard', formData,
+							{headers:{ 'Content-Type': 'multipart/form-data',
+								"jwt-auth-token":storage.getItem("jwt-auth-token")}})
+					.then(response=>{
+						this.result= response.data
+					}).catch(error=>{
+						console.log(error);
+	                    this.errored = true
+					})
+					.finally(()=>location.href="board_list.jsp")
 				}
 				
 				
 			}
 			
-		}
+		},
+		updated: function(){
+			  this.$nextTick(function(){ $('.selectpicker').selectpicker('refresh'); });
+			}
+		
 	})
-
 </script>
 </body>
 </html>
