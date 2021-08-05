@@ -270,6 +270,8 @@
         		.finally(()=>this.loading = false)
             	},
             	
+            	
+            	
             	selectedOk(){
             		if(this.selected=="search-area")
             			this.useOptional = "areaOptional"
