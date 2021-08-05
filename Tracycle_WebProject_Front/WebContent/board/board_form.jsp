@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
 
+	<!-- ㅇㅇ -->
   </head>
   <body>
 
@@ -45,13 +46,10 @@
             <div class="row">
             <div class=" col-md-12 mb-3">
 		           <div class="comment-form-wrap pt-5">
-<<<<<<< HEAD
+
                     <h3 class="mb-3">  <label for="name" class="label-font-bold">제목</label> <h6>[{{titleLength}}/100]</h6> <input type="text" @input="checkTitleLength" class="form-control" v-model="board.title"></h3>
                     <form action="#" class="">
-=======
-                    <h3 class="mb-3">  <label for="name" class="label-font-bold">제목</label> <input type="text" class="form-control" v-model="board.title"></h3>
-                   
->>>>>>> a3e3e0056b4a7cb73b1c50c1151a425532e55d03
+
                       <div class="form-group right">	
                         <h6><label for="name" class="label-font-bold">작성자 아이디</label> <a>{{userId}}</a></h6>
                       </div>
