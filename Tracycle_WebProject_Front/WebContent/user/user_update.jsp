@@ -24,7 +24,7 @@
  <div class="wrap wd668" id="app">
       <div class="container">
         <div class="form_txtInput">
-          <h2 class="sub_tit_txt">정보 수정</h2>
+          <h2 class="sub_tit_txt">회원 탈퇴</h2>
           <div class="join_form_modify">
             <table>
               <colgroup>
@@ -34,19 +34,12 @@
 
               <tbody>  
              	<tr>
-                  <th><span>아이디</span></th>
-                  <td><input type="text" :value=userId readonly /></td>     
-                <tr>
-                  <th><span>닉네임</span></th>
-                  <td><input type="text" :placeholder=userInfo.nickName v-model="newNickName"></td>
-                </tr> 
-                 <tr>
-                  <th><span>주  소</span></th>
-                  <td><input type="text" :placeholder=userInfo.address v-model="newAddress"></td>
-                </tr>                
+                  <th><span>비밀번호 확인</span></th>
+                  <td><input type="password" @input="pressbutton" placeholder="비밀번호를 확인하세요" v-model="inputpassword1"></td>
+                </tr>
                 <tr>
                   <th><span>현재 비밀번호 확인</span></th>
-                  <td><input type="password" @input="pressbutton" placeholder="비밀번호를 확인하세요" v-model="inputpassword"></td>
+                  <td><input type="password" @input="pressbutton" placeholder="비밀번호를 확인하세요" v-model="inputpassword2"></td>
                 </tr>
               </tbody>
             </table>
@@ -55,8 +48,8 @@
           <!-- join_form E  -->
           
           <div class="btn_wrap">
-            <button type="submit" v-if="pass==true" class="submit-btn" @click="updateUser">저장</button>        
-            <button v-else class="not-submit-btn">저장</button>
+            <button type="submit" v-if="pass==true" class="submit-btn" @click="deleteUser()">회원 탈퇴</button>        
+            <button v-else class="not-submit-btn">회원 탈퇴</button>
 
           </div>
         </div> <!-- form_txtInput E -->
@@ -75,7 +68,8 @@
   				userId: storage.getItem("login_user"),
   				jwtauthtoken: storage.getItem("jwt-auth-token"),  				  				
   				userInfo:[],
-  				inputpassword:'',			
+  				inputpassword1:'',
+  				inputpassword2:'',
   				pass:'',
   				newNickName:'',
   				newAddress:'',
@@ -110,26 +104,27 @@
          		}
          	},
          	
-         	updateUser(){
-         		axios
-    					   .put('http://127.0.0.1:7788/user/updateUser',
-    					  {			
-    			
-    						userId: this.userId,
-    						nickName: this.newNickName,				        
-    				        address: this.newAddress
-    				   
-    					  })
-    					  .then(response=>(this.result= response.data))
-    									
-    		              .catch(error=>{
-    		                   console.log(error);
-    		                   this.errored = true
-    		                   alert("정보 변경 실패!");
-    		                   this.nextpage="user_update.jsp";
-    		                })
-    		              .finally(()=>location.href=this.nextpage)    					 
-         	}        	
+         	deleteUser(userId){
+        		if(confirm("계정을 삭제 하시겠습니까?")){
+        			axios
+        			.delete('http://127.0.0.1:7788/user/deleteUser/'+this.userId,
+        			{
+        				headers : {
+          	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+          	  			}
+        			})
+        			.then(response=>{this.result= response.data
+        				storage.setItem("jwt-auth-token", "");
+        	  			storage.setItem("login_user", "");
+        	  			})
+        			.catch(error=>{
+                        console.log(error);
+                        this.errored = true
+                    })
+                    .finally(()=>location.href="../main/index.jsp") 
+        		}
+        	}
+         	
         }       
   	});
  </script> 
