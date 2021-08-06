@@ -7,8 +7,8 @@ new Vue({
     data: {
       
       series: [{
-          name: "Waste Discharge (ton)",
-          data: [401658, 418214, 429128, 429531, 446102, 497238]
+          name: 'Waste Discharge (10,000 ton/tonne)',
+          data: [40.1658, 41.8214, 42.9128, 42.9531, 44.6102, 49.7238]
       }],
       chartOptions: {
         chart: {
@@ -34,13 +34,14 @@ new Vue({
         },
         yaxis: [{
         	title: {
-        		text: 'Waste Discharge (ton)',
+        		text: 'Waste Discharge (10,000 ton/tonne)',
         		style: {
         			color: '#809CA8',
         		}	
         	},
-        	min: 400000,
-        	max: 500000,
+        	min: 40,
+        	max: 50,
+        	decimalsInFloat: 0,
         	tickAmount: 2,
         	axisTicks: {
         		show: true,
@@ -57,19 +58,37 @@ new Vue({
 	        },
         	
         }],
-        
         responsive: [
             {
-              breakpoint: 1000,
+              breakpoint: 375,
               options: {
-                plotOptions: {
-                  line: {
-                    horizontal: false
-                  }
+            	  chart: {                  
+                      zoom: {
+                        enabled: false
+                      }
+                    }
                 }
               }
-            }
           ],
+        title: {
+            text: '전국 폐기물 배출량',
+            align: 'left'
+          }, 
+        tooltip: {
+        	shared: true,
+        	intersect: false,
+        	y: {
+        		formatter: function(y) {
+        			if (typeof y !== "undifined") {
+        			  return y.toFixed(4);
+        			}
+        			return y;
+        		}
+        	},
+        	marker: {
+        		show: false
+        	}
+        }
         
       },
       
@@ -91,9 +110,9 @@ new Vue({
             name: 'Sea Level (m)',
             type: 'area',
             data: [
-            	0.220472441,
+            	/*0.220472441,
             	-0.440944881,
-            	-0.232283464,
+            	-0.232283464,*/
             	0.59055118,
             	0.531496062,
             	0.437007874,
@@ -235,9 +254,9 @@ new Vue({
             name: 'Temperature (°C)',
             type: 'column',
             data: [
-            	-0.08,
+            	/*-0.08,
             	-0.1,
-            	-0.16,
+            	-0.16,*/
             	-0.28,
             	-0.33,
             	-0.31,
@@ -407,9 +426,9 @@ new Vue({
               }
             },
             labels: [
-            	"1881",
+            	/*"1881",
             	"1882",
-            	"1883",
+            	"1883",*/
             	"1884",
             	"1885",
             	"1886",
@@ -566,7 +585,7 @@ new Vue({
             	labels: {
             		rotate: 0
             	},
-                tickAmount: 23
+                tickAmount: 15
               },
               
               yaxis: [{
@@ -616,8 +635,13 @@ new Vue({
                 },
               }],
               
+              title: {
+                  text: '세계 해수면 높이와 온도 변화',
+                  align: 'left'
+                },
+              
               legend: {
-            	    position: "top",
+            	    position: "bottom",
             	    verticalAlign: "top",
             	    containerMargin: {
             	      left: 35,
@@ -627,15 +651,43 @@ new Vue({
             	  
               responsive: [
             	    {
-            	      breakpoint: 1000,
-            	      options: {
-            	        plotOptions: {
-            	          bar: {
-            	            horizontal: false
-            	          }
-            	        }
+            	      breakpoint: 600,
+            	      options: {           	            	        
+	                        xaxis: {
+	                          	labels: {
+	                          		rotate: -30
+	                          	},
+	                              tickAmount: 15
+                        }
             	      }
-            	    }
+            	    },
+            	    {
+              	      breakpoint: 500,
+              	      options: {             	              	        
+                          xaxis: {
+                            	labels: {
+                            		rotate: -30
+                            	},
+                                tickAmount: 8
+                          }
+              	      }
+              	    },
+              	    {
+                	  breakpoint: 375,
+                	  options: { 
+                		  chart: {                	         
+                	          zoom: {
+                	            enabled: false
+                	          }
+                	        },
+                          xaxis: {
+                              	labels: {
+                              		rotate: -45
+                              	},
+                                tickAmount: 8
+                          }
+                	   }
+                	}            	    
             	  ],
             
             tooltip: {
@@ -758,7 +810,7 @@ new Vue({
         			    from: 1,
         			    to: 3.5,
         			    name: 'High',
-        			    color: '#E66043'
+        			    color: '#f7471f'
         			}
         			]
         		}
@@ -768,6 +820,11 @@ new Vue({
         dataLabels: {
           enabled: false
         },
+        
+        title: {
+            text: '전국 평균 기온 변화',
+            align: 'left'
+          },
      
         xaxis: {
         	categories: Year,
@@ -779,7 +836,7 @@ new Vue({
         },
         
         legend: {
-      	    position: "top",
+      	    position: "bottom",
       	    verticalAlign: "top",
       	    containerMargin: {
       	      left: 35,
@@ -789,12 +846,12 @@ new Vue({
         
         responsive: [
             {
-              breakpoint: 1000,
+              breakpoint: 375,
               options: {
-                plotOptions: {
-                  heatmap: {
-                    horizontal: false
-                  }
+                xaxis: {
+                	labels: {
+                		rotate: -30
+                	}
                 }
               }
             }
