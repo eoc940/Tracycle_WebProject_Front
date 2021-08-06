@@ -173,6 +173,24 @@
                  		return true;
                 }
               },
+              watch: { // 값이 변경될 때 마다 기능이 실행 
+            	  info: function() { 
+            		  this.initUI();
+            	  },
+            	  selected:function(){
+            		  this.initCurrentPageIndex();
+            	  },
+            	  keyword:function(){
+            		  this.initCurrentPageIndex();
+            	  },
+            	  category:function(){
+            		  this.initCurrentPageIndex();
+            	  },
+            	  areaNum:function(){
+            		  this.initCurrentPageIndex();
+            	  }
+              },
+
             filters:{
             	formatDate(value){
             		if (value) {
@@ -216,22 +234,18 @@
                  .finally(()=>this.loading = false)
             },
             methods:{
-            	
-            	
-            	
-            	
-            	findByCategory(category){
-            		axios
-        			.get('http://127.0.0.1:7788/board/findByCategory/'+this.category)
-        			.then(response=>(this.info= response.data))
-	                .catch(error=>{
-	                    console.log(error);
-	                    this.errored = true
-	                })
-        		.finally(()=>this.loading = false)
-            	},
-            	
             	getBoard(){
+            		axios
+            		.get('http://127.0.0.1:7788/board/getBoardTotalCount')
+            			.then(response=>{this.totalListItemCount= response.data;
+            			 this.initUI();
+            			 })
+		                .catch(error=>{
+		                    console.log(error);
+		                    this.errored = true
+		                })
+            		.finally(()=>this.loading = false)
+            		
             		offset=(this.currentPageIndex-1)*this.listRowCount;
             		axios
                 	.get('http://127.0.0.1:7788/board/getBoardLimitOffset/'+offset)
@@ -242,9 +256,68 @@
                    })
                    .finally(()=>this.loading = false)
             	},
-            	findById(keyword){
+
+            	findByCategory(category){
             		axios
-        			.get('http://127.0.0.1:7788/board/findById/'+this.keyword)
+            		.get('http://127.0.0.1:7788/board/findByCategoryTotalCount/'+this.category)
+            			.then(response=>{this.totalListItemCount= response.data;
+            			 this.initUI();
+            			 })
+		                .catch(error=>{
+		                    console.log(error);
+		                    this.errored = true
+		                })
+            		.finally(()=>this.loading = false)
+
+            		offset=(this.currentPageIndex-1)*this.listRowCount;
+            		axios
+        			.get('http://127.0.0.1:7788/board/findByCategoryLimitOffset/'+this.category+'/'+offset)
+        			.then(response=>(this.info= response.data))
+	                .catch(error=>{
+	                    console.log(error);
+	                    this.errored = true
+	                })
+        		.finally(()=>this.loading = false)
+            	},
+            	findByAreaInMethods(areaNum){
+            		axios
+            		.get('http://127.0.0.1:7788/board/findByAreaTotalCount/'+this.areaNum)
+            			.then(response=>{this.totalListItemCount= response.data;
+            			 this.initUI();
+            			 })
+		                .catch(error=>{
+		                    console.log(error);
+		                    this.errored = true
+		                })
+            		.finally(()=>this.loading = false)
+            		
+            		offset=(this.currentPageIndex-1)*this.listRowCount;
+            		axios
+            			.get('http://127.0.0.1:7788/board/findByAreaLimitOffset/'+this.areaNum+'/'+offset)
+            			.then(response=>(this.info= response.data))
+            			.catch(error=>{
+            				console.log(error);
+            				this.errored = true
+            			})
+            		.finally(()=>this.loading = false)
+            	},
+
+            	findById(keyword){
+            		
+            		axios
+            		.get('http://127.0.0.1:7788/board/findByIdTotalCount/'+this.keyword)
+            			.then(response=>{this.totalListItemCount= response.data;
+            			 this.initUI();
+            			 })
+		                .catch(error=>{
+		                    console.log(error);
+		                    this.errored = true
+		                })
+            		.finally(()=>this.loading = false)
+            		
+            		offset=(this.currentPageIndex-1)*this.listRowCount;
+            		axios
+        			.get('http://127.0.0.1:7788/board/findByIdLimitOffset/'+this.keyword+'/'+offset)
         			.then(response=>(this.info= response.data))
 	                .catch(error=>{
 	                    console.log(error);
@@ -254,8 +327,21 @@
             	},
             	
             	findByTitle(keyword){
+            		
             		axios
-        			.get('http://127.0.0.1:7788/board/findByTitle/'+this.keyword)
+            		.get('http://127.0.0.1:7788/board/findByTitleTotalCount/'+this.keyword)
+            			.then(response=>{this.totalListItemCount= response.data;
+            			 this.initUI();
+            			 })
+		                .catch(error=>{
+		                    console.log(error);
+		                    this.errored = true
+		                })
+            		.finally(()=>this.loading = false)
+            		
+            		offset=(this.currentPageIndex-1)*this.listRowCount;
+            		axios
+        			.get('http://127.0.0.1:7788/board/findByTitleLimitOffset/'+this.keyword+'/'+offset)
         			.then(response=>(this.info= response.data))
 	                .catch(error=>{
 	                    console.log(error);
@@ -266,7 +352,19 @@
             	
             	findByContent(keyword){
             		axios
-        			.get('http://127.0.0.1:7788/board/findByContent/'+this.keyword)
+            		.get('http://127.0.0.1:7788/board/findByContentTotalCount/'+this.keyword)
+            			.then(response=>{this.totalListItemCount= response.data;
+            			 this.initUI();
+            			 })
+		                .catch(error=>{
+		                    console.log(error);
+		                    this.errored = true
+		                })
+            		.finally(()=>this.loading = false)
+            		
+            		offset=(this.currentPageIndex-1)*this.listRowCount;
+            		axios
+        			.get('http://127.0.0.1:7788/board/findByContentLimitOffset/'+this.keyword+'/'+offset)
         			.then(response=>(this.info= response.data))
 	                .catch(error=>{
 	                    console.log(error);
@@ -286,17 +384,11 @@
             		}
             		else if(this.selected=="search-all"){
                     	this.useOptional = "allOptional"
-                    		axios
-	            			.get('http://127.0.0.1:7788/board/getAllBoard')
-	            			.then(response=>(this.info= response.data))
-	    	                .catch(error=>{
-	    	                    console.log(error);
-	    	                    this.errored = true
-	    	                })
-	            		.finally(()=>this.loading = false)
+                    	this.getBoard();
             		}	
             		else 
-            			this.useOptional = "notOptional"   
+            			this.useOptional = "notOptional" 
+            			this.keyword=""
             	},
             	
             	
@@ -314,6 +406,7 @@
 		                })
             		.finally(()=>this.loading = false)
             	},
+
             	findByAreaInMethods(areaNum){
             		axios
             			.get('http://127.0.0.1:7788/board/findByArea/'+this.areaNum)
@@ -324,6 +417,7 @@
             			})
             		.finally(()=>this.loading = false)
             	},
+
                 initUI(){
             	      this.pageCount = Math.ceil(this.totalListItemCount/this.listRowCount);
             	      if( (this.currentPageIndex % this.pageLinkCount) == 0 ){
@@ -353,7 +447,12 @@
             	    },
             	    movePage(param) {
             	       this.currentPageIndex = param;
-            	       this.getBoard();
+            	       if(this.selected=="search-all") { this.getBoard();}
+            	       else if(this.selected=="search-id") this.findById(this.keyword);
+            	       else if(this.selected=="search-title") this.findByTitle(this.keyword);
+            	       else if(this.selected=="search-content") this.findByContent(this.keyword);
+            	       else if(this.selected=="search-category") this.findByCategory(this.category);
+            	       else if(this.selected=="search-area") this.findByAreaInMethods(this.areaNum);
             	    },            	
                 	findByArea(areaNum){
                 		axios
@@ -364,10 +463,12 @@
                 				this.errored = true
                 			})
                 		.finally(()=>this.loading = false)
+                	},
+                	initCurrentPageIndex(){
+                		this.currentPageIndex=1;
                 	}
             }, 
             created() {
-                this.initPagination();
                 this.getBoard();
                 
             }
