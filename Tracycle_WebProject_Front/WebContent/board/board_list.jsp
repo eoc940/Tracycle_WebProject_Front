@@ -184,7 +184,12 @@
             		  this.initCurrentPageIndex();
             	  },
             	  keyword:function(){
-            		 
+            		  this.initCurrentPageIndex();
+            	  },
+            	  category:function(){
+            		  this.initCurrentPageIndex();
+            	  },
+            	  areaNum:function(){
             		  this.initCurrentPageIndex();
             	  }
               },
@@ -257,15 +262,48 @@
                    .finally(()=>this.loading = false)
             	},
             	findByCategory(category){
+            		axios
+            		.get('http://127.0.0.1:7788/board/findByCategoryTotalCount/'+this.category)
+            			.then(response=>{this.totalListItemCount= response.data;
+            			 this.initUI();
+            			 })
+		                .catch(error=>{
+		                    console.log(error);
+		                    this.errored = true
+		                })
+            		.finally(()=>this.loading = false)
+
             		offset=(this.currentPageIndex-1)*this.listRowCount;
             		axios
-        			.get('http://127.0.0.1:7788/board/findByCategory/'+this.category)
+        			.get('http://127.0.0.1:7788/board/findByCategoryLimitOffset/'+this.category+'/'+offset)
         			.then(response=>(this.info= response.data))
 	                .catch(error=>{
 	                    console.log(error);
 	                    this.errored = true
 	                })
         		.finally(()=>this.loading = false)
+            	},
+            	findByAreaInMethods(areaNum){
+            		axios
+            		.get('http://127.0.0.1:7788/board/findByAreaTotalCount/'+this.areaNum)
+            			.then(response=>{this.totalListItemCount= response.data;
+            			 this.initUI();
+            			 })
+		                .catch(error=>{
+		                    console.log(error);
+		                    this.errored = true
+		                })
+            		.finally(()=>this.loading = false)
+            		
+            		offset=(this.currentPageIndex-1)*this.listRowCount;
+            		axios
+            			.get('http://127.0.0.1:7788/board/findByAreaLimitOffset/'+this.areaNum+'/'+offset)
+            			.then(response=>(this.info= response.data))
+            			.catch(error=>{
+            				console.log(error);
+            				this.errored = true
+            			})
+            		.finally(()=>this.loading = false)
             	},
             	findById(keyword){
             		
@@ -370,17 +408,6 @@
 		                    console.log(error);
 		                    this.errored = true
 		                })
-            		.finally(()=>this.loading = false)
-            	},
-
-            	findByAreaInMethods(areaNum){
-            		axios
-            			.get('http://127.0.0.1:7788/board/findByArea/'+this.areaNum)
-            			.then(response=>(this.info= response.data))
-            			.catch(error=>{
-            				console.log(error);
-            				this.errored = true
-            			})
             		.finally(()=>this.loading = false)
             	},
 
