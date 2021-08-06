@@ -97,17 +97,22 @@
           </div>
           
           	<div class="form-group">
-				<input class="form-control" type="file" id="formFile">
+          		<h1 class="h3 mb-3 font-weight-normal">Upload any image</h1>
+				<input type="file" name="file" id="file_upload"/>
+    			<input type="button" value="upload image" id="upload"/> 
+    			
 			</div>
+			
+			 <button onclick="onDisplay()">UPLOAD</button>
           
  	</div>
  </div>
   <div class="site-section-img">
 	  <div class="container mt-5 mb-5">
 	      <div class="row">
-	        <div class="col-md-12 text-center pt-5 pb-5 mt-5 mb-5">
-	          <h1 class="pt-5 pb-5 mt-5 mb-5 text-center"> 이미지 들어갈 곳<h1>
-      		 </div>
+	      	<div id="noneDiv" style="display:none;">
+	        	<img src=http://localhost:8085/static/result0.jpg style="width: 600px; height:auto;">
+			</div>      	  
       	  </div>
       </div>
    </div>
@@ -139,7 +144,9 @@
   <script src="../js/main.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- <script>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  	
+ 	<script>
 /*       new Vue({
             el: "#app",           
             data(){
@@ -149,6 +156,41 @@
                     errored:false,
                    
    */
+   
+   function onDisplay() {
+	    $('#noneDiv').show();
+	}
+         
       </script>
+      
+<script type="text/javascript">
+    $(function() { 
+        function ajaxFileUpload(){
+            var formData = new FormData();
+            formData.append('file',$("#file_upload")[0].files[0]);    //Convert the file into binary form
+            $.ajax({
+                type:"post",
+                url:"http://127.0.0.1：8085/",//Background interface
+                async:false,
+                contentType: false,    //This must be written
+                processData: false, //This must also be written, otherwise an error will be reported
+                data:formData,
+                dataType:'text',    //Return type, including json, text, HTML. There is no jsonp format here
+                success:function(data){
+                    console.log(data);
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown, data){
+                    console.log(errorThrown);
+                }            
+            });
+        }
+    
+
+    $("#upload").click(function(){
+        ajaxFileUpload();
+    });
+
+});
+</script>
   </body>
 </html>
