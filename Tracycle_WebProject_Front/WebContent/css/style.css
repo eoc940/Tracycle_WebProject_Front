@@ -298,6 +298,8 @@ h1, h2, h3, h4, h5, h6
   .block-41 .block-41-text {
     font-size: 20px; } }
 
+
+ @media (min-width: 767.98px) {
 .block-48 {
   background: var(--main-color);
   padding: 50px;
@@ -306,7 +308,19 @@ h1, h2, h3, h4, h5, h6
     font-size: 30px; }
   .block-48 .block-48-counter {
     font-size: 70px;
-    line-height: 1; }
+    line-height: 1; }}
+
+ @media (max-width: 767.98px) {
+  .block-48 {
+  background: var(--main-color);
+  padding: 30px;
+  color: #000; }
+  .block-48 .block-48-text-1 {
+    font-size: 30px; }
+  .block-48 .block-48-counter {
+    font-size: 60px;
+    line-height: 1; } }
+
 
 .block-11 .owl-stage {
   padding-top: 50px;
