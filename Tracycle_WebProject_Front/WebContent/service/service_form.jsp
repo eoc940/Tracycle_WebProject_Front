@@ -152,7 +152,7 @@
   		methods:{
   			mainFileUpload(){
 				this.mainFile = this.$refs.mainFile.files[0];
-				alert(this.mainFile);
+				
 				if (this.mainFile.length > 1) {
 					this.mainFile = [];
 					alert("메인 이미지는 1장만 가능합니다");
@@ -171,7 +171,7 @@
 				return true;
 			},
 			submit() {
-				alert("??");
+				
 				if(this.validation()) {
 					const formData = new FormData();
 					formData.append("areaId",this.area.areaId);
@@ -180,7 +180,7 @@
 					for(var key of formData.entries()) {
 						console.log(key[0]+', '+key[1]);
 					}
-					alert("!!");
+					
 					axios.post('http://127.0.0.1:8085/service', formData)
 					.then(response=>{
 						this.result= response.data;
