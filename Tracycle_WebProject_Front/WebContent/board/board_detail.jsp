@@ -145,7 +145,7 @@
 		  </ul>
 		</nav>
 		</div>
-                  <div class="comment-form-wrap pt-5">
+                  <div v-if="isLogin" class="comment-form-wrap pt-5">
                   
                     <h3 class="mb-5">Leave a Comment</h3>
                     <form action="#" class="">
@@ -255,6 +255,14 @@
             		  }
             	}
             },
+            computed: {
+                isLogin: function () {
+                 	if(this.userId==null||this.userId=='')	
+                 		return false;
+                 	else
+                 		return true;
+                }
+              },
             mounted(){
 
                 /*  axios
