@@ -112,8 +112,12 @@
  
   <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
+  	
+  	
     function toggleImg() {
-    	location.reload();
+    	setTimeout(function() {
+    		location.reload();
+    		}, 3000);
     }
   </script>
   	
