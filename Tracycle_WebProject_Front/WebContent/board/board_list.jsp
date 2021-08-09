@@ -55,13 +55,13 @@
 	       		
 	       		<select name="category" v-model="category" v-if="useOptional=='categoryOptional'" @change="findByCategory">	       			
 					<option v-for="category in categoryInfo" :value="category.categoryId" >
-						{{category.categoryId}}:{{category.categoryName}}
+						{{category.categoryName}}
 					</option>
 				</select>
 				
 				<select name="area" v-model="areaNum" v-else-if="useOptional=='areaOptional'"  @change="findByAreaInMethods">
 					<option v-for="area in areaInfo" :value="area.areaId">
-						{{area.areaId}}:{{area.areaName}}
+						{{area.areaName}}
 					</option>
 				</select>
 				
