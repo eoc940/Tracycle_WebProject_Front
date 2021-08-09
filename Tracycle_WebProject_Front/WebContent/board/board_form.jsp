@@ -249,7 +249,7 @@
 					formData.append("userId",this.userId);
 					formData.append("date",dateString);
 					formData.append("status",this.board.status);
-					formData.append("mainFile",this.mainFile)
+					formData.append("mainFile",this.mainFile);
 					for(var i=0; i<this.subFile.length; i++) {
 						formData.append("file", this.subFile[i]);
 					}
