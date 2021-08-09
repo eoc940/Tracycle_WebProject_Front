@@ -56,7 +56,7 @@
 				    <div class="container">
 				      <div class="block-31 mb-5" style="position: relative;">
 				       	  <div v-for="image in images">
-				       	  <img class="detail_image" alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)>
+				       	  <img class="detail_image" alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image) width="600" height="400">
 				       	  </div>
 				       	  <!--
 				          <div v-for="image in images" class="owl-carousel loop-block-31">

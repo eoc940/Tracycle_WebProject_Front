@@ -67,14 +67,16 @@
        <div class="form-group">
          	<h1 class="h3 mb-3 font-weight-normal">Upload any image</h1>
 			<input type="file" name="file" accept="image/*" id="file_upload" ref="mainFile" v-on:change="mainFileUpload()"/>
-   			<input type="button" onclick="toggleImg()" v-on:click="submit()" value="upload" id="upload"/> 
+   			<input type="button" v-on:click="submit()" value="upload" id="upload"/> 
 	   </div>
 		
 		<!-- 이미지 컴포넌트 추가 -->
 		<div id="viewer">
 		<img id="img" src="http://localhost:8085/static/result0.jpg" style="width:100%; height:100%" >
 		</div>
-			
+		<div>
+		{{result}}
+		</div>
 		
           
  	</div>
@@ -111,16 +113,7 @@
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
  
   <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script>
-  	
-  	
-    function toggleImg() {
-    	setTimeout(function() {
-    		location.reload();
-    		}, 3000);
-    }
-  </script>
-  	
+
   	
   <script type="text/javascript">
   
@@ -136,6 +129,8 @@
   				mainFile:[],
   				user:{"userId":storage.getItem("login_user")},
   				result:[],
+  				image:'',
+  				show:false,
   				loading:true,
 				errored:false
   			}
@@ -190,6 +185,8 @@
 					axios.post('http://127.0.0.1:8085/service', formData)
 					.then(response=>{
 						this.result= response.data;
+						this.show = true;
+						this.image = "";
 						console.log(this.result);
 					}).catch(error=>{
 						console.log(error);

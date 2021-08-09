@@ -225,7 +225,7 @@
                     console.log(error);
                     this.errored = true
                 })
-                 .finally(()=>this.loading = false)
+                 .finally(()=>this.loading = false),
                  
                  
                 axios
