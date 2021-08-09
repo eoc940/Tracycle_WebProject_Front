@@ -67,7 +67,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="pt-5 pb-5 text-center">10년 후, 빙하의 높이는 오늘보다 158M 줄어들었습니다.</h1>
+          <h1 class="pt-5 pb-5 text-center">올바른 폐기물 처리! <br/> 기후변화의 영향을 최소화할 수 있습니다 </h1>
         </div>
       </div>
     </div>
@@ -117,6 +117,13 @@
 			    <div id="chart">
 			      <div id="apph">
 			      	<apexchart type="heatmap" height="350" :options="chartOptions" :series="series"></apexchart>
+			      </div>
+			      <div>
+			      <span style="font-weight: bold;">
+			      	<p class="pt-4 pb-4 text-center">평균 지표온도가 상승함에 따라 다수의 지역에서 폭염의 발생 빈도와 지속 기간이 증가하는 추세가 관찰되고 있습니다.<br/>
+					또한, 극한적인 강수현상의 발생 빈도와 강도 또한 증가하여 계절 간 강수량과 기온의 차이가 더욱 더 커질 것으로 예상됩니다.</p>
+			      </span>
+			      	<p class="pt-3 pb-3 text-center"><b>자료출처: 한국폐기물협회, NASA Global Climate Change, US EPA, 기후변화센터</b></p>
 			      </div>
 			    </div>  
 		          
