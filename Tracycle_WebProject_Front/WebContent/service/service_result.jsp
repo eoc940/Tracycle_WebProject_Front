@@ -94,12 +94,26 @@
 
 <div class="bannerContainer">
         <div class="row d-flex">
-          <div class="col-md-4 d-flex align-self-stretch">
+<!--           <div class="col-md-4 d-flex align-self-stretch">
             <div class="media block-7">
               <div class="media-body p-3 mt-3">
              	<span style="color:rgba(128, 156, 168, 1)"><i class="fa fa-globe fa-5x" aria-hidden="true" style="width:100px; height:150px;"></i></span>
                 <h6 class="heading mb-4">폐기물 인터넷 접수 바로가기</h6>
-                <p class="heading-2" v-for=""></p>
+                <p class="heading-2"></p>
+              </div>
+            </div>      
+          </div> -->
+          <div class="col-md-4  align-self-stretch">
+            <div class="media block-71">
+              <div class="media-body p-3 mt-3">
+             	<span style="color:rgba(128, 156, 168, 1)"><i class="fa fa-globe fa-5x" aria-hidden="true" style="width:100px;"></i></span>
+                <h6 class="heading mt-2 mb-4">폐기물 인터넷 <br class="mobile-br">접수 바로가기</h6>
+              </div>
+            </div>      
+            <div class="media block-71" v-on:click="go15990903">
+              <div class="media-body p-3 mt-3">
+             	<span style="color:rgba(128, 156, 168, 1)"><i class="fa fa-truck fa-5x" aria-hidden="true" style="width:100px;"></i></span>
+                <h6 class="heading mt-2 mb-4">폐가전 무상방문수거 <br class="mobile-br">접수 바로가기</h6>
               </div>
             </div>      
           </div>
@@ -108,7 +122,7 @@
               <div class="media-body p-3 mt-3">
               	<a href="../board/board_form.jsp">
               	<span style="color:rgba(128, 156, 168, 1)"><i class="fa fa-heart-o fa-5x" aria-hidden="true" style="width:100px; height:150px;"></i></span>
-                <h6 class="heading mb-4" style="color:black">작은 실천이 큰 힘이 됩니다</h6>
+                <h6 class="heading mb-4" style="color:black">작은 실천이 <br class="mobile-br">큰 힘이 됩니다</h6>
                 <p class="heading-2" style="color:black">무료 나눔 하기</p></a>
               </div>
             </div>    
@@ -173,6 +187,13 @@
                     this.errored = true
                 })
                 .finally(()=>this.loading = false),
+            },
+            methods:{
+            	go15990903(){
+            		window.open("http://www.15990903.or.kr", "_blank");
+
+            	}
+            	
             }
         })
     </script>
