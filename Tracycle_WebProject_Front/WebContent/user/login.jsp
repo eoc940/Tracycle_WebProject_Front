@@ -38,20 +38,22 @@
                 </tr>
                 <tr>
                   <th><span>비밀번호</span></th>
-                  <td><input type="password" placeholder="비밀번호를 입력해주세요." class="inputPass"  v-model="password"  required></td>
+                  <td><input type="password" placeholder="비밀번호를 입력해주세요." class="inputPass"  v-model="password"  required  @keydown.enter.prevent="login"></td>
                 </tr>
               </tbody>
             </table>
             <div class="exform_txt"></div>
           </div>
+           
           <!-- join_form E  -->
+          <!-- 
           <button id="getInfo" @click="getInfo">정보확인</button>
           <button id="getInfo" @click="logout">로그아웃</button><br>
           메시지 : {{message}}<br>
           상태 : {{status}}<br>
           토큰 : {{token}}<br>
           정보 : {{info}}
-          
+          -->
           <div class="btn_wrap">
 	          <div class="homeNregister">
 	          <span><a href="../main/index.jsp" class="home-btn">HOME</a></span>
