@@ -82,7 +82,7 @@
       <div class="block-30 block-30-sm item" id="background_image" data-stellar-background-ratio="0.5">
         <div class="container">
            <div class="col-md-3">
-             <h1 class="heading1 pt-5" v-on:click="goHome">Tracycle</h1>
+             <h1 class="heading1 pt-5">Tracycle</h1>
            </div>
          </div>
          
@@ -123,7 +123,8 @@ new Vue({
     		}else{
     			e.preventDefault();
     		}
-	  	}
+	  	},
+    	
     }
 });
 
