@@ -60,6 +60,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="ftco-nav">
+       <a href="../main/index.jsp" class="pc-show"><h1 style="color: white;" class="pc-show">Tracycle</h1></a>
         <ul class="navbar-nav ml-auto">
 
           <li class="nav-item"><a href="../main/index.jsp"  class="nav-link">Home</a></li>
@@ -82,7 +83,7 @@
       <div class="block-30 block-30-sm item" id="background_image" data-stellar-background-ratio="0.5">
         <div class="container">
            <div class="col-md-3">
-             <h1 class="heading1 pt-5">Tracycle</h1>
+              <a href="../main/index.jsp"><h1 class="heading1 pt-5 mobile-show">Tracycle</h1></a> 
            </div>
          </div>
          
