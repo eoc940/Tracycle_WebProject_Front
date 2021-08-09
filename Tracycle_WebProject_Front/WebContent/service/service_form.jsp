@@ -3,9 +3,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-  <head>
+<head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
 
  	<title>지구를 위한 Tracycle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -72,16 +74,75 @@
 		
 		<!-- 이미지 컴포넌트 추가 -->
 		<div id="viewer">
-		<img id="img" src="http://localhost:8085/static/result0.jpg" style="width:100%; height:100%" >
+		<img id="img" v-if="image != ''" :src="image" style="width:50%; height:50%" >
 		</div>
-		<div>
-		{{result}}
-		</div>
+		
+		<!-- 테이블 -->
+  		<table class="table text-center pt-5 pb-5 mt-5 mb-5">
+		    <thead>
+		      <tr>
+		        <th>Category</th>
+		        <th>Standard</th>
+		        <th>Price</th>
+		        <th>Description</th>
+		      </tr>
+		    </thead>
+		    <tbody class="tbody  pt-5 pb-5 mt-5 mb-5">
+		      <tr v-for="info in result">
+		        <td v-html="info[3]"></td>
+		        <td v-html="info[1]"></td>
+		        <td v-html="info[0]"></td>
+		        <td v-html="info[2]"></td>
+		        
+		      </tr>
+		    </tbody>
+		 </table>
+		 
+	<div class="bannerContainer">
+       <div class="row d-flex">
+		 <!-- url -->
+		 <div class="row d-flex">
+          <div class="col-md-4 d-flex align-self-stretch">
+            <div class="media block-7">
+              <div class="media-body p-3 mt-3">
+             	<span style="color:rgba(128, 156, 168, 1)"><i class="fa fa-globe fa-5x" aria-hidden="true" style="width:100px; height:150px;"></i></span>
+                <h6 class="heading mb-4">폐기물 인터넷 접수 바로가기</h6>
+                <p class="heading-2">{{url}}</p>
+              </div>
+            </div>      
+          </div>
+          
+          <!-- 게시판 -->
+          <div class="col-md-4 d-flex align-self-stretch">
+            <div class="media block-7">
+              <div class="media-body p-3 mt-3">
+              	<a href="../board/board_form.jsp">
+              	<span style="color:rgba(128, 156, 168, 1)"><i class="fa fa-heart-o fa-5x" aria-hidden="true" style="width:100px; height:150px;"></i></span>
+                <h6 class="heading mb-4" style="color:black">작은 실천이 큰 힘이 됩니다</h6>
+                <p class="heading-2" style="color:black">무료 나눔 하기</p></a>
+              </div>
+            </div>    
+          </div>
+		 
+		 <!-- 전화번호 -->
+		 <div class="col-md-4 d-flex align-self-stretch">
+            <div class="media block-7 ">
+              <div class="media-body p-3 mt-3">
+              <span style="color:rgba(128, 156, 168, 1)"><i class="fa fa-volume-control-phone fa-5x" aria-hidden="true" style="width:100px; height:150px;"></i></span>
+               <h6 class="heading mb-4">폐기물 전화 접수하기</h6>
+                <p class="heading-2">{{telephone}}</p>
+              </div>
+            </div>    
+          </div>
+		
+		
 		
           
  	</div>
  </div>
- 
+ </div>
+ </div>
+ </div>
 
  
 
@@ -113,12 +174,11 @@
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
  
   <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-
+  
+ 
   	
   <script type="text/javascript">
-  
-    
- 
+
   
   	new Vue({
   		el: "#blog",
@@ -129,13 +189,15 @@
   				mainFile:[],
   				user:{"userId":storage.getItem("login_user")},
   				result:[],
+  				url:'',
+  				telephone:'',
   				image:'',
-  				show:false,
   				loading:true,
 				errored:false
   			}
   		},
   		mounted() {
+  			
   			axios
 			.get('http://127.0.0.1:7788/board/getAllArea',{
  	  			headers : {
@@ -185,14 +247,19 @@
 					axios.post('http://127.0.0.1:8085/service', formData)
 					.then(response=>{
 						this.result= response.data;
-						this.show = true;
-						this.image = "";
+						if(this.result.length > 0) {
+							this.url = this.result[0][5];
+							this.telephone = this.result[0][6];
+						}
+						this.image = "http://127.0.0.1:8085/static/result0.jpg?a=" + Math.random();
+						
 						console.log(this.result);
 					}).catch(error=>{
 						console.log(error);
 						alert(error);
 	                    this.errored = true;
 					})
+					
 					
 				}
 			}

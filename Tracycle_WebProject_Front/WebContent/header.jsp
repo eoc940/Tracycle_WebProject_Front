@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 
   <head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
   <meta charset="UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
