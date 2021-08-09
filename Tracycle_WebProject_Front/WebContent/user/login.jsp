@@ -38,7 +38,7 @@
                 </tr>
                 <tr>
                   <th><span>비밀번호</span></th>
-                  <td><input type="password" placeholder="비밀번호를 입력해주세요." class="inputPass"  v-model="password"  required  @keydown.enter.prevent="login"></td>
+                  <td><input type="password" placeholder="비밀번호를 입력해주세요." class="inputPass"  v-model="password"  required  @keyup.enter.prevent="login"></td>
                 </tr>
               </tbody>
             </table>
