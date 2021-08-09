@@ -128,9 +128,7 @@
   <script src="../js/main.js"></script>
   <script src="../js/moment.js"></script>
     <script>
-
     Vue.config.devtools = true;
-
         new Vue({
             el: "#app",           
             data(){
@@ -165,7 +163,6 @@
                     endPageIndex: 0, //끝페이지 인덱스 
                     prev: false, //<< 출력 
                     next: false //>> 출력 
-
                 }
             },
             computed: {
@@ -207,7 +204,6 @@
             	}
             },
             mounted(){
-
             	offset=(this.currentPageIndex-1)*this.listRowCount;
         		axios
             	.get('http://127.0.0.1:7788/board/getBoardLimitOffset/'+offset)
@@ -236,7 +232,6 @@
                     this.errored = true
                 })
                  .finally(()=>this.loading = false)
-
             },
             methods:{
             	getBoard(){
@@ -261,6 +256,7 @@
                    })
                    .finally(()=>this.loading = false)
             	},
+
             	findByCategory(category){
             		axios
             		.get('http://127.0.0.1:7788/board/findByCategoryTotalCount/'+this.category)
@@ -305,6 +301,7 @@
             			})
             		.finally(()=>this.loading = false)
             	},
+
             	findById(keyword){
             		
             		axios
@@ -394,7 +391,6 @@
             			this.keyword=""
             	},
             	
-
             	
             	/* pagination */
             	
@@ -411,32 +407,37 @@
             		.finally(()=>this.loading = false)
             	},
 
+            	findByAreaInMethods(areaNum){
+            		axios
+            			.get('http://127.0.0.1:7788/board/findByArea/'+this.areaNum)
+            			.then(response=>(this.info= response.data))
+            			.catch(error=>{
+            				console.log(error);
+            				this.errored = true
+            			})
+            		.finally(()=>this.loading = false)
+            	},
+
                 initUI(){
-
             	      this.pageCount = Math.ceil(this.totalListItemCount/this.listRowCount);
-
             	      if( (this.currentPageIndex % this.pageLinkCount) == 0 ){
             	        this.startPageIndex = ((this.currentPageIndex / this.pageLinkCount)-1)*this.pageLinkCount + 1
             	      }else{
             	        this.startPageIndex = Math.floor(this.currentPageIndex / this.pageLinkCount)*this.pageLinkCount + 1
             	      }
-
             	      if( (this.currentPageIndex % this.pageLinkCount) == 0 ){ //10, 20...맨마지막
             	        this.endPageIndex = ((this.currentPageIndex / this.pageLinkCount)-1)*this.pageLinkCount + this.pageLinkCount
             	      }else{
             	        this.endPageIndex =  Math.floor(this.currentPageIndex / this.pageLinkCount)*this.pageLinkCount + this.pageLinkCount;
             	      }
-
             	      if(this.endPageIndex > this.pageCount){
             	        this.endPageIndex = this.pageCount
             	      }
-
             	      if( this.currentPageIndex <= this.pageLinkCount ){
             	        this.prev = false;
             	      }else{
             	        this.prev = true;
             	      }
-
             	      if(this.endPageIndex >= this.pageCount){
             	        this.endPageIndex = this.pageCount;
             	        this.next = false;

@@ -154,7 +154,7 @@
                       </div>
 
                       <div class="form-group">
-                        <label for="message" class="label-font-bold">댓글 내용</label> <h6>[{{commentLength}}/500]</h6><input type="checkbox" v-model="info.secret" true-value="1" false-value="0"> 비밀글
+                        <label for="message" class="label-font-bold">댓글 내용</label> <a class="commentLength">[{{commentLength}}/500]</a><input type="checkbox" v-model="info.secret" true-value="1" false-value="0"> 비밀글
 		                <textarea name="" id="message" cols="30" rows="5" class="form-control" @input="checkCommentLength" v-model="info.content"></textarea>
                       </div>
                       <div class="form-group text-center mb-5">
