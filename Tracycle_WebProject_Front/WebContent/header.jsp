@@ -65,7 +65,7 @@
           <li class="nav-item"><a href="../main/index.jsp"  class="nav-link">Home</a></li>
           <li class="nav-item"><a href="../about_us/about_us.jsp"  class="nav-link">About us</a></li>
           <li class="nav-item"><a href="../board/board_list.jsp"  class="nav-link">Share</a></li>
-          <li class="nav-item"><a href="../service/service.jsp" class="nav-link">Service</a></li> 
+          <li class="nav-item"><a href="../service/service_form.jsp" class="nav-link">Service</a></li> 
           <li class="nav-item"><a href="../report/report.jsp"  class="nav-link">Report</a></li>         
 		  <li class="nav-item" v-if="jwtauthtoken==''"><a href="../user/login.jsp" class="nav-link">Login</a></li>        
 		  <li class="nav-item" v-if="jwtauthtoken!=''"><a href="index.jsp" v-on:click="logout" class="nav-link" >Logout</a></li>
@@ -82,7 +82,9 @@
       <div class="block-30 block-30-sm item" id="background_image" data-stellar-background-ratio="0.5">
         <div class="container">
            <div class="col-md-3">
-             <h1 class="heading1 pt-5">Tracycle</a></h1>
+
+             <h1 class="heading1 pt-5" v-on:click="goHome">Tracycle</h1>
+
            </div>
          </div>
          
