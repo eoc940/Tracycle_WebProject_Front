@@ -35,7 +35,7 @@
         <div class="col-sm-4">
               <span class="mypage_id">ID : {{userId}} <p></p></span>
               <p class="mb-0 modifyUser"><a href="user_update.jsp" class="btn btn-primary px-3 py-2">정보 수정</a></p>
-              <p class="mb-0 deleteUser"><a href="../main/index.jsp" class="btn btn-primary px-3 py-2 " @click="deleteUser()">회원 탈퇴</a></p>
+              <p class="mb-0 deleteUser"><a href="user_delete.jsp" class="btn btn-primary px-3 py-2 ">회원 탈퇴</a></p>
         </div>
         <div class="col-sm-8">
           <div class="post" >
@@ -118,32 +118,8 @@
                 this.errored = true
             })
             .finally(()=>this.loading = false) 
-        },
-        
-        methods:{
-        	deleteUser(userId){
-        		if(confirm("계정을 삭제 하시겠습니까?")){
-        			axios
-        			.delete('http://127.0.0.1:7788/user/deleteUser/'+this.userId,
-        			{
-        				headers : {
-          	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
-          	  			}
-        			})
-        			.then(response=>{this.result= response.data
-        				storage.setItem("jwt-auth-token", "");
-        	  			storage.setItem("login_user", "");
-        	  			})
-        			.catch(error=>{
-                        console.log(error);
-                        this.errored = true
-                    })
-                    .finally(()=>location.href="../main/index.jsp") 
-        		}
-        	}
         }
-        
-       
+
   	});
   </script>
   </body>

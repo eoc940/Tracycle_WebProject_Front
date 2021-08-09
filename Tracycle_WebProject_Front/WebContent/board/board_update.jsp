@@ -45,14 +45,16 @@
             <div class="row">
             <div class=" col-md-12 mb-3">
 		           <div class="comment-form-wrap pt-5">
-                    <h3 class="mb-3">  <label for="name" class="label-font-bold">제목</label> <input type="text" class="form-control" v-model="board.title"></h3>
-                    
+
+                    <h3 class="mb-3">  <label for="name" class="label-font-bold">제목</label> <h6>[{{titleLength}}/100]</h6><input type="text" class="form-control" @input="checkTitleLength" v-model="board.title"></h3>
+                    <form action="#" class="">
+
                       <div class="form-group right">	
                         <h6><label for="name" class="label-font-bold">작성자 아이디</label> <a>{{userId}}</a></h6>
                       </div>
                       <div class="form-group">
-                        <h6><label for="content" class="label-font-bold">내용</label></h6>
-                        <textarea name="" id="content" cols="30" rows="20" class="form-control" v-model="board.content"></textarea>
+                        <h6><label for="content" class="label-font-bold">내용</label></h6> <h6>[{{contentLength}}/1000]</h6>
+                        <textarea name="" id="content" cols="30" rows="20" @input="checkContentLength" class="form-control" v-model="board.content"></textarea>
                       </div>
                        <div class="form-group">
                        <label for="content" class="label-font-bold">지역 </label><br>
@@ -154,6 +156,8 @@
 				user:{"userId":storage.getItem("login_user")},
 				area:{},
 				category:{},
+				titleLength:0,
+				contentLength:0,
 				result:'',
 				loading:true,
 				errored:false,
@@ -199,7 +203,8 @@
  	  			this.board.content = response.data.content;
  	  			this.board.viewCount = response.data.viewCount;
  	  			this.board.status = response.data.status;
- 	  			
+ 	  			this.titleLength = response.data.title.length;
+ 	  			this.contentLength = response.data.content.length;
  	  		})
  	  		.catch(error=>{
 				alert(error);
@@ -209,7 +214,12 @@
 			
 		},
 		methods:{
-			
+			checkTitleLength() {
+				this.titleLength = this.board.title.length;
+			},
+			checkContentLength() {
+				this.contentLength = this.board.content.length;
+			},
 			mainFileUpload(){
 				this.mainFile = this.$refs.mainFile.files[0];
 				console.log(this.mainFile);
@@ -223,8 +233,12 @@
 			validationOnlyText() {
 				if(this.board.title == null || this.board.title.trim()=="") {
 					alert("제목을 입력해 주세요"); return false;
+				} else if(this.titleLength > 100) {
+					alert("제목을 100자 이하로 입력하세요"); return false;
 				} else if (this.board.content == null || this.board.content.trim()=="") {
 					alert("내용을 입력해 주세요"); return false;
+				} else if(this.contentLength > 1000) {
+					alert("내용을 1000자 이하로 입력하세요"); return false;
 				} else if (this.area.areaId == null){
 					alert("지역을 선택해 주세요"); return false;
 				} else if (this.category.categoryId == null) {
@@ -237,8 +251,12 @@
 			validationIncludingFile() {
 				if(this.board.title == null || this.board.title.trim()=="") {
 					alert("제목을 입력해 주세요"); return false;
+				} else if(this.titleLength > 100) {
+					alert("제목을 100자 이하로 입력하세요"); return false;
 				} else if (this.board.content == null || this.board.content.trim()=="") {
 					alert("내용을 입력해 주세요"); return false;
+				} else if(this.contentLength > 1000) {
+					alert("내용을 1000자 이하로 입력하세요"); return false;
 				} else if (this.area.areaId == null){
 					alert("지역을 선택해 주세요"); return false;
 				} else if (this.category.categoryId == null) {

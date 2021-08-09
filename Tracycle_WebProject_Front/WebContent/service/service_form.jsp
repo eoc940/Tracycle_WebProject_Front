@@ -46,7 +46,7 @@
     
   <jsp:include page="../header.jsp"></jsp:include>
   
-  <div class="site-header-section" >
+  <div id="blog" class="site-header-section" >
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -54,63 +54,32 @@
         </div>
       </div>
       
-      
-   <!--   <div class ="row" id="app">
-      	<select name="area">
- 				<option v-for="area in info" :value="area.area_name">
- 				{{area.area_name}}
- 				</option>
-  		</select>
-      </div> -->
-      
-      	<div class="form-group">
-    		<select class="selectpicker mb-5 rounded float-right ml-1" style="width: 250px; height:40px;" >
-    		   <option>지역구를 선택해주세요</option>
-			   <option>강남구</option>
-	      		<option>강동구</option>
-	      		<option>강북구</option>
-	      		<option>강서구</option>
-	      		<option>관악구</option>
-	      		<option>광진구</option>
-	      		<option>구로구</option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      		<option></option>
-	      	</select>
-          </div>
-          
-          	<div class="form-group">
-				<input class="form-control" type="file" id="formFile">
-			</div>
+      <div class="form-group">
+          <label for="content" class="label-font-bold">지역 </label><br>
+               <select class="selectpicker" name="selectedArea" v-model="area.areaId">
+					<option v-for="sarea in areaList" :value="sarea.areaId">
+					    {{sarea.areaName}}
+					</option>
+				</select>
+
+       </div>
+     
+       <div class="form-group">
+         	<h1 class="h3 mb-3 font-weight-normal">Upload any image</h1>
+			<input type="file" name="file" accept="image/*" id="file_upload" ref="mainFile" v-on:change="mainFileUpload()"/>
+   			<input type="button" onclick="toggleImg()" v-on:click="submit()" value="upload" id="upload"/> 
+	   </div>
+		
+		<!-- 이미지 컴포넌트 추가 -->
+		<div id="viewer">
+		<img id="img" src="http://localhost:8085/static/result0.jpg" style="width:100%; height:100%" >
+		</div>
+			
+		
           
  	</div>
  </div>
-  <div class="site-section-img">
-	  <div class="container mt-5 mb-5">
-	      <div class="row">
-	        <div class="col-md-12 text-center pt-5 pb-5 mt-5 mb-5">
-	          <h1 class="pt-5 pb-5 mt-5 mb-5 text-center"> 이미지 들어갈 곳<h1>
-      		 </div>
-      	  </div>
-      </div>
-   </div>
+ 
 
  
 
@@ -139,16 +108,103 @@
   <script src="../js/main.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- <script>
-/*       new Vue({
-            el: "#app",           
-            data(){
-                return {
-                    info:[ ],
-                    loading:true,
-                    errored:false,
-                   
-   */
-      </script>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+ 
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+  	
+  	
+    function toggleImg() {
+    	setTimeout(function() {
+    		location.reload();
+    		}, 3000);
+    }
+  </script>
+  	
+  	
+  <script type="text/javascript">
+  
+    
+ 
+  
+  	new Vue({
+  		el: "#blog",
+  		data() {
+  			return {
+  				areaList:[],
+  				area:{},
+  				mainFile:[],
+  				user:{"userId":storage.getItem("login_user")},
+  				result:[],
+  				loading:true,
+				errored:false
+  			}
+  		},
+  		mounted() {
+  			axios
+			.get('http://127.0.0.1:7788/board/getAllArea',{
+ 	  			headers : {
+ 	  				"jwt-auth-token":storage.getItem("jwt-auth-token")
+ 	  			}
+ 	  		})
+			.then(response=>(this.areaList = response.data))
+			.catch(error=>{
+				alert(error);
+				console.log(error);
+				this.errored = true;
+			})
+			.finally(()=>this.loading = false)
+  		},
+  		methods:{
+  			mainFileUpload(){
+				this.mainFile = this.$refs.mainFile.files[0];
+				
+				if (this.mainFile.length > 1) {
+					this.mainFile = [];
+					alert("메인 이미지는 1장만 가능합니다");
+				}
+				console.log(this.mainFile);
+			},
+			validation(){
+				if(storage.getItem("jwt-auth-token")=="") {
+					alert("로그인 해주세요");
+					location.href="../user/login.jsp";
+				} else if(this.area.areaId == null) {
+					alert("지역을 선택해 주세요"); return false;
+				} else if(this.mainFile.length == 0) {
+					alert("이미지를 업로드해 주세요"); return false;
+				}
+				return true;
+			},
+			submit() {
+
+				if(this.validation()) {
+					const formData = new FormData();
+					formData.append("areaId",this.area.areaId);
+					formData.append("mainFile",this.mainFile);
+					formData.append("userId",this.user.userId);
+					for(var key of formData.entries()) {
+						console.log(key[0]+', '+key[1]);
+					}
+
+					axios.post('http://127.0.0.1:8085/service', formData)
+					.then(response=>{
+						this.result= response.data;
+						console.log(this.result);
+					}).catch(error=>{
+						console.log(error);
+						alert(error);
+	                    this.errored = true;
+					})
+					
+				}
+			}
+  		}
+  	});
+  
+  
+  </script>
+   
+
   </body>
 </html>
