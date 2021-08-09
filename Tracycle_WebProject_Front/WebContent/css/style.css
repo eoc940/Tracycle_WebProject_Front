@@ -120,7 +120,6 @@ h1, h2, h3, h4, h5, h6
     right: 0;
     left: 0;
     top: 0;
-    margin-top: -130px;
     background: #fff !important;
     -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); }
@@ -151,8 +150,8 @@ h1, h2, h3, h4, h5, h6
       font-size: 16px;
       letter-spacing: .1em; }
     .ftco-navbar-light.scrolled .nav-link {
-      padding-top: 0.9rem !important;
-      padding-bottom: 0.9rem !important;
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
       color: #000 !important; }
       .ftco-navbar-light.scrolled .nav-link.active {
 
