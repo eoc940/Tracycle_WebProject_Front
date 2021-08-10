@@ -396,6 +396,11 @@ h1, h2, h3, h4, h5, h6
    	   color: var(--main-color);
    	   border: 2px solid var(--main-color);	
    }
+   .btn.btn-upload{
+       color: white;
+   	   background: #777777;
+   	   border: 2px solid #777777;	
+   }
   .btn.btn-outline-white {
     border-color: rgba(255, 255, 255, 0.8);
     background: none;
@@ -2538,6 +2543,7 @@ dropdown .btn:focus,.btn:active,.btn:focus{
     overflow:hidden;
 }
 .file_input input[type=text] {
+	margin-left: 5px;
     vertical-align:top;
     display:inline-block;
     width:400px;
