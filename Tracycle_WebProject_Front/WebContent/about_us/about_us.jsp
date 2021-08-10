@@ -72,7 +72,6 @@ height:150px;}
 	                <p class="block-38-subheading">Backend - 팀장</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -86,7 +85,6 @@ height:150px;}
 	                <p class="block-38-subheading">Backend</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -100,7 +98,6 @@ height:150px;}
 	                <p class="block-38-subheading">Frontend</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -114,7 +111,6 @@ height:150px;}
 	                <p class="block-38-subheading">Frontend</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -134,7 +130,7 @@ height:150px;}
 	                <p class="block-38-subheading">Frontend</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
+	               
 	              </div>
 	            </div>
 	          </div>
@@ -143,12 +139,11 @@ height:150px;}
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/김진철.JPG" alt="Image placeholder">
+	                <img src="../images/김진철.jpg" alt="Image placeholder">
 	                <h3 class="block-38-heading">김진철</h3>
 	                <p class="block-38-subheading">A.I.</p>
 	              </div>
 	              <div class="block-38-body">
-	               <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -162,7 +157,6 @@ height:150px;}
 	                <p class="block-38-subheading">A.I.</p>
 	              </div>
 	              <div class="block-38-body">
-	               <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>
@@ -171,12 +165,11 @@ height:150px;}
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/정우철.PNG" alt="Image placeholder">
+	                <img src="../images/정우철.png" alt="Image placeholder">
 	                <h3 class="block-38-heading">정우철</h3>
 	                <p class="block-38-subheading">A.I.</p>
 	              </div>
 	              <div class="block-38-body">
-	                <p>자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개 </p>
 	              </div>
 	            </div>
 	          </div>

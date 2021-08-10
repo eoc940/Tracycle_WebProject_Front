@@ -1,7 +1,7 @@
 @charset "utf-8";
 * {margin:0;padding:0;}
 html {height:100%;}
-body {height:100%; font-family: 'Nunito', sans-serif; 
+body {height:100%; font-family: 'Nanum Gothic', sans-serif; 
 background-image: url("../images/nature.jpg");
   background-size:cover;
   background-repeat: no-repeat;
