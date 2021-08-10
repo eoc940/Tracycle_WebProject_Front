@@ -89,10 +89,10 @@
                       </div>
 
 					 <h6> <label for="formFile1" class="form-label label-font-bold">대표 이미지</label></h6>									  
-					  <div class="">
+					  <div class="file_input">
 					    <label>
 					        파일 선택
-					        <input type="file" id="formFile1" ref="mainFile" v-on:change="[mainFileUpload(),handleFileChange()]">
+					        <input type="file" id="formFile1" ref="mainFile" v-on:change="mainFileUpload">
 					    </label>
 					    <input type="text" for="formFile1" readonly="readonly" :value=file_name>
 					  </div>
@@ -102,9 +102,9 @@
 						 <div class="file_input">
 						    <label>
 						        파일 선택
-						        <input multiple="multiple" type="file" id="formFile2" ref="subFile" v-on:change="[subFileUpload(),handleFileChange()]">
+						        <input multiple="multiple" type="file" id="formFile2" ref="subFile" v-on:change="subFileUpload">
 						    </label>
-						    <input type="text" readonly="readonly"  title="File Route">
+						    <input type="text" readonly="readonly"  title="File Route" :value=subfileslength>
 						  </div>
 						  			
 					 <div class="form-group text-center pt-5 pb-5">
@@ -163,7 +163,8 @@
 				loading:true,
 				errored:false,
 				userId:storage.getItem("login_user"),
-				file_name: "파일을 선택하세요."
+				file_name: "파일을 선택하세요.",	
+				subfileslength:"파일을 선택하세요."
 			}
 		},
 		mounted(){
@@ -201,23 +202,27 @@
 			checkContentLength() {
 				this.contentLength = this.board.content.length;
 			},
-			mainFileUpload(){
+			mainFileUpload(e){
 				this.mainFile = this.$refs.mainFile.files[0];
+				this.file_name =e.target.files[0].name;
 				if (this.mainFile.length > 1) {
 					this.mainFile = [];
 					alert("메인 이미지는 1장만 가능합니다");
 				}
+
 				console.log(this.mainFile);
 				this.file_name = e.target.file.name;
 			},
 			subFileUpload(){
 				this.subFile = this.$refs.subFile.files;
+				this.subfileslength = "선택한 파일은 "+this.subFile.length+"개 입니다.";
 				if (this.subFile.length > 4) {
 					this.subFile = [];
 					alert("이미지는 4개 이하로 올려주세요");
 				}
 				for(var i=0; i<this.subFile.length; i++) {
 					console.log(this.subFile[i])
+					
 				}
 			},
 			validation() {
@@ -280,10 +285,9 @@
 					})
 					.finally(()=>location.href="board_list.jsp")
 				}
-				
-				
+	
 			}
-			
+
 		},
 		updated: function(){
 			  this.$nextTick(function(){ $('.selectpicker').selectpicker('refresh'); });
