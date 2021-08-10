@@ -46,14 +46,16 @@
             <div class=" col-md-12 mb-3">
 		           <div class="comment-form-wrap pt-5">
 
-                    <h3 class="mb-3">  <label for="name" class="label-font-bold">제목</label> <h6>[{{titleLength}}/100]</h6><input type="text" class="form-control" @input="checkTitleLength" v-model="board.title"></h3>
-                    <form action="#" class="">
+                  <h3 class="mb-3">  <label for="name" class="label-font-bold">제목</label> 
+                    <a class="titleLength">[{{titleLength}}/100]</a> 
+                    <input type="text" @input="checkTitleLength" class="form-control" v-model="board.title"></h3>
+                     <form action="#" class="">
 
                       <div class="form-group right">	
                         <h6><label for="name" class="label-font-bold">작성자 아이디</label> <a>{{userId}}</a></h6>
                       </div>
-                      <div class="form-group">
-                        <h6><label for="content" class="label-font-bold">내용</label></h6> <h6>[{{contentLength}}/1000]</h6>
+                       <div class="form-group">
+                        <h6><label for="content" class="label-font-bold">내용</label><a>[{{contentLength}}/1000]</a></h6> 
                         <textarea name="" id="content" cols="30" rows="20" @input="checkContentLength" class="form-control" v-model="board.content"></textarea>
                       </div>
                        <div class="form-group">
