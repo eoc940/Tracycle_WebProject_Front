@@ -33,7 +33,7 @@
               <tbody @input="pressbutton">
                 <tr>
                   <th><span>아이디</span></th>
-                  <td><input type="text" placeholder="ID 를 입력하세요. (영문, 숫자 조합 5자 이상/특수문자, 공백 사용 불가)" minlength="5" class="inputId"  v-model.trim="userid"  @blur="[checkId(), idcnt()]" @change="againCheckId" required="required"><p v-html="idinvalidmessage" ></p><div class="idCheck"><button @click= "validationId" class="idCheck" style="cursor:pointer;">ID Check</button></div></td>
+                  <td><input type="text" placeholder="ID 를 입력하세요. (영문, 숫자 조합 5자 이상/특수문자, 공백 사용 불가)" minlength="5" class="inputId"  v-model.trim="userid"  @blur="[checkId(), idcnt()]" @change="againCheckId" required="required"><p v-html="idinvalidmessage" ></p><div class="idCheck"><button @click= "validationId" class="idCheckButton" style="cursor:pointer;">ID Check</button></div></td>
                 </tr>
                
                 <tr>

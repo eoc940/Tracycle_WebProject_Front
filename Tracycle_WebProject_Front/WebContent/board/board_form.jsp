@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
-
+	<link rel="stylesheet" href="../test.css">
 	<!-- ㅇㅇ -->
   </head>
   <body>
@@ -85,24 +85,32 @@
  							   <option data-content="<span class='badge badge-pill badge-end'>나눔완료</span>" :value=3>나눔완료 </option>
   							</select>
                       </div>
-                    <div class="form-group">
-					 <h6> <label for="formFile" class="form-label label-font-bold">대표 이미지</label></h6>
-					  <input class="form-control" type="file" id="formFile" ref="mainFile" v-on:change="mainFileUpload()">
-					</div>
-					<div class="form-group">
-					 <h6> <label for="formFile" class="form-label label-font-bold">이미지 (최대 4장)</label></h6>
-					  <input class="form-control" multiple="multiple" type="file" id="formFile" ref="subFile" v-on:change="subFileUpload()">
-					</div>
+
+					 <h6> <label for="formFile1" class="form-label label-font-bold">대표 이미지</label></h6>									  
+					  <div class="file_input">
+					    <label>
+					        파일 선택
+					        <input type="file" id="formFile1" ref="mainFile" v-on:change="[mainFileUpload(),handleFileChange()]">
+					    </label>
+					    <input type="text" for="formFile1" readonly="readonly" :value=file_name>
+					  </div>
+					
+					
+					 <h6> <label for="formFile2" class="form-label label-font-bold">이미지 (최대 4장)</label></h6>
+						 <div class="file_input">
+						    <label>
+						        파일 선택
+						        <input multiple="multiple" type="file" id="formFile2" ref="subFile" v-on:change="[subFileUpload(),handleFileChange()]">
+						    </label>
+						    <input type="text" readonly="readonly"  title="File Route">
+						  </div>
+						  			
 					 <div class="form-group text-center pt-5 pb-5">
 					  	<input type="submit" value="Cancel" class="btn py-3 px-4 btn-cancel">	
                         <input type="button" v-on:click="submitPost()" value="Write Post" class="btn py-3 px-4 btn-primary">
-                      </div>
-                     
-                     </div>
-  
-                  
-                  </div>
-			    	
+                      </div>                     
+                     </div>      
+                  </div>			    	
             </div>
 
           </div>
@@ -153,7 +161,8 @@
 				result:'',
 				loading:true,
 				errored:false,
-				userId:storage.getItem("login_user")
+				userId:storage.getItem("login_user"),
+				file_name: "파일을 선택하세요."
 			}
 		},
 		mounted(){
@@ -271,7 +280,11 @@
 				}
 				
 				
-			}
+			},
+			
+			 handleFileChange(e) {
+			      this.file_name = e.target.file.name;
+			    }
 			
 		},
 		updated: function(){
