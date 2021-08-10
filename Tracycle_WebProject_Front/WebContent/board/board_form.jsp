@@ -33,7 +33,9 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../test.css">
-	<!-- ㅇㅇ -->
+	<!-- selectpicker -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.css" integrity="sha512-03p8fFZpOREY+YEQKSxxretkFih/D3AVX5Uw16CAaJRg14x9WOF18ZGYUnEqIpIqjxxgLlKgIB2kKIjiOD6++w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   </head>
   <body>
 
@@ -90,7 +92,7 @@
 					  <div class="file_input">
 					    <label>
 					        파일 선택
-					        <input type="file" id="formFile1" ref="mainFile" v-on:change="[mainFileUpload(),handleFileChange()]">
+					        <input type="file" id="formFile1" ref="mainFile" v-on:change="mainFileUpload">
 					    </label>
 					    <input type="text" for="formFile1" readonly="readonly" :value=file_name>
 					  </div>
@@ -100,9 +102,9 @@
 						 <div class="file_input">
 						    <label>
 						        파일 선택
-						        <input multiple="multiple" type="file" id="formFile2" ref="subFile" v-on:change="[subFileUpload(),handleFileChange()]">
+						        <input multiple="multiple" type="file" id="formFile2" ref="subFile" v-on:change="subFileUpload">
 						    </label>
-						    <input type="text" readonly="readonly"  title="File Route">
+						    <input type="text" readonly="readonly"  title="File Route" :value=subfileslength>
 						  </div>
 						  			
 					 <div class="form-group text-center pt-5 pb-5">
@@ -140,8 +142,7 @@
   <script src="../js/jquery.animateNumber.min.js"></script>
   <script src="../js/main.js"></script>\
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.js" integrity="sha512-t2sE4D8vBHZoytr423dbCPmX8MUKM9bNiVKGOMpqFYEsV8/GilxvresTtCsv9RDzqGMcizOd7EuXssJUtaGZLg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.css" integrity="sha512-03p8fFZpOREY+YEQKSxxretkFih/D3AVX5Uw16CAaJRg14x9WOF18ZGYUnEqIpIqjxxgLlKgIB2kKIjiOD6++w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+ 
 <script>
 	//const storage = window.sessionStorage;
 	new Vue({
@@ -162,7 +163,8 @@
 				loading:true,
 				errored:false,
 				userId:storage.getItem("login_user"),
-				file_name: "파일을 선택하세요."
+				file_name: "파일을 선택하세요.",	
+				subfileslength:"파일을 선택하세요."
 			}
 		},
 		mounted(){
@@ -200,22 +202,27 @@
 			checkContentLength() {
 				this.contentLength = this.board.content.length;
 			},
-			mainFileUpload(){
+			mainFileUpload(e){
 				this.mainFile = this.$refs.mainFile.files[0];
+				this.file_name =e.target.files[0].name;
 				if (this.mainFile.length > 1) {
 					this.mainFile = [];
 					alert("메인 이미지는 1장만 가능합니다");
 				}
+
 				console.log(this.mainFile);
+				
 			},
 			subFileUpload(){
 				this.subFile = this.$refs.subFile.files;
+				this.subfileslength = "선택한 파일은 "+this.subFile.length+"개 입니다.";
 				if (this.subFile.length > 4) {
 					this.subFile = [];
 					alert("이미지는 4개 이하로 올려주세요");
 				}
 				for(var i=0; i<this.subFile.length; i++) {
 					console.log(this.subFile[i])
+					
 				}
 			},
 			validation() {
@@ -278,14 +285,9 @@
 					})
 					.finally(()=>location.href="board_list.jsp")
 				}
-				
-				
-			},
-			
-			 handleFileChange(e) {
-			      this.file_name = e.target.file.name;
-			    }
-			
+	
+			}
+
 		},
 		updated: function(){
 			  this.$nextTick(function(){ $('.selectpicker').selectpicker('refresh'); });

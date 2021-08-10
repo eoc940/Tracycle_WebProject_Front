@@ -1,7 +1,7 @@
 @charset "utf-8";
 * {margin:0;padding:0;}
 html {height:100%;}
-body {height:100%; font-family: 'Nunito', sans-serif; 
+body {height:100%; font-family: 'Nanum Gothic', sans-serif; 
 background-image: url("../images/nature.jpg");
   background-size:cover;
   background-repeat: no-repeat;
@@ -61,7 +61,7 @@ ul{list-style:none; }
 
 .join_form_modify{width:100%;max-width:668px;}
 .join_form_modify table {border-spacing: 0;margin:0;padding:0; border:0;width:100%;}
-.join_form_modify table input{ border:0px solid #ececec; background: transparent; background: rgba(255, 255, 255, 0.2); font-size:14px;color:#4c4c4c; height:35px; padding:10px; width:100%; float:left;}
+.join_form_modify table input{ border:0px solid #ececec; background: transparent; background: rgba(255, 255, 255, 0.2); font-size:14px;color:white; height:35px; padding:10px; width:100%; float:left;}
 
 
 .join_form_modify table th span{color:white;font-size:14px; display:inline-block; position:relative;padding:0 10px 0 0; text-indent:20px;}
@@ -182,7 +182,7 @@ ul{list-style:none; }
   .join_form_modify{max-width:90vw;}
   .join_form_modify table th span{text-indent: 0;font-size:13px;}
   .join_form_modify table{width:100%;}
-  .join_form_modify table input{ border:1px solid #ececec;font-size:14px;color:#4c4c4c; height:37px; padding:10px; width:100%;}
+  .join_form_modify table input{ border:1px solid #ececec;font-size:14px;color:white; height:37px; padding:10px; width:100%;}
 
   
   .join_form_modify table input.send_number{width: 53%; }

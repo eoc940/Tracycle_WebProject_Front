@@ -6,7 +6,7 @@
 	color:var(--main-color);	
 }
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   background: #fff;
   font-size: 16px;
   line-height: 1.8;
@@ -175,7 +175,7 @@ h1, h2, h3, h4, h5, h6
   text-transform: uppercase;
   letter-spacing: .1em;
   font-size: 30px;
-  font-family: 'Nunito', sans-serif; }
+  font-family: 'Nanum Gothic', sans-serif; }
 
 .bg-image, .ftco-cover {
   background-size: cover;
@@ -198,7 +198,7 @@ h1, h2, h3, h4, h5, h6
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.7);
     font-weight: 300;
-    font-family: 'Nunito', sans-serif; }
+    font-family: 'Nanum Gothic', sans-serif; }
   @media (max-width: 991.98px) {
     .ftco-cover .btn {
       width: 100% !important; } }
@@ -395,6 +395,11 @@ h1, h2, h3, h4, h5, h6
        background: white;
    	   color: var(--main-color);
    	   border: 2px solid var(--main-color);	
+   }
+   .btn.btn-upload{
+       color: white;
+   	   background: #777777;
+   	   border: 2px solid #777777;	
    }
   .btn.btn-outline-white {
     border-color: rgba(255, 255, 255, 0.8);
@@ -645,7 +650,7 @@ textarea.form-control {
   margin-bottom: 10px; }
 
 .person-donate em {
-  font-family: 'Nunito', sans-serif; }
+  font-family: 'Nanum Gothic', sans-serif; }
 
 .person-donate img {
   border-radius: 7px;
@@ -727,7 +732,7 @@ textarea.form-control {
     margin-bottom: 40px;
     letter-spacing: .1em;
     color: #fff !important;
-    font-family: 'Nunito', sans-serif; }
+    font-family: 'Nanum Gothic', sans-serif; }
   .footer .block-21 .heading a {
     color: #fff !important; }
     .footer .block-21 .heading a:hover {
@@ -746,7 +751,7 @@ textarea.form-control {
 
 
 .footerTracycle{
-	font-family: 'Nunito', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 2.5em;
 	font-weight: 1em;
 	color: white;
@@ -1387,7 +1392,7 @@ textarea.form-control {
       top: .1em;
       left: 0; }
     .block-8 .accordion-item .heading > a[aria-expanded="true"]:before {
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Nanum Gothic', sans-serif;
       position: absolute;
       content: "\e316";
       -webkit-transition: .3s all ease;
@@ -1401,7 +1406,7 @@ textarea.form-control {
     .block-8 .accordion-item .heading > a[aria-expanded="false"]:before {
       content: "\e313";
       color: #ccc;
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Nanum Gothic', sans-serif;
       position: absolute;
       -webkit-transition: .3s all ease;
       -o-transition: .3s all ease;
@@ -1747,7 +1752,7 @@ textarea.form-control {
       background-position: center center !important; } }
   .block-30 .author {
     margin-top: 30px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nanum Gothic', sans-serif;
     font-size: 16px;
     display: block; }
   .block-30:before {
@@ -1790,7 +1795,7 @@ textarea.form-control {
     font-size: 40px;
     line-height: 1.1;
     margin-bottom: 50px;
-    font-family: 'Nunito', sans-serif; }
+    font-family: 'Nanum Gothic', sans-serif; }
     @media (min-width: 768px) {
       .block-30 .heading {
         font-size: 80px; } }
@@ -1805,7 +1810,7 @@ textarea.form-control {
     font-size: 35px;
     line-height: 1.1;
     margin-bottom: 50px;
-    font-family: 'Nunito', sans-serif; }
+    font-family: 'Nanum Gothic', sans-serif; }
     @media (min-width: 768px) {
       .block-30 .heading {
         font-size: 80px; } }
@@ -1821,7 +1826,7 @@ textarea.form-control {
     color: #fff;
     font-size: 40px;
     line-height: 1.1;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nanum Gothic', sans-serif;
     font-weight:bold; }
     @media (min-width: 768px) {
       .block-30 .heading {
@@ -2198,7 +2203,7 @@ textarea.form-control {
   padding: 4em 0; }
   
   .container h1{
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 35px;
   }
   
@@ -2492,13 +2497,13 @@ dropdown .btn:focus,.btn:active,.btn:focus{
     margin-left: -10px;
 }
 
- @media (min-width: 768px) {
+ @media (min-width: 768.02px) {
       .mobile-show {
        display:none; } 
 }
 
 /* mobile */
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
    .pc-show {
        display:none; }  }
        
@@ -2507,4 +2512,46 @@ dropdown .btn:focus,.btn:active,.btn:focus{
        padding-top: 400px;; }  }
        
 
-        
+.service_img{
+	width: 50%; 
+	height: 50%;
+}
+@media (max-width: 767.98px) {
+ .service_img {
+    width: 100%; 
+	height: 100%; }  }
+
+.file_input label {
+    position:relative;
+    cursor:pointer;
+    display:inline-block;
+    vertical-align:top;
+    overflow:hidden;
+    width:100px;
+    height:30px;
+    background:#777;
+    color:#fff;
+    text-align:center;
+    line-height:30px;
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 50%);
+    margin-bottom: 20px;
+}
+.file_input label input {
+    position:absolute;
+    width:0;
+    height:0;
+    overflow:hidden;
+}
+.file_input input[type=text] {
+	margin-left: 5px;
+    vertical-align:top;
+    display:inline-block;
+    width:400px;
+    height:28px;
+    line-height:28px;
+    font-size:11px;
+    padding:0;
+    border:0;
+    border:1px solid #777;
+}
+
