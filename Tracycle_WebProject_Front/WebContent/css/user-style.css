@@ -182,7 +182,7 @@ ul{list-style:none; }
   .join_form_modify{max-width:90vw;}
   .join_form_modify table th span{text-indent: 0;font-size:13px;}
   .join_form_modify table{width:100%;}
-  .join_form_modify table input{ border:1px solid #ececec;font-size:14px;color:#4c4c4c; height:37px; padding:10px; width:100%;}
+  .join_form_modify table input{ border:1px solid #ececec;font-size:14px;color:white; height:37px; padding:10px; width:100%;}
 
   
   .join_form_modify table input.send_number{width: 53%; }
