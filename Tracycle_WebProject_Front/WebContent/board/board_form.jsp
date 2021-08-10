@@ -33,7 +33,9 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../test.css">
-	<!-- ㅇㅇ -->
+	<!-- selectpicker -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.css" integrity="sha512-03p8fFZpOREY+YEQKSxxretkFih/D3AVX5Uw16CAaJRg14x9WOF18ZGYUnEqIpIqjxxgLlKgIB2kKIjiOD6++w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   </head>
   <body>
 
@@ -87,7 +89,7 @@
                       </div>
 
 					 <h6> <label for="formFile1" class="form-label label-font-bold">대표 이미지</label></h6>									  
-					  <div class="file_input">
+					  <div class="">
 					    <label>
 					        파일 선택
 					        <input type="file" id="formFile1" ref="mainFile" v-on:change="[mainFileUpload(),handleFileChange()]">
@@ -140,8 +142,7 @@
   <script src="../js/jquery.animateNumber.min.js"></script>
   <script src="../js/main.js"></script>\
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.js" integrity="sha512-t2sE4D8vBHZoytr423dbCPmX8MUKM9bNiVKGOMpqFYEsV8/GilxvresTtCsv9RDzqGMcizOd7EuXssJUtaGZLg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.css" integrity="sha512-03p8fFZpOREY+YEQKSxxretkFih/D3AVX5Uw16CAaJRg14x9WOF18ZGYUnEqIpIqjxxgLlKgIB2kKIjiOD6++w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+ 
 <script>
 	//const storage = window.sessionStorage;
 	new Vue({
@@ -207,6 +208,7 @@
 					alert("메인 이미지는 1장만 가능합니다");
 				}
 				console.log(this.mainFile);
+				this.file_name = e.target.file.name;
 			},
 			subFileUpload(){
 				this.subFile = this.$refs.subFile.files;
@@ -280,11 +282,7 @@
 				}
 				
 				
-			},
-			
-			 handleFileChange(e) {
-			      this.file_name = e.target.file.name;
-			    }
+			}
 			
 		},
 		updated: function(){
