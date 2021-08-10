@@ -61,7 +61,7 @@
           <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-7">
               <h1 class="heading mb-5">Tracycle </h1>
-              	<button class="align-self-center main-btn1" onClick="location.href='../service/service.jsp'" >Our Service</button>
+              	<button class="align-self-center main-btn1" onClick="location.href='../service/service_form.jsp'" >Our Service</button>
             </div>
           </div>
         </div>
