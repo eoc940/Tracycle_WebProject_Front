@@ -211,7 +211,7 @@
 				}
 
 				console.log(this.mainFile);
-				this.file_name = e.target.file.name;
+				
 			},
 			subFileUpload(){
 				this.subFile = this.$refs.subFile.files;

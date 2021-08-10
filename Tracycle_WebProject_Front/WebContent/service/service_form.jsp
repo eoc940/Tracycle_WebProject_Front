@@ -64,13 +64,30 @@
 
 			</div>
 
-			<div class="form-group pt-5 pb-5">
+			<!-- <div class="form-group pt-5 pb-5">
 				<label for="content" class="label-font-bold">이미지 </label><br> 
-				<!-- <h1 class="h3 mb-3 font-weight-normal">Upload any image</h1> -->
+				<h1 class="h3 mb-3 font-weight-normal">Upload any image</h1>
 				<input type="file" name="file" accept="image/*" id="file_upload" ref="mainFile" v-on:change="mainFileUpload()"  class="btn py-3 px-4 btn-cancel"/> 
 				<input type="button" v-on:click="submit()" value="upload" id="upload" class="btn py-3 px-4 btn-primary" />
 					
-			</div>
+			</div> -->
+
+			
+			
+			<div class="form-group pt-2 pb-5">
+			
+					<h6> <label for="formFile1" class="form-label label-font-bold">이미지</label></h6>									  
+					  <div class="file_input">
+					    <label>
+					        파일 선택
+					        <input type="file"  name="file" accept="image/*" id="file_upload" ref="mainFile" v-on:change="mainFileUpload">
+					    </label>
+					    <input type="text" for="file_upload" readonly="readonly" :value="file_name">
+					  </div>
+				<input type="button" v-on:click="submit()" value="upload" id="upload" class="btn btn-upload" />
+					
+			</div> 
+
 
 			<!-- 이미지 컴포넌트 추가 -->
 			<div id="viewer">
@@ -215,7 +232,8 @@
   				image:'',
   				loading:true,
   				isLoaded:false,
-				errored:false
+				errored:false,
+				file_name: "파일을 선택하세요."
   			}
   		},
   		mounted() {
@@ -235,7 +253,7 @@
 			
   		},
   		methods:{
-  			mainFileUpload(){
+  			mainFileUpload(e){
 				this.mainFile = this.$refs.mainFile.files[0];
 				
 				if (this.mainFile.length > 1) {
@@ -243,6 +261,8 @@
 					alert("메인 이미지는 1장만 가능합니다");
 				}
 				console.log(this.mainFile);
+			
+				this.file_name =e.target.files[0].name;
 			},
 			validation(){
 				if(storage.getItem("jwt-auth-token")== "" || storage.getItem("jwt-auth-token")== null) {
