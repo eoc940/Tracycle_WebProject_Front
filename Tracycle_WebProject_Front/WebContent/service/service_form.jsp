@@ -293,7 +293,7 @@
 							this.url = this.result[0][5];
 							this.telephone = this.result[0][6];
 						}
-						this.image = "http://127.0.0.1:8085/static/result1.jpg?a=" + Math.random();
+						this.image = "http://127.0.0.1:8085/static/"+this.user.userId+".jpg?a=" + Math.random();
 						
 						console.log(this.result);
 					}).catch(error=>{
