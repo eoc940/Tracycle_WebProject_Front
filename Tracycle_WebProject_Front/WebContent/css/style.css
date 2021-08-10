@@ -6,7 +6,7 @@
 	color:var(--main-color);	
 }
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   background: #fff;
   font-size: 16px;
   line-height: 1.8;
@@ -175,7 +175,7 @@ h1, h2, h3, h4, h5, h6
   text-transform: uppercase;
   letter-spacing: .1em;
   font-size: 30px;
-  font-family: 'Nunito', sans-serif; }
+  font-family: 'Nanum Gothic', sans-serif; }
 
 .bg-image, .ftco-cover {
   background-size: cover;
@@ -198,7 +198,7 @@ h1, h2, h3, h4, h5, h6
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.7);
     font-weight: 300;
-    font-family: 'Nunito', sans-serif; }
+    font-family: 'Nanum Gothic', sans-serif; }
   @media (max-width: 991.98px) {
     .ftco-cover .btn {
       width: 100% !important; } }
@@ -645,7 +645,7 @@ textarea.form-control {
   margin-bottom: 10px; }
 
 .person-donate em {
-  font-family: 'Nunito', sans-serif; }
+  font-family: 'Nanum Gothic', sans-serif; }
 
 .person-donate img {
   border-radius: 7px;
@@ -727,7 +727,7 @@ textarea.form-control {
     margin-bottom: 40px;
     letter-spacing: .1em;
     color: #fff !important;
-    font-family: 'Nunito', sans-serif; }
+    font-family: 'Nanum Gothic', sans-serif; }
   .footer .block-21 .heading a {
     color: #fff !important; }
     .footer .block-21 .heading a:hover {
@@ -746,7 +746,7 @@ textarea.form-control {
 
 
 .footerTracycle{
-	font-family: 'Nunito', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 2.5em;
 	font-weight: 1em;
 	color: white;
@@ -1387,7 +1387,7 @@ textarea.form-control {
       top: .1em;
       left: 0; }
     .block-8 .accordion-item .heading > a[aria-expanded="true"]:before {
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Nanum Gothic', sans-serif;
       position: absolute;
       content: "\e316";
       -webkit-transition: .3s all ease;
@@ -1401,7 +1401,7 @@ textarea.form-control {
     .block-8 .accordion-item .heading > a[aria-expanded="false"]:before {
       content: "\e313";
       color: #ccc;
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Nanum Gothic', sans-serif;
       position: absolute;
       -webkit-transition: .3s all ease;
       -o-transition: .3s all ease;
@@ -1747,7 +1747,7 @@ textarea.form-control {
       background-position: center center !important; } }
   .block-30 .author {
     margin-top: 30px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nanum Gothic', sans-serif;
     font-size: 16px;
     display: block; }
   .block-30:before {
@@ -1790,7 +1790,7 @@ textarea.form-control {
     font-size: 40px;
     line-height: 1.1;
     margin-bottom: 50px;
-    font-family: 'Nunito', sans-serif; }
+    font-family: 'Nanum Gothic', sans-serif; }
     @media (min-width: 768px) {
       .block-30 .heading {
         font-size: 80px; } }
@@ -1805,7 +1805,7 @@ textarea.form-control {
     font-size: 35px;
     line-height: 1.1;
     margin-bottom: 50px;
-    font-family: 'Nunito', sans-serif; }
+    font-family: 'Nanum Gothic', sans-serif; }
     @media (min-width: 768px) {
       .block-30 .heading {
         font-size: 80px; } }
@@ -1821,7 +1821,7 @@ textarea.form-control {
     color: #fff;
     font-size: 40px;
     line-height: 1.1;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nanum Gothic', sans-serif;
     font-weight:bold; }
     @media (min-width: 768px) {
       .block-30 .heading {
@@ -2198,7 +2198,7 @@ textarea.form-control {
   padding: 4em 0; }
   
   .container h1{
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 35px;
   }
   
@@ -2492,13 +2492,13 @@ dropdown .btn:focus,.btn:active,.btn:focus{
     margin-left: -10px;
 }
 
- @media (min-width: 768px) {
+ @media (min-width: 768.02px) {
       .mobile-show {
        display:none; } 
 }
 
 /* mobile */
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
    .pc-show {
        display:none; }  }
        
