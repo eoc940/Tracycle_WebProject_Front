@@ -33,7 +33,9 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../test.css">
-	<!-- ㅇㅇ -->
+	<!-- selectpicker -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.css" integrity="sha512-03p8fFZpOREY+YEQKSxxretkFih/D3AVX5Uw16CAaJRg14x9WOF18ZGYUnEqIpIqjxxgLlKgIB2kKIjiOD6++w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   </head>
   <body>
 
@@ -140,8 +142,7 @@
   <script src="../js/jquery.animateNumber.min.js"></script>
   <script src="../js/main.js"></script>\
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.js" integrity="sha512-t2sE4D8vBHZoytr423dbCPmX8MUKM9bNiVKGOMpqFYEsV8/GilxvresTtCsv9RDzqGMcizOd7EuXssJUtaGZLg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.css" integrity="sha512-03p8fFZpOREY+YEQKSxxretkFih/D3AVX5Uw16CAaJRg14x9WOF18ZGYUnEqIpIqjxxgLlKgIB2kKIjiOD6++w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+ 
 <script>
 	//const storage = window.sessionStorage;
 	new Vue({
@@ -208,7 +209,9 @@
 					this.mainFile = [];
 					alert("메인 이미지는 1장만 가능합니다");
 				}
-			
+
+				console.log(this.mainFile);
+				this.file_name = e.target.file.name;
 			},
 			subFileUpload(){
 				this.subFile = this.$refs.subFile.files;
@@ -282,10 +285,9 @@
 					})
 					.finally(()=>location.href="board_list.jsp")
 				}
-			},
-			
-			
-			
+	
+			}
+
 		},
 		updated: function(){
 			  this.$nextTick(function(){ $('.selectpicker').selectpicker('refresh'); });
