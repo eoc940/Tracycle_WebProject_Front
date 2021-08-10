@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="../css/fancybox.min.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
+
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
@@ -51,7 +52,6 @@
 	       		
 	       		<!--  <select name="category" v-model="category" v-if="useOptional=='allOptional'" @change="getAllBoard">-->
 					
-				</select>
 	       		
 	       		<select name="category" v-model="category" v-if="useOptional=='categoryOptional'" @change="findByCategory">	       			
 					<option v-for="category in categoryInfo" :value="category.categoryId" >
@@ -71,6 +71,7 @@
 	       		<input type = "button"  v-if="selected=='search-id'" value="검색" @click="findById">
 	       		<input type = "button"  v-if="selected=='search-title'" value="검색" @click="findByTitle">
 	       		<input type = "button"  v-if="selected=='search-content'" value="검색" @click="findByContent">    		
+	       	
 	       		</form>
 	       </div>
 	    </div>
@@ -127,7 +128,7 @@
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/moment.js"></script>
-    <script>
+ <script>
     Vue.config.devtools = true;
         new Vue({
             el: "#app",           
@@ -472,6 +473,7 @@
                 this.getBoard();
                 
             }
+            
         })
         
     </script>
