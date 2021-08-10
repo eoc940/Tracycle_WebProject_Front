@@ -301,7 +301,7 @@
 				console.log(this.mainFile);
 			},
 			validation(){
-				if(storage.getItem("jwt-auth-token")=="") {
+				if(storage.getItem("jwt-auth-token")== "" || storage.getItem("jwt-auth-token")== null) {
 					alert("로그인 해주세요");
 					location.href="../user/login.jsp";
 				} else if(this.area.areaId == null) {
