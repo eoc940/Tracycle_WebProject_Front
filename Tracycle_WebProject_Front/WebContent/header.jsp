@@ -67,9 +67,9 @@
           <li class="nav-item"><a href="../board/board_list.jsp"  class="nav-link">Share</a></li>
           <li class="nav-item"><a href="../service/service_form.jsp" class="nav-link">Service</a></li> 
           <li class="nav-item"><a href="../report/report.jsp"  class="nav-link">Report</a></li>         
-		  <li class="nav-item" v-if="jwtauthtoken==''"><a href="../user/login.jsp" class="nav-link">Login</a></li>        
-		  <li class="nav-item" v-if="jwtauthtoken!=''"><a href="index.jsp" v-on:click="logout" class="nav-link" >Logout</a></li>
-		  <li class="nav-item" v-if="jwtauthtoken!=''"><a href="../user/mypage.jsp" class="nav-link">My page</a></li>  
+		  <li class="nav-item" v-if="!isLogin"><a href="../user/login.jsp" class="nav-link">Login</a></li>        
+		  <li class="nav-item" v-if="isLogin"><a href="index.jsp" v-on:click="logout" class="nav-link" >Logout</a></li>
+		  <li class="nav-item" v-if="isLogin"><a href="../user/mypage.jsp" class="nav-link">My page</a></li>  
 
         </ul>
       </div>
@@ -124,7 +124,16 @@ new Vue({
     			e.preventDefault();
     		}
 	  	}
-    }
+    },
+    
+    computed: {
+        isLogin: function () {
+         	if(this.jwtauthtoken==null||this.jwtauthtoken=='')	
+         		return false;
+         	else
+         		return true;
+        }
+      }
 });
 
 </script>
