@@ -200,7 +200,7 @@
 					const specialCharacters = /[~!@\#$%^&*\()\-=+_']/gi; 
 					
  			      if(reg.exec(val)!==null || space.exec(val)!==null || specialCharacters.exec(val)!==null){
- 			       this.idinvalidmessage = "영문, 숫자 조합 5자 이상 입력해주세요. (특수문자, 공백 사용 불가)";
+ 			       this.idinvalidmessage = "영문 또는 숫자 5자 이상 입력해주세요. (특수문자, 공백 사용 불가)";
  			       return this.userid = this.userid.slice(0,-1);
  			      }else{
  			    	 //this.idinvalidmessage = "";
