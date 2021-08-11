@@ -57,7 +57,7 @@ ul{list-style:none; }
 
 .join_form table th{text-align:left;}
 .join_form table td{padding:6px 0;position: relative;}
-.join_form table th span:after{content:'*';font-size:13px;color:#f95427;position:absolute;top:0;right:0px;}
+.join_form table th .essential:after{content:'*';font-size:13px;color:#f95427;position:absolute;top:0;right:0px;}
 
 .join_form_modify{width:100%;max-width:668px;}
 .join_form_modify table {border-spacing: 0;margin:0;padding:0; border:0;width:100%;}
@@ -107,13 +107,22 @@ ul{list-style:none; }
 	width: 70px;
 }
 
+.notIdCheckButton{
+	float:right;	
+	background-color: transparent;
+	margin-top:10px;
+	color:white;
+	border: 1px solid white;
+	height: 30px;
+	width: 70px;
+}
+
  .idCheckButton:hover {
     background: #4A7B4C;
     color: white;
     transition: all .35s ease-in-out .01s;
   }
-
-
+  
 .submit-btn{
 	display: inline-block;
     width: 115px;
