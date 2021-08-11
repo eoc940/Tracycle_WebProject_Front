@@ -139,7 +139,7 @@ height:150px;}
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/김진철.jpg" alt="Image placeholder">
+	                <img src="../images/김진.jpg" alt="Image placeholder">
 	                <h3 class="block-38-heading">김진철</h3>
 	                <p class="block-38-subheading">A.I.</p>
 	              </div>
@@ -165,7 +165,7 @@ height:150px;}
 	          <div class="block-38 text-center">
 	            <div class="block-38-img">
 	              <div class="block-38-header">
-	                <img src="../images/정우철.png" alt="Image placeholder">
+	                <img src="../images/정우.png" alt="Image placeholder">
 	                <h3 class="block-38-heading">정우철</h3>
 	                <p class="block-38-subheading">A.I.</p>
 	              </div>
