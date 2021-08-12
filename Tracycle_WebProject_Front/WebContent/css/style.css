@@ -2555,3 +2555,48 @@ dropdown .btn:focus,.btn:active,.btn:focus{
     border:1px solid #777;
 }
 
+#searchField{
+	width: 120px; 
+	height:41px; 
+	font-size: 15px; 
+	color:#999;
+	border:2px solid #ddd;
+	background: url(../images/arrow2.png) no-repeat right;
+	background-size: 20px;
+	appearance:none; 
+	-webkit-appearance:none;
+}
+
+#searchField::-ms-expand{opacity:0;}
+
+.searchField2{
+	width: 140px; 
+	height:41px; 
+	font-size: 15px; 
+	color:#999;
+	border:2px solid #ddd;
+	background: url(../images/arrow2.png) no-repeat right;
+	background-size: 20px;
+	appearance:none; 
+	-webkit-appearance:none;
+}
+
+.searchField2::-ms-expand{opacity:0;}
+
+#searchText{
+	width: 200px; 
+	height:41px; 
+	font-size: 15px; 
+	color:#999;
+	border:2px solid #ddd;
+}
+
+.searchbtn{
+	width: 80px; 
+	height:41px; 
+	font-size: 15px; 
+	color:#999;
+	border:2px solid #ddd;
+	cursor:pointer;
+	
+}
