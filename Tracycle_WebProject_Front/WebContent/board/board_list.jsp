@@ -39,7 +39,7 @@
     <div class="container">
       <div class="row mt-5 mb-5">
  		<div class="col-md-12 mt-5 mb-5">			
-	       <div class="serachbar">	       			       		
+	       <div class="searchbar">	       			       		
 	       		<form action="id" method="get">
 	       			<select name = "searchField" id = "searchField" v-model="selected" @change="selectedOk">	
 	       			    <option value = "search-all" >전체</option> 				

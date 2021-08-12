@@ -30,10 +30,16 @@
                 <col width="30%"/>
                 <col width="auto"/>
               </colgroup>
-              <tbody @input="[passCheck(),pressbutton()]">
+              <tbody @input="pressbutton" @click="pressbutton">
                 <tr>
                   <th><span class="essential">아이디</span></th>
-                  <td><input type="text" placeholder="ID 를 입력하세요. (영문 또는 숫자 5자 이상/특수문자, 공백 사용 불가)" minlength="5" class="inputId"  v-model.trim="userid"  @blur=checkId @input="idcnt" @change="againCheckId" required="required"><p v-html="idinvalidmessage" ></p><div class="idCheck"><button v-if="idcntOk==false" class="notIdCheckButton" >ID Check</button><button v-if="idcntOk==true" @click= "validationId" class="idCheckButton" style="cursor:pointer;">ID Check</button></div></td>
+                  <td>
+	                  <input type="text" placeholder="ID 를 입력하세요. (영문 또는 숫자 5자 이상/특수문자, 공백 사용 불가)" minlength="5" class="inputId"  v-model.trim="userid"  @change="checkId" @input="[idcnt(),againCheckId()]" required="required">
+	                  <span class="message" v-html="idinvalidmessage" ></span>
+	                  <div class="idCheck">
+	                  <button v-if="idcntOk==false" class="notIdCheckButton" >ID Check</button>
+	                  <button v-if="idcntOk==true" @click= "validationId" class="idCheckButton" style="cursor:pointer;">ID Check</button></div>
+                  </td>
                 </tr>
                
                 <tr>
@@ -42,11 +48,11 @@
                 </tr>
                 <tr>
                   <th><span class="essential">비밀번호</span></th>
-                  <td><input type="password" v-model="userpass" placeholder="비밀번호를 입력해주세요. (6자리 이상)" class="inputPass" required><p v-html="passinvalidmessage1"></p></td>
+                  <td><input type="password" v-model="userpass" @input="passCheck" placeholder="비밀번호를 입력해주세요. (6자리 이상)"  class="inputPass" required><span class="passmessage" v-html="passinvalidmessage1"></span></td>
                 </tr>
                 <tr>
                   <th><span class="essential">비밀번호 확인</span></th>
-                  <td><input type="password" @input="[passCheck(),pressbutton()]" @input="againPassCheck" v-model="userpasscheck" placeholder="비밀번호를 확인하세요"  class="passCheck" required><p v-html="passinvalidmessage2"></p></td>
+                  <td><input type="password"  v-model="userpasscheck" @input="passCheck" placeholder="비밀번호를 확인하세요"  class="passCheck" required><span class="passmessage" v-html="passinvalidmessage2"></span></td>
                 </tr>
                  <tr>
                   <th><span>주  소</span></th>
@@ -65,7 +71,7 @@
 	          <span><a href="login.jsp" class="register-btn">로그인</a></span>
 	          </div>
           
-            	<button type="submit" v-if="pass==true" class="submit-btn" @click="[invalidIdMessage(),checkId()]">가입</button>
+            	<button type="submit" v-if="pass==true" class="submit-btn" @click="[invalidIdMessage(),checkId()]" style="cursor:pointer;">가입</button>
          
             	<button v-else class="not-submit-btn">가입</button>
           
@@ -97,8 +103,6 @@
                      passinvalidmessage1:'',
                      passinvalidmessage2:'',
                      idcntOk:''
-                     
-
                  }
              },
 
@@ -140,32 +144,64 @@
              	
              	passCheck(){
              		
-             		if(this.userpass != this.userpasscheck){
+             		if(this.userpass == this.userpasscheck && this.userpass.length >= 6){
+             			this.check = true;
+             			this.passinvalidmessage1 = "";
+             			this.passinvalidmessage2 = "";  
+             			console.log("1");
+             		}else if(this.userpass.length < 6 && this.userpass.length >=1 && this.userpass && this.userpasscheck==''){
              			this.check=false;
-             			this.passinvalidmessage2 = "비밀번호가 일치하지 않습니다.";
+         				this.passinvalidmessage1 = "비밀번호는 6자 이상 입력해주세요.";
+         				console.log("2");
+             		}else if(this.userpass.length < 6 && this.userpass.length >=1 && this.userpass && this.userpasscheck==this.userpass){
+             			this.check=false;
+         				this.passinvalidmessage1 = "비밀번호는 6자 이상 입력해주세요.";
+         				this.passinvalidmessage2 = "";
+         				console.log("3");
+             		}else if(this.userpass.length < 6 && this.userpass.length >=1 && this.userpass && this.userpasscheck!=this.userpass){
+             			this.check=false;
+         				this.passinvalidmessage1 = "비밀번호는 6자 이상 입력해주세요.";
+         				this.passinvalidmessage2 = "비밀번호가 일치하지 않습니다.";
+         				console.log("4");
+             		}else if(this.userpass.length >= 6 && this.userpasscheck ==''){             	
+             			this.passinvalidmessage1 = "";
+             			this.passinvalidmessage2 = "비밀번호를 다시 한번 입력해주세요."; 
+             			this.check=false;
+             			console.log("5");
+             		}else if(this.userpass.length >=6 && this.userpass != this.userpasscheck ){
+             			this.check=false;
+             			this.passinvalidmessage1 = "";
+             			this.passinvalidmessage2 = "비밀번호가 일치하지 않습니다.";     
+             			console.log("6");             		
+             		}else if(this.userpasscheck.length <6 && this.userpass == this.userpasscheck ){
+             			this.check=false;
+             			this.passinvalidmessage1 = "비밀번호는 6자 이상 입력해주세요.";
+             			this.passinvalidmessage2 = "";     
+             			console.log("8");
              		}else if(this.userpass ==''){
              			this.check=false;
              			this.passinvalidmessage1 ="비밀번호를 입력해주세요.";  
-             		}else if(this.userpass == this.userpasscheck && this.userpass.length >= 6){
-             			this.check = true;
-             			this.passinvalidmessage2 = "";
-             			this.passinvalidmessage1 = "";
+             			console.log("9");
              		}else if(this.userpass == this.userpasscheck && this.userpass == ''){
              			this.check = false;
              			this.passinvalidmessage2 = "";
              			this.passinvalidmessage1 = "";
+             			console.log("10");
              		}else if(this.userpasscheck ==''){
-             			this.passinvalidmessage2 = "비밀번호를 다시 한번 입력해주세요.";       		
-             		}else if(this.userpass.length < 6){
-             			this.passinvalidmessage1 = "비밀번호는 6자 이상 입력해주새요.";            			
+             			this.check = false;
+             			this.passinvalidmessage2 = "비밀번호를 다시 한번 입력해주세요.";  
+             			console.log("11");
+             		 
              		}else{
-
+             			console.log("12");
              		}
+             		
+             		console.log(this.passinvalidmessage2);
              	},
 
              	pressbutton(){
              		
-             		if(this.userid.length >= 5 && this.userpass.length >= 6 && this.username !='' && this.check==true && this.userpasscheck != '' ){
+             		if(this.userid.length >= 5 && this.username !='' && this.check==true  && this.idpass==true){
              			this.pass = true;
              		}else{
              			this.pass=false;	
@@ -185,23 +221,17 @@
              		}
             
             	},
-            	
-            	/*passcnt(){
-            		if(this.userpass.length < 6)
-            			
-            		else
-            			this.passinvalidmessage1 = "";
-            	},*/
-	
+
              	validationId(){
              		
              		if(this.useridcheck == true){
              			this.idpass=true;
-             			alert("사용가능한 아이디입니다.");
-             			this.idinvalidmessage="";
+             			//alert("사용가능한 아이디입니다.");
+             			this.idinvalidmessage="사용가능한 아이디입니다.";
              		}else{
              			this.idpass=false;
-             			alert("이미 사용중인 아이디입니다.");
+             			//alert("이미 사용중인 아이디입니다.");
+             			this.idinvalidmessage="이미 사용중인 아이디입니다.";
              		}
              		
              	},
@@ -218,7 +248,7 @@
              	againCheckId(){
              		this.idpass=false;
              		if(this.idcntOk!=false)
-             			alert("아이디 중복 체크를 해주세요.");	
+             			this.idinvalidmessage="아이디 중복 체크를 해주세요.";	
              	}
  		 },
  		 
@@ -234,7 +264,20 @@
  			      }else{
  			    	 //this.idinvalidmessage = "";
  			      }
- 			  }
+ 			  },
+ 			  
+ 			 userpass(val){
+ 				 const reg = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+				 const space = /\s/;;
+				 
+				 if(reg.exec(val)!==null || space.exec(val)!==null){
+	 			       this.passinvalidmessage1 = "공백 사용 불가";
+	 			       return this.userpass = this.userpass.slice(0,-1);
+	 			      }else{
+	 			    	 //this.idinvalidmessage = "";
+	 			      }
+ 			  }  
+ 			  
  			}
   })
 
