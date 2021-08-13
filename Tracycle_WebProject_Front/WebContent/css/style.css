@@ -1288,6 +1288,10 @@ textarea.form-control {
     line-height: 1;
     margin: 0;
     padding: 0; }
+   .block-7 .fa {
+ 	width: 100px;
+    height: 150px;
+   }
   .block-7 .heading-2 {
     font-size: 16px;
     margin-top:25px;
@@ -1299,13 +1303,34 @@ textarea.form-control {
 	border: 6px solid var(--main-color);
 }
 
-@media (max-width: 768px){
+@media (max-width: 767.98px){
 	.block-7 .heading {
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1;
     margin: 0;
     padding: 0; }
+    .block-7 {
+ 	height:175px;
+	}
+	.block-7 .fa {
+ 	width: 80px;
+ 	height: auto;
+ 	font-size: 4em;
+   } 
+   .block-7 .heading-2 {
+    font-size: 16px;
+    margin-top:0;
+   }
+   .mobile-pm-0{
+    padding: 0 !important;
+    margin: 0 !important;
+    }
+   .mobile-mt-2{
+   margin-top: 0.5rem!important;
+	}
+
 }
+	
 
 .block-71 {
   font-family: 'Nanum Gothic', serif;
@@ -1325,6 +1350,9 @@ textarea.form-control {
     line-height: 1;
     margin: 0;
     padding: 0; }
+    .block-71 .fa {
+ 	width: 100px;
+   }
   .block-71 .heading-2 {
     font-size: 16px;
     margin-top:25px;
@@ -1336,27 +1364,28 @@ textarea.form-control {
 	border: 6px solid var(--main-color);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
 	.block-71 {
   font-family: 'Nanum Gothic', serif;
   color:black !important;
   margin-bottom: 30px;
   /* width:500px; */
-  height:380px;
+  /* height:380px; */
   padding: 30px;
   -webkit-box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.11);
   box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.11);
   background: #fff; }
    .block-71 .fa {
-   height:150px;
+ 	width: 80px;
+ 	font-size: 4em;
    }
   .block-71 .heading {
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1;
     margin: 0;
     padding: 0; }
   .block-71 .heading-2 {
-    font-size: 16px;
+    font-size: 15px;
     margin-top:25px;
     font-weight: normal;
     text-transform: uppercase; }
@@ -2552,9 +2581,15 @@ dropdown .btn:focus,.btn:active,.btn:focus{
     height:28px;
     line-height:28px;
     font-size:11px;
-    padding:0;
     border:0;
     border:1px solid #777;
+    padding-left: 5px;
+}
+
+@media (max-width: 767.98px) {
+   .file_input input[type=text]{
+       width:50%; }  
+       
 }
 
 #searchField{
