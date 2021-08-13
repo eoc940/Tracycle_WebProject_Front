@@ -285,7 +285,6 @@
 					for(var key of formData.entries()) {
 						console.log(key[0]+', '+key[1]);
 					}
-
 					axios.post('http://127.0.0.1:8085/service', formData)
 					.then(response=>{
 						this.result= response.data;

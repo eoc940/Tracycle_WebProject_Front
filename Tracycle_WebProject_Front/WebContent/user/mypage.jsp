@@ -41,16 +41,20 @@
           <div class="post" >
           	<h2 class="display-4 mb-3">My Posting</h2>
           	<div class="mycontent"  v-for="board in info">
+          		<a :href=("../board/board_detail.jsp?boardId="+board.boardId) class="">
           		<h4>{{board.title}}</h4>
           		<p>{{board.content}}</p>
+          		</a>
           	</div>
           </div>
           <div class="comment">
           	<h2 class="display-4 mb-3">My Comment</h2>
           	<div class="mycontent" v-for="comment in commentinfo">
-          		<h6>글 번호 : {{comment.board.boardId}}</h6>
+          		<a :href=("../board/board_detail.jsp?boardId="+comment.board.boardId) class="">
+          		
 				<h4>{{comment.board.title}}</h4>
 				<p>{{comment.content}}</p>
+          		</a>
           	</div>
           </div>
         </div>
