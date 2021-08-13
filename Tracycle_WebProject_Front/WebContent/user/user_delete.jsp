@@ -6,7 +6,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <meta charset="UTF-8">
+	 <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
  <title>지구를 위한 Tracycle</title>
+
+ 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">

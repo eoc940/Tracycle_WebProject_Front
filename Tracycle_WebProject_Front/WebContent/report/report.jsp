@@ -6,7 +6,9 @@
   <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+ 
     <title>지구를 위한 Tracycle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -33,7 +35,7 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/chart.css">
-    
+
     
     
  <script>
