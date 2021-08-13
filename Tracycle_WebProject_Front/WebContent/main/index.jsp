@@ -60,7 +60,7 @@
         <div class="container">
           <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-7">
-              <h1 class="heading mb-5">Tracycle </h1>
+              <h1 class="heading mb-5"><img src="../images/tracycle-logo2.png" width="50%"></h1>
               	<button class="align-self-center main-btn1" onClick="location.href='../service/service_form.jsp'" >Our Service</button>
             </div>
           </div>

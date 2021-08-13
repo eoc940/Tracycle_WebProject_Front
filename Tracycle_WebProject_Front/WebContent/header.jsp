@@ -63,7 +63,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="ftco-nav">
-       <a href="../main/index.jsp" class="pc-show"><h1 style="color: white;" class="pc-show">Tracycle</h1></a>
+       <a href="../main/index.jsp" class="pc-show"><h1 style="color: white;" class="pc-show"><img src="../images/tracycle-logo2.png" width="50%"></h1></a>
         <ul class="navbar-nav ml-auto">
 
           <li class="nav-item"><a href="../main/index.jsp"  class="nav-link">Home</a></li>
@@ -87,7 +87,7 @@
         <div class="container">
            <div class="col-md-3">
 
-              <a href="../main/index.jsp"><h1 class="heading1 pt-5 mobile-show">Tracycle</h1></a> 
+              <a href="../main/index.jsp"><h1 class="heading1 pt-5 mobile-show"><img src="../images/tracycle-logo2.png" class="logoimage-mobile"></h1></a> 
 
            </div>
          </div>

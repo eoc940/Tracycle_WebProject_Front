@@ -47,11 +47,13 @@ h1, h2, h3, h4, h5, h6
       top: 0;
       position: relative; } }
   .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+  	width: 100px;
+  	text-align:center;
     font-size: 14px;
     padding-top: 30px;
     padding-bottom: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     color: #f0f0f0;
     opacity: 1 !important; }
     .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
@@ -2509,7 +2511,7 @@ dropdown .btn:focus,.btn:active,.btn:focus{
        
 @media (max-width: 768px) {
    .block-30 .title {
-       padding-top: 400px;; }  }
+       padding-top: 200px;; }  }
        
 
 .service_img{
@@ -2555,3 +2557,48 @@ dropdown .btn:focus,.btn:active,.btn:focus{
     border:1px solid #777;
 }
 
+#searchField{
+	width: 120px; 
+	height:41px; 
+	font-size: 15px; 
+	color:#999;
+	border:2px solid #ddd;
+	background: url(../images/arrow2.png) no-repeat right;
+	background-size: 20px;
+	appearance:none; 
+	-webkit-appearance:none;
+}
+
+#searchField::-ms-expand{opacity:0;}
+
+.searchField2{
+	width: 140px; 
+	height:41px; 
+	font-size: 15px; 
+	color:#999;
+	border:2px solid #ddd;
+	background: url(../images/arrow2.png) no-repeat right;
+	background-size: 20px;
+	appearance:none; 
+	-webkit-appearance:none;
+}
+
+.searchField2::-ms-expand{opacity:0;}
+
+#searchText{
+	width: 200px; 
+	height:41px; 
+	font-size: 15px; 
+	color:#999;
+	border:2px solid #ddd;
+}
+
+.searchbtn{
+	width: 80px; 
+	height:41px; 
+	font-size: 15px; 
+	color:#999;
+	border:2px solid #ddd;
+	cursor:pointer;
+	
+}

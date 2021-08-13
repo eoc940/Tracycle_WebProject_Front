@@ -57,7 +57,7 @@ ul{list-style:none; }
 
 .join_form table th{text-align:left;}
 .join_form table td{padding:6px 0;position: relative;}
-.join_form table th span:after{content:'*';font-size:13px;color:#f95427;position:absolute;top:0;right:0px;}
+.join_form table th .essential:after{content:'*';font-size:13px;color:#f95427;position:absolute;top:0;right:0px;}
 
 .join_form_modify{width:100%;max-width:668px;}
 .join_form_modify table {border-spacing: 0;margin:0;padding:0; border:0;width:100%;}
@@ -98,6 +98,18 @@ ul{list-style:none; }
 .overlayer.is-open{  display: block;}
 
 .idCheckButton{
+	display:inline-block;
+	float:right;	
+	background-color: transparent;
+	margin-top:10px;
+	color:white;
+	border: 1px solid white;
+	height: 30px;
+	width: 70px;
+	line-height: top;
+}
+
+.notIdCheckButton{
 	float:right;	
 	background-color: transparent;
 	margin-top:10px;
@@ -112,8 +124,7 @@ ul{list-style:none; }
     color: white;
     transition: all .35s ease-in-out .01s;
   }
-
-
+  
 .submit-btn{
 	display: inline-block;
     width: 115px;
@@ -165,7 +176,7 @@ ul{list-style:none; }
   .join_form{max-width:90vw;}
   .join_form table th span{text-indent: 0;font-size:13px;}
   .join_form table{width:100%;}
-  .join_form table input{ border:1px solid #ececec;font-size:14px;color:#4c4c4c; height:37px; padding:10px; width:100%;}
+  .join_form table input{ border:1px solid #ececec;font-size:14px;color:white; height:37px; padding:10px; width:100%;}
  
   .mar10{margin:5px 2% 0 2%; float:left;}
  
@@ -215,3 +226,17 @@ ul{list-style:none; }
     line-height: 50px;
 }
 }
+
+.message{
+	display: inline-block;
+	float:left;
+	padding-top:15px;
+
+}
+
+.passmessage{
+	display: inline-block;
+	float:left;
+	padding:15px 0 10px 0;
+}
+
