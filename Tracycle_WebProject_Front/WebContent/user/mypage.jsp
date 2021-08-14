@@ -116,7 +116,7 @@
               	  		"jwt-auth-token":storage.getItem("jwt-auth-token")
               	   }
               	})
-            .then(response=>(this.commentinfo = response.data))
+            .then(response=>{this.commentinfo = response.data;console.log(this.commentinfo);})
             .catch(error=>{
                 console.log(error);
                 this.errored = true
