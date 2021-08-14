@@ -2,22 +2,18 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <!-- favicon -->
+ <head>   
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
- 
-  <title>지구를 위한 Tracycle</title>
+    <title>지구를 위한 Tracycle</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    	<!--한글폰트 링크 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet">
-   
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../css/animate.css">
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
@@ -30,25 +26,16 @@
     <link rel="stylesheet" href="../css/flaticon.css">
     <link rel="stylesheet" href="../css/icomoon.css">
     <link rel="stylesheet" href="../css/fancybox.min.css">
-
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	
-
   </head>
   <body>
-
    <jsp:include page="../header.jsp"></jsp:include>
-  
-  
   <div id="blog" class="site-section">
-    <div class="container">
-            
+    <div class="container">            
             <div class="row">
-
 			    <div class="col-md-12">
 			    <div class="board-title">
 					<h2 class="mb-3 mt-5">{{board.title}}</h2>
@@ -62,30 +49,11 @@
 				      <div class="block-31 mb-5" style="position: relative;">
 				      	<div v-for="image in images">
 				       	  <img class="detail_image" alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image) width="600" height="400">
-				       	  </div>
-				       	  <!--
-				          <div v-for="image in images" class="owl-carousel loop-block-31">
-				          	
-				             
-				          	<div><img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)>
-				          	
-				          	<div class="block-30 no-overlay item" ><img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)></div>
-				          	<div class="block-30 no-overlay item" ><img alt="" :src=("http://127.0.0.1:7788/board/getFile/"+image)></div>
-				          	 
-				            <div class="block-30 no-overlay item" style="background-image: url('http://127.0.0.1:7788/board/getFile/46fa23ea8d48e73cfb743d623c3e6661');"></div>
-				            
-				            <div class="block-30 no-overlay item" style="background-image: url('../images/main2.jpg');"></div>
-				            <div class="block-30 no-overlay item" style="background-image: url('../images/about2.jpg');"></div>
-				            <div class="block-30 no-overlay item" style="background-image: url('../images/nature.jpg');"></div>
-				              
-				          </div>-->
-				           
+				       	  </div>				       	 
 				        </div>
 				    </div>
-			  </div>
-       
-                <p class="board-content">{{board.content}}</p>
-               
+			  </div>      
+              <p class="board-content">{{board.content}}</p>               
                 <div class="pt-5 mt-5">
                   <h3 class="mb-5">Comments</h3>
                   <ul class="comment-list">
@@ -115,8 +83,7 @@
 	                        <div class="meta">{{cmt.date | formatDateComment}}</div>
 	                        <p>{{cmt.content}}</p>
                         </div>
-                      </div>
-                      
+                      </div>                      
                       <div v-else class="comment-body">
 	                      <form action="#" class="">
 		                      <h3>{{userId}}</h3>
@@ -131,58 +98,46 @@
 	                 	   </form>
                       </div>
                     </li>
-
                   </ul>
                   <!-- END comment-list -->
-         <div class="comment-form-wrap">
-         
-        <nav aria-label="Page navigation example">
-		  <ul class="pagination justify-content-center">
-		    <li class="page-item disabled" v-if="page.prev">
-		      <a class="page-link" href="#" tabindex="-1" aria-disabled="true"> &laquo; </a>
-		    </li>
-		    <li v-for="index in page.endPageIndex-page.startPageIndex + 1 " :key="index" class="page-item" :class="{active:( (page.startPageIndex + index - 1) == page.currentPageIndex)}">
-     		 <a href="#" class="page-link main-color"  @click.prevent="movePage(page.startPageIndex + index - 1)">{{ page.startPageIndex + index - 1 }}</a>
-    		</li>
-		    <li class="page-item" v-if="page.next">
-		      <a class="page-link main-color" href="#">&raquo;</a>
-		    </li>
-		  </ul>
-		</nav>
-		</div>
-                  <div v-if="isLogin" class="comment-form-wrap pt-5">
-                  
-                    <h3 class="mb-5">Leave a Comment</h3>
-                    <form action="#" class="">
-                      <div class="form-group">
-                        <label for="name" class="label-font-bold" >아이디</label> <a>{{userId}}</a>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="message" class="label-font-bold">댓글 내용</label> <a class="commentLength">[{{commentLength}}/500]</a><input type="checkbox" v-model="info.secret" true-value="1" false-value="0"> 비밀글
-		                <textarea name="" id="message" cols="30" rows="5" class="form-control" @input="checkCommentLength" v-model="info.content"></textarea>
-                      </div>
-                      <div class="form-group text-center mb-5">
-		                        <input type="button" value="Write Comment" @click="submitComment()" class="btn py-3 px-4 btn-primary">
-		              </div>
-
-                    </form>
-                  </div>
-                </div>
-
+			         <div class="comment-form-wrap">         
+			        <nav aria-label="Page navigation example">
+					  <ul class="pagination justify-content-center">
+					    <li class="page-item disabled" v-if="page.prev">
+					      <a class="page-link" href="#" tabindex="-1" aria-disabled="true"> &laquo; </a>
+					    </li>
+					    <li v-for="index in page.endPageIndex-page.startPageIndex + 1 " :key="index" class="page-item" :class="{active:( (page.startPageIndex + index - 1) == page.currentPageIndex)}">
+			     		 <a href="#" class="page-link main-color"  @click.prevent="movePage(page.startPageIndex + index - 1)">{{ page.startPageIndex + index - 1 }}</a>
+			    		</li>
+					    <li class="page-item" v-if="page.next">
+					      <a class="page-link main-color" href="#">&raquo;</a>
+					    </li>
+					  </ul>
+					</nav>
+					</div>
+			        <div v-if="isLogin" class="comment-form-wrap pt-5">                 
+			            <h3 class="mb-5">Leave a Comment</h3>
+			            <form action="#" class="">
+			                <div class="form-group">
+			                    <label for="name" class="label-font-bold" >아이디</label> <a>{{userId}}</a>
+			                 </div>
+			                 <div class="form-group">
+			                    <label for="message" class="label-font-bold">댓글 내용</label> <a class="commentLength">[{{commentLength}}/500]</a><input type="checkbox" v-model="info.secret" true-value="1" false-value="0"> 비밀글
+					              <textarea name="" id="message" cols="30" rows="5" class="form-control" @input="checkCommentLength" v-model="info.content"></textarea>
+			                 </div>
+			                 <div class="form-group text-center mb-5">
+					              <input type="button" value="Write Comment" @click="submitComment()" class="btn py-3 px-4 btn-primary">
+					         </div>
+			            </form>
+			       </div>
+          		</div>
               </div>
             </div>
-      
-            
           </div>
   </div>
-
 <jsp:include page="../footer.jsp"></jsp:include>
-
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
   <script src="../js/jquery.min.js"></script>
   <script src="../js/jquery-migrate-3.0.1.min.js"></script>
   <script src="../js/popper.min.js"></script>
@@ -193,18 +148,14 @@
   <script src="../js/owl.carousel.min.js"></script>
   <script src="../js/jquery.magnific-popup.min.js"></script>
   <script src="../js/bootstrap-datepicker.js"></script>
-
   <script src="../js/jquery.fancybox.min.js"></script>
-  
   <script src="../js/aos.js"></script>
   <script src="../js/jquery.animateNumber.min.js"></script>
   <script src="../js/main.js"></script>
-  <script src="../js/moment.js"></script>
-  
-    <script>
+  <script src="../js/moment.js"></script> 
+  <script>
     Vue.config.devtools = true;
-
-    //const storage = window.sessionStorage;
+    
 		Vue.config.devtools = true;
         new Vue({
             el: "#blog",
@@ -213,8 +164,7 @@
                 	board:[ ],
                 	writer:"",
                 	comments:[ ],
-                	commentLength:0,
-                	
+                	commentLength:0,               	
                 	images:[ ],
                     status_class:[
                     	"ml-2 badge badge-pill badge-warning",
@@ -234,15 +184,15 @@
                     editInfo:{},
                     /* pagination */
                     page:{
-                    totalListItemCount: 0,//전체 게시글 갯수 
-                    listRowCount: 10,//한페이지에 몇개 limit
-                    pageLinkCount: 10, //<< >> 사이에 들어갈 페이지 개수 
-                    currentPageIndex: 1,//현재페이지
-                    pageCount: 0,//총페이지 갯수
-                    startPageIndex: 0, //시작페이지 인덱스 
-                    endPageIndex: 0, //끝페이지 인덱스 
-                    prev: false, //<< 출력 
-                    next: false //>> 출력 
+                    totalListItemCount: 0,
+                    listRowCount: 10,
+                    pageLinkCount: 10,
+                    currentPageIndex: 1,
+                    pageCount: 0,
+                    startPageIndex: 0, 
+                    endPageIndex: 0,
+                    prev: false, 
+                    next: false
                     }
                 }
             },            
@@ -266,16 +216,8 @@
                  		return true;
                 }
               },
-            mounted(){
-
-                /*  axios
-             	 .get('http://127.0.0.1:7788/comment/getAllComment/'+${param.boardId})
-                .then(response=>(this.comments = response.data))
-                .catch(error=>{
-                    console.log(error);
-                    this.errored = true
-                })
-                .finally(()=>this.loading = false),  */
+              
+            mounted(){        
                 
                 offset=(this.page.currentPageIndex-1)*this.page.listRowCount;
         		axios
@@ -318,10 +260,9 @@
 
                 	this.errored = true
                 })
-                .finally(()=>this.loading = false)
-                
-                
+                .finally(()=>this.loading = false)       
             },
+            
             methods:{
             	initCommentLength() {
             		this.commentLength = this.editInfo.content.length;
@@ -348,6 +289,7 @@
             		}
             		return true;
             	},
+            	
            		submitComment(){
            			if (this.validation()) {
            				var today = new Date();
@@ -380,6 +322,7 @@
            			}
            			 
           	 	},
+          	 	
            		deleteComment(commentId){
           	 		if(confirm("댓글을 삭제 하시겠습니까?")){
 	           		axios
@@ -396,6 +339,7 @@
 	                 })
 	           		.finally(()=>location.href="board_detail.jsp?boardId="+${param.boardId})
           	 	}},
+          	 	
            		deleteBoard(boardId){
           	 		if(confirm("게시글을 삭제 하시겠습니까?")){
 	           		axios
@@ -412,16 +356,18 @@
 	                 })
 	           		.finally(()=>location.href="board_list.jsp")
           	 	}},
+          	 	
            		openEdit(cmt){
           	 	this.editId=cmt.commentId;
         		this.editInfo=cmt;
-        		this.commentLength=cmt.content.length;
-        		
+        		this.commentLength=cmt.content.length;       		     
           	 	},
+          	 	
           	 	cancelComment(){
           	 	this.editId=0;
         		this.editInfo={};
           	 	},
+          	 	
           	 	updateComment(){
           	 		if (this.updateValidation()) {
           	 			if(confirm("댓글을 수정 하시겠습니까?")){
@@ -452,13 +398,11 @@
         	                    console.log(error);
         	                    this.errored = true
         	                })
-        	                .finally(()=>location.href="board_detail.jsp?boardId="+${param.boardId}) 
-              	 		
+        	                .finally(()=>location.href="board_detail.jsp?boardId="+${param.boardId})         	            
               	 		}
-          	 		}
-          	 		
-
+          	 		}    
             },
+            
             getComment(){
             	offset=(this.page.currentPageIndex-1)*this.page.listRowCount;
         		axios
@@ -470,6 +414,7 @@
                })
                .finally(()=>this.loading = false)
         	},
+        	
             initPagination(){
         		axios
         		.get('http://127.0.0.1:7788/comment/getCommentTotalCount/'+${param.boardId})
@@ -482,6 +427,7 @@
 	                })
         		.finally(()=>this.loading = false)
         	},
+        	
             initUI(){
 
       	      this.page.pageCount = Math.ceil(this.page.totalListItemCount/this.page.listRowCount);
@@ -524,10 +470,8 @@
           created() {
               this.initPagination();
               this.getComment();
-          }
-
+          }       
         })
-    </script>
-    
-  </body>
+</script>    
+</body>
 </html>

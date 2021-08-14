@@ -3,15 +3,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
- 
     <title>지구를 위한 Tracycle</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   	<!--한글폰트 링크 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet">
@@ -32,8 +29,6 @@
     <link rel="stylesheet" href="../css/fancybox.min.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
-
-
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
@@ -53,28 +48,24 @@
 	       				<option value = "search-category">카테고리</option>
 	       				<option value = "search-area">지역</option>
 	       			</select>
-
 	       		<select name="category" v-model="category" v-if="useOptional=='categoryOptional'" @change="findByCategory" class="searchField2">
 	       			<option value = "" selected disabled hidden>선택하세요.</option> 	       			
 					<option v-for="category in categoryInfo" :value="category.categoryId" >
 						{{category.categoryName}}
 					</option>
 				</select>
-				
 				<select name="area" v-model="areaNum" v-else-if="useOptional=='areaOptional'" class="searchField2" @change="findByAreaInMethods">
 					<option value = "" selected disabled hidden>선택하세요.</option>
 					<option v-for="area in areaInfo" :value="area.areaId">
 						{{area.areaName}}
 					</option>
 				</select>
-				
 				<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'&& selected=='search-id'" placeholder="검색어를 입력하세요" v-model="keyword" @keydown.enter.prevent="findById">
 				<input type = "button" class="searchbtn" v-if="selected=='search-id'" value="검색" @click="findById">
 				<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional'&& selected=='search-title'" placeholder="검색어를 입력하세요" v-model="keyword" @keydown.enter.prevent="findByTitle">
 				<input type = "button" class="searchbtn" v-if="selected=='search-title'" value="검색" @click="findByTitle">
 				<input type = "text" id="searchText" name ="searchText" v-if="useOptional=='notOptional' &&selected=='search-content'" placeholder="검색어를 입력하세요" v-model="keyword" @keydown.enter.prevent="findByContent">
 	       		<input type = "button" class="searchbtn" v-if="selected=='search-content'" value="검색" @click="findByContent">    		
-	       	
 	       		</form>
 	       </div>
 	    </div>
@@ -94,7 +85,6 @@
        <div v-if="isLogin" class=" pt-5 pb-5 text-center">
 			<a href="board_form.jsp" class="btn py-3 px-4 btn-primary">Write Post</a>
        </div>
-
       <nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-center">
 		    <li class="page-item disabled" v-if="prev">
@@ -111,7 +101,7 @@
 		</nav>
     </div>
   </div> <!-- .section -->
-	<jsp:include page="../footer.jsp"></jsp:include>
+  <jsp:include page="../footer.jsp"></jsp:include>
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
   <script src="../js/jquery.min.js"></script>
@@ -224,8 +214,7 @@
                     this.errored = true
                 })
                  .finally(()=>this.loading = false),
-                 
-                 
+                                 
                 axios
                  .get('http://127.0.0.1:7788/board/getAllCategory')
                  .then(response=>(this.categoryInfo = response.data))
@@ -281,6 +270,7 @@
 	                })
         		.finally(()=>this.loading = false)
             	},
+            	
             	findByAreaInMethods(areaNum){
             		axios
             		.get('http://127.0.0.1:7788/board/findByAreaTotalCount/'+this.areaNum)
@@ -447,6 +437,7 @@
             	        this.next = true;
             	      }
             	    },
+            	    
             	    movePage(param) {
             	       this.currentPageIndex = param;
             	       if(this.selected=="search-all") { this.getBoard();}
@@ -455,7 +446,8 @@
             	       else if(this.selected=="search-content") this.findByContent(this.keyword);
             	       else if(this.selected=="search-category") this.findByCategory(this.category);
             	       else if(this.selected=="search-area") this.findByAreaInMethods(this.areaNum);
-            	    },            	
+            	    },  
+            	    
                 	findByArea(areaNum){
                 		axios
                 			.get('http://127.0.0.1:7788/board/findByArea/'+this.areaNum)
@@ -466,17 +458,17 @@
                 			})
                 		.finally(()=>this.loading = false)
                 	},
+                	
                 	initCurrentPageIndex(){
                 		this.currentPageIndex=1;
                 	}
             }, 
-            created() {
-                this.getBoard();
-                
-            }
             
+            created() {
+                this.getBoard();   
+            }           
         })
         
-    </script>
-  </body>
+</script>
+</body>
 </html>

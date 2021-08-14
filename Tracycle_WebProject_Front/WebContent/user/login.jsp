@@ -4,25 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-     <!-- favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
- 
- <title>지구를 위한 Tracycle</title>
- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-  	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
- 
- 
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    	<!--한글폰트 링크 -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/user-style.css"> <!--폰트 및 기본 css -->
-
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+<title>지구를 위한 Tracycle</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/user-style.css"> <!--폰트 및 기본 css -->
 </head>
 <body>
  <div class="wrap wd668" id="app">
@@ -48,29 +41,17 @@
             </table>
             <div class="exform_txt"></div>
           </div>
-           
-          <!-- join_form E  -->
-          <!-- 
-          <button id="getInfo" @click="getInfo">정보확인</button>
-          <button id="getInfo" @click="logout">로그아웃</button><br>
-          메시지 : {{message}}<br>
-          상태 : {{status}}<br>
-          토큰 : {{token}}<br>
-          정보 : {{info}}
-          -->
           <div class="btn_wrap">
 	          <div class="homeNregister">
 	          <span><a href="../main/index.jsp" class="home-btn">HOME</a></span>
 	          <span><a href="register.jsp" class="register-btn">회원가입</a></span>
-	          </div>
-	          
+	          </div>	          
            	  <button type="submit" v-if="bothpass==true" class="submit-btn" @click="login">Login</button>
            	  <button v-else class="not-submit-btn">Login</button>
           </div>
-        </div> <!-- form_txtInput E -->
-      </div><!-- content E-->
-    </div> <!-- container E -->
-
+        </div> 
+      </div>
+    </div>
   <script>
   
   const storage = window.sessionStorage;
@@ -161,6 +142,7 @@
           		.finally(()=>location.href=this.nextpage);
    
           },
+          
           init() {
         	  if(storage.getItem("jwt-auth-token")) {
         		  this.message = storage.getItem("login_user") + "로 로그인 되었습니다";
@@ -176,19 +158,13 @@
 	       bothPass(){
 	    	   if(this.userId != '' && this.password != '') this.bothpass=true;
 	    	   else this.bothpass=false;
-	       }
-	       
-	      
+	       }	      
       },
-      
-    
+
       mounted() {
     	  this.init();
-   	  
       }
-      
-     
   })
-  </script>    
+</script>    
 </body>
 </html>
