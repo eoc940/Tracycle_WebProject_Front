@@ -2,9 +2,12 @@
     pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<!--  -->
   <head>
+   
   <meta charset="UTF-8">
+ 	 <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+ 
     <title>지구를 위한 Tracycle</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -14,7 +17,6 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../css/animate.css">
@@ -28,6 +30,7 @@
     <link rel="stylesheet" href="../css/fancybox.min.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
+	
   </head>
   <body>
 
@@ -174,10 +177,8 @@
   <script src="../js/jquery.fancybox.min.js"></script>
   <script src="../js/aos.js"></script>
   <script src="../js/jquery.animateNumber.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
-  <script src="../js/youtube.js"></script>
+
 
 <script>
 const storage = window.sessionStorage;

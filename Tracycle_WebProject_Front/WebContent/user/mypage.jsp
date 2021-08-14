@@ -3,6 +3,9 @@
 <!DOCTYPE html>
   <head>
   <meta charset="UTF-8">
+      <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+ 
      <title>지구를 위한 Tracycle</title>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -26,6 +29,7 @@
     <link rel="stylesheet" href="../css/fancybox.min.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
+
   </head>
   <body>
   <jsp:include page="../header.jsp"></jsp:include>
@@ -76,9 +80,6 @@
   <script src="../js/bootstrap-datepicker.js"></script>
   <script src="../js/jquery.fancybox.min.js"></script>
   <script src="../js/aos.js"></script>
-  <script src="../js/jquery.animateNumber.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
   <script>
  //const storage = window.sessionStorage;

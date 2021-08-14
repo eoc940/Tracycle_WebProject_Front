@@ -177,7 +177,7 @@ $(document).ready(function($) {
 				$(this.element).find('.ftco-number').each(function(){
 					var $this = $(this),
 						num = $this.data('number');
-						console.log(num);
+						
 					$this.animateNumber(
 					  {
 					    number: num,

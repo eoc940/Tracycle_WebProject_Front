@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+ 
  <title>지구를 위한 Tracycle</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,6 +33,7 @@
     <link rel="stylesheet" href="../css/fancybox.min.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/style.css">
+
 
 </head>
 <body>
@@ -212,8 +215,6 @@
   
   <script src="../js/aos.js"></script>
   <script src="../js/jquery.animateNumber.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
 
 </body>
