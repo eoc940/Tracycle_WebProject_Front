@@ -3,16 +3,13 @@
 
 <!DOCTYPE html>
 <head>
-
 <meta charset="UTF-8">
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 <title>지구를 위한 Tracycle</title>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!--한글폰트 링크 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -34,10 +31,8 @@
 <link rel="stylesheet" href="../css/fancybox.min.css">
 <link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="../css/style.css">
-
 </head>
 <body>
-
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container" id="app">
 			<a class="navbar-brand" href="index.html"></a>
@@ -136,8 +131,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- .site-section -->
-
 	<script>
 
   var tag = document.createElement('script');
@@ -172,7 +165,6 @@
 			<circle class="path" cx="24" cy="24" r="22" fill="none"
 				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
 	</div>
-
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="../js/popper.min.js"></script>
@@ -223,7 +215,6 @@ new Vue({
          		return true;
         }
       }
-
 });
 
 </script>
