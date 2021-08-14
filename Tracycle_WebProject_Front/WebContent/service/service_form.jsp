@@ -2,30 +2,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-<!-- favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 <title>지구를 위한 Tracycle</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-<!--한글폰트 링크 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Song+Myung&display=swap" rel="stylesheet">
-
-<!-- 아이콘 링크 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- selectpicker -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.css" integrity="sha512-03p8fFZpOREY+YEQKSxxretkFih/D3AVX5Uw16CAaJRg14x9WOF18ZGYUnEqIpIqjxxgLlKgIB2kKIjiOD6++w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
 <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="../css/animate.css">
 <link rel="stylesheet" href="../css/owl.carousel.min.css">
@@ -38,44 +29,24 @@
 <link rel="stylesheet" href="../css/fancybox.min.css">
 <link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="../css/style.css">
-
-
-
 </head>
 <body>
-
-
-	<jsp:include page="../header.jsp"></jsp:include>
-
-	<div id="blog" class="site-header-section">
+<jsp:include page="../header.jsp"></jsp:include>
+<div id="blog" class="site-header-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="pt-5 pb-5 text-left">폐기할 물품의 사진을 업로드 해주세요.</h3>
 				</div>
 			</div>
-
 			<div class="form-group">
 				<label for="content" class="label-font-bold">지역 </label><br> 
 				<select class="selectpicker" name="selectedArea" v-model="area.areaId">
 					<option v-for="sarea in areaList" :value="sarea.areaId">
 						{{sarea.areaName}}</option>
 				</select>
-
 			</div>
-
-			<!-- <div class="form-group pt-5 pb-5">
-				<label for="content" class="label-font-bold">이미지 </label><br> 
-				<h1 class="h3 mb-3 font-weight-normal">Upload any image</h1>
-				<input type="file" name="file" accept="image/*" id="file_upload" ref="mainFile" v-on:change="mainFileUpload()"  class="btn py-3 px-4 btn-cancel"/> 
-				<input type="button" v-on:click="submit()" value="upload" id="upload" class="btn py-3 px-4 btn-primary" />
-					
-			</div> -->
-
-			
-			
 			<div class="form-group pt-2 pb-5">
-			
 					<h6> <label for="formFile1" class="form-label label-font-bold">이미지</label></h6>									  
 					  <div class="file_input">
 					    <label>
@@ -85,21 +56,11 @@
 					    <input type="text" for="file_upload" readonly="readonly" :value="file_name">
 					  </div>
 				<input type="button" v-on:click="submit()" value="upload" id="upload" class="btn btn-upload" />
-					
 			</div> 
 
-
-			<!-- 이미지 컴포넌트 추가 -->
 			<div id="viewer">
 				<img id="img" v-if="image != ''" :src="image" class="service_img">
 			</div>
-
-			
-
-	
-		<!-- 테이블 -->
-
-
 		<div v-if="isLoaded" class="bannerContainer">
 		<div class="table-responsive">
 			<table class="table text-center pt-5 pb-5 mt-5 mb-5">
@@ -117,14 +78,11 @@
 							<td v-html="info[1]"></td>
 							<td v-html="info[0]"></td>
 							<td v-html="info[2]"></td>
-	
 						</tr>
 					</tbody>
-				</table>
+			</table>
 		</div>
 			<div class="row d-flex">
-				
-
 				<div class="col-md-4  align-self-stretch">
 					<div class="media block-71" v-on:click="goURL">
 						<div class="media-body p-3 mt-3 mobile-pm-0">
@@ -169,22 +127,14 @@
 						</div>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
-		</div>
-		
 	</div>
-
-
-
-
-
+		
+</div>
 
 	<jsp:include page="../footer.jsp"></jsp:include>
 
-	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">
 		<svg class="circular" width="48px" height="48px">
 			<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
@@ -192,8 +142,7 @@
 			<circle class="path" cx="24" cy="24" r="22" fill="none"
 				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
 	</div>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/jquery-migrate-3.0.1.min.js"></script>
@@ -209,8 +158,6 @@
 	<script src="../js/aos.js"></script>
 	<script src="../js/main.js"></script>
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.js" integrity="sha512-t2sE4D8vBHZoytr423dbCPmX8MUKM9bNiVKGOMpqFYEsV8/GilxvresTtCsv9RDzqGMcizOd7EuXssJUtaGZLg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
 	<script>
 
   	new Vue({
@@ -231,6 +178,7 @@
 				file_name: "파일을 선택하세요."
   			}
   		},
+  		
   		mounted() {
   			axios
 			.get('http://127.0.0.1:7788/board/getAllArea',{
@@ -247,6 +195,7 @@
 			.finally(()=>this.loading = false);
 			
   		},
+  		
   		methods:{
   			mainFileUpload(e){
 				this.mainFile = this.$refs.mainFile.files[0];
@@ -259,6 +208,7 @@
 			
 				this.file_name =e.target.files[0].name;
 			},
+			
 			validation(){
 				if(storage.getItem("jwt-auth-token")== "" || storage.getItem("jwt-auth-token")== null) {
 					alert("로그인 해주세요");
@@ -270,6 +220,7 @@
 				}
 				return true;
 			},
+			
 			submit() {
 
 				if(this.validation()) {
@@ -299,21 +250,22 @@
 					
 				}
 			},
+			
 			go15990903(){
         		window.open("http://www.15990903.or.kr", "_blank");
 
         	},
+        	
 			goURL(){
         		window.open(this.url, "_blank");
 
         	}
   		},
+  		
   		updated: function(){
 			  this.$nextTick(function(){ $('.selectpicker').selectpicker('refresh'); });
 			}
   	})
-  
-  
 </script>
 </body>
 </html>
