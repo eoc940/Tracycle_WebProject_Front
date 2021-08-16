@@ -240,6 +240,7 @@
 				if (this.subFile.length > 4) {
 					this.subFile = [];
 					alert("이미지는 4개 이하로 올려주세요");
+					this.subfileslength = "파일을 선택하세요.";
 				}
 				for(var i=0; i<this.subFile.length; i++) {
 					console.log(this.subFile[i])
