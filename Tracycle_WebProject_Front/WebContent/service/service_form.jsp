@@ -106,7 +106,7 @@
 				<div class="col-md-4 d-flex align-self-stretch">
 					<div class="media block-7">
 						<div class="media-body p-3 mt-3 mobile-pm-0">
-							<a href="../board/board_form.jsp" target="_blank"> <span
+							<a href="../board/board_form.jsp"> <span
 								style="color: rgba(128, 156, 168, 1)"><i
 									class="fa fa-heart-o fa-5x" aria-hidden="true"></i></span>
 								<h6 class="heading mb-4 mobile-pm-0 mobile-mt-2" style="color: black">
