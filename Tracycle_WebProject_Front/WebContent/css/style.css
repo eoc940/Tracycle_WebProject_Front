@@ -2512,6 +2512,7 @@ dropdown .btn:focus,.btn:active,.btn:focus{
 .detail_image{
 	max-width: 80%;
     margin-bottom: 20px;
+    height: auto;
     }
 .list_image{
 	width: 100%;
