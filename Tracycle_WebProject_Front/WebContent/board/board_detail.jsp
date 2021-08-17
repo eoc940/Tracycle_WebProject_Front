@@ -115,7 +115,7 @@
 					  </ul>
 					</nav>
 					</div>
-			        <div v-if="isLogin" class="comment-form-wrap pt-5">                 
+			        <div class="comment-form-wrap pt-5">                 
 			            <h3 class="mb-5">Leave a Comment</h3>
 			            <form action="#" class="">
 			                <div class="form-group">
@@ -291,6 +291,12 @@
             	},
             	
            		submitComment(){
+            		if(this.userId == '') {
+            			alert("댓글 작성은 로그인 후 가능합니다");
+            			location.href="../user/login.jsp";
+            			return;
+            		}
+            		
            			if (this.validation()) {
            				var today = new Date();
         				var year = today.getFullYear();

@@ -83,7 +83,10 @@
 		</div>
       </div>
        <div v-if="isLogin" class=" pt-5 pb-5 text-center">
-			<a href="board_form.jsp" class="btn py-3 px-4 btn-primary">Write Post</a>
+			<a href="board_form.jsp" class="btn py-3 px-4 btn-primary">Write Post</a>			
+       </div>
+       <div v-else class=" pt-5 pb-5 text-center">
+			<a href="../user/login.jsp" class="btn py-3 px-4 btn-primary" @click="writeLoginAlert">Write Post</a>
        </div>
       <nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-center">
@@ -146,15 +149,15 @@
                     userId:storage.getItem("login_user"),                   
                     keyword:'',
                     /* pagination */
-                    totalListItemCount: 0,//전체 게시글 갯수 
-                    listRowCount: 6,//한페이지에 몇개 limit
-                    pageLinkCount: 10, //<< >> 사이에 들어갈 페이지 개수 
-                    currentPageIndex: 1,//현재페이지
-                    pageCount: 0,//총페이지 갯수
-                    startPageIndex: 0, //시작페이지 인덱스 
-                    endPageIndex: 0, //끝페이지 인덱스 
-                    prev: false, //<< 출력 
-                    next: false //>> 출력 
+                    totalListItemCount: 0,
+                    listRowCount: 6,
+                    pageLinkCount: 10,
+                    currentPageIndex: 1,
+                    pageCount: 0,
+                    startPageIndex: 0,
+                    endPageIndex: 0,
+                    prev: false, 
+                    next: false 
                 }
             },
             computed: {
@@ -383,6 +386,9 @@
             			this.keyword=""
             	},
             	
+            	writeLoginAlert(){
+            		alert("게시글 작성은 로그인 후 가능합니다");
+            	},
             	
             	/* pagination */
             	
