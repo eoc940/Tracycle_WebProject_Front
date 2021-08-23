@@ -3,7 +3,7 @@
 
 <br>
 
-### 프로젝트 설명
+### :memo: 프로젝트 설명
 ---
 > 많은 폐기물들이 버려지고 이로 인해 환경 오염이 가속화되고 있다. 충분히 재사용할 수 있는 폐기물들을
 > 나눔으로써 폐기물 처리비용과 기타 비용을 절감할 수 있으며 환경 오염을 일정 수준 억제할 수 있다. 그래서 
@@ -73,12 +73,23 @@ https://user-images.githubusercontent.com/67304980/130423160-0b2beb13-d13b-4a58-
 
 https://user-images.githubusercontent.com/67304980/130423285-ede71bc8-6e59-4600-8c0c-5262d3497700.mp4
 
-#### :clapper: 폐기물 데이터 분석 차트
-
 <br>
+
+#### :clapper: 폐기물 데이터 분석 차트
 
 https://user-images.githubusercontent.com/67304980/130423390-c8ec53bf-4dc2-4bfd-be5f-47e4d51c69e9.mp4
 
+<br>
+
+#### :clapper: 핸드폰 사진 인식
+
+https://user-images.githubusercontent.com/67304980/130461559-6783f093-d75b-4912-af7b-036e71091753.mp4
+
+<br>
+
+#### :clapper: 핸드폰 게시글 작성
+
+https://user-images.githubusercontent.com/67304980/130461605-85939319-8ff5-4e16-b27d-89226705c9bd.mp4
 
 <br>
 
