@@ -81,13 +81,13 @@ https://user-images.githubusercontent.com/67304980/130423390-c8ec53bf-4dc2-4bfd-
 
 <br>
 
-#### :clapper: 핸드폰 사진 인식
+#### :clapper: 사진 인식 (Mobile)
 
 https://user-images.githubusercontent.com/67304980/130461559-6783f093-d75b-4912-af7b-036e71091753.mp4
 
 <br>
 
-#### :clapper: 핸드폰 게시글 작성
+#### :clapper: 게시글 작성 (Mobile)
 
 https://user-images.githubusercontent.com/67304980/130461605-85939319-8ff5-4e16-b27d-89226705c9bd.mp4
 
